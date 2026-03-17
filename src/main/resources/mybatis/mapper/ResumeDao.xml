@@ -7,8 +7,8 @@
 <!-- 지원서 입력 -->
 
 <insert id="insertResume">
-	insert into resume (rno, mid, address, univ, major, career, experience, intro) 
-	values (seq_resume.nextVal, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
+	insert into resume (rno, mid, address, univ, major, career, experi, intro) 
+	values (seq_resume.nextVal, #{mid}, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
 </insert>
 
 <!-- 이력서 삭제 -->
@@ -28,11 +28,11 @@
 		career = #{career},
 		experi = #{experi}, 
 		intro = #{intro} 
-		where rno = ${rno}
+		where rno = #{rno}
 </update>
 
 <!-- 이력서 전체 -->
-<select id="getMyList" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
+<select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeDto"> 
 	select c.cname, j.deadline 
 	from job j
 	join company c on j.cid = c.cid
@@ -41,7 +41,7 @@
 </select>
 
 <!-- 이력서 상세보기 -->
-<select id="detail" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
+<select id="getMyResume" resultType="com.example.recruit.jdbc.resume.ResumeDto"> 
 	select * from resume where rno = #{rno}
 </select>
 

@@ -16,6 +16,6 @@ public interface IResumeDao {
 	List<ResumeList> getMyList(@Param("mid") String mid);
 	
 	//상세보기
-	ResumeDto getDetail(@Param("rno") int rno);
+	ResumeDto getMyResume(@Param("rno") int rno);
 	
 }
