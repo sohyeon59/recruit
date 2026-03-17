@@ -14,7 +14,7 @@
 <!-- 이력서 삭제 -->
 
 <delete id="deleteResume">
-delete from resume where rno = #{}
+delete from resume where rno = #{rno}
 </delete>
 
 <!-- 수정 -->
