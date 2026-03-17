@@ -16,21 +16,21 @@ public class ResController {
 	private IResumeDao resumeDao;
 
 	//이력서 작성 홈페이지 가기
-	@GetMapping("goResume")
+	@GetMapping("/goResume")
 	public String goResume() {
 		
-		return "";
+		return "resume";
 	}
 	
 	//이력서 리스트? => 마이페이지
-	@GetMapping("resumeList")
+	@GetMapping("/resumeList")
 	public String resumeList() {
 		
-		return "";
+		return "/member/myPage";
 	}
 	
 	//이력서 작성하기
-	@PostMapping("regResume")
+	@PostMapping("/regResume")
 	public String regResume(ResumeDto resumeDto) {
 		resumeDao.insertResume(resumeDto);
 		return "redirect:/resumeList";
