@@ -10,6 +10,6 @@ public interface IResumeDao {
 	void deleteResume(ResumeDto resumeDto);
 	
 	void unpdateResume(ResumeDto resumeDto);
-	
+	void deleteResume(int rno);
 	
 }
