@@ -12,6 +12,7 @@ import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.jdbc.resume.ResumeDto;
 import com.example.recruit.service.CompanyService;
+import com.example.recruit.service.ResumeService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,21 +22,7 @@ public class ComController {
 	
 	@Autowired
 	CompanyService companyService;
-
-	@GetMapping("/company/login")
-	public String login(String id, String pw, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		CompanyDto result = companyService.login(id, pw);
-		if (result != null) {
-
-			session.setAttribute("cid", id);
-
-			return "redirect:/job/main";
-		} else {
-			model.addAttribute("error", "아이디 또는 비밀번호를 틀리셨습니다.");
-			return "/";
-		}
-	}
+	ResumeService resumeService;
 	
 	@PostMapping("/")
 	public String printJobList(Model model, HttpServletRequest request) {
@@ -55,12 +42,8 @@ public class ComController {
 	
 	@GetMapping("/company/detail")
 	public String showdetails(Model model, int jno) {
-	    
-	    JobDto jobDetail = companyService.getJobDetail(jno);
-	    List<ResumeDto> resumeList = companyService.getResumeList(jno);
-	    model.addAttribute("job", jobDetail);
-	    model.addAttribute("resumeList", resumeList);
-	    
-	    return "company/detail"; 
+		model.addAttribute("job", companyService.getJobDetail(jno));
+		model.addAttribute("resumeList", resumeService.getResumeList(jno));
+		return "company/detail"; 
 	}
 }
