@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../heafoo/header.jsp" %>
+<%@ include file="heafoo/header.jsp" %>
 <h1>MyPage</h1>
 <hr>
 

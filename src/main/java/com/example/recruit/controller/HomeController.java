@@ -13,70 +13,84 @@ import com.example.recruit.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 
-// 공용 컨트롤러입니다. 
+// 공용 컨트롤러입니다.
 @Controller
 public class HomeController {
-	@Autowired
-	HttpSession session;
-	
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	CompanyService companyService;
-	
-	@GetMapping("/")
-	public String home() {
-		System.out.println("Index Page 접속 테스트입니다~");
-		return "index";
-	}
-	
-	
-	@GetMapping("/logout")
-	public String logout() {
-		session.invalidate();
-		return "redirect:/";
-	}
-	
-	@GetMapping("/loginForm")
-	public String loginPage() {
-		return "login";
-	}
-	
-	
-	// 개인회원 로그인
-	@PostMapping("/login/member")
-	public String loginM(MemberDto dto, Model model) {
-		MemberDto result = memberService.login(dto);
-		if (result != null) {
-			session.setAttribute("loginMember", result);
-			session.setAttribute("loginName", result.getMname());
-			session.setAttribute("userType", "member");
-			return "redirect:/";
-		} else {
-			model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
-			return "login";
-		}
-	}
 
-	
-	@GetMapping("/registForm")
-	public String registPage() {
-		return "regist";
-	}
-	
-	// 개인회원 가입
-	@PostMapping("/register/member")
-	public String registM(MemberDto dto, Model model) {
-		System.out.println("회원가입 서블릿");
-		boolean result = memberService.regist(dto);
-		System.out.println(dto.toString());
-		if (result) {
-			return "redirect:/loginForm";
-		} else {
-			model.addAttribute("error", "이미 사용중인 아이디입니다.");
-			return "regist";
-		}
-	}
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    CompanyService companyService;
+
+    @GetMapping("/")
+    public String home() {
+        System.out.println("Index Page 접속 테스트입니다~");
+        return "index";
+    }
+
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/";
+    }
+
+    // 로그인 페이지
+    @GetMapping("/loginForm")
+    public String loginPage() {
+        return "login";
+    }
+
+    // 회원가입 페이지 이동
+    @GetMapping("/goRegister")
+    public String goReg() {
+        return "regist";
+    }
+
+    // 로그인 페이지 이동 (다른 경로)
+    @GetMapping("/goLogin")
+    public String goLogin() {
+        return "login";
+    }
+
+    // 개인회원 로그인
+    @PostMapping("/login/member")
+    public String loginM(MemberDto dto, Model model) {
+        MemberDto result = memberService.login(dto);
+        if (result != null) {
+            session.setAttribute("loginMember", result);
+            session.setAttribute("loginName", result.getMname());
+            session.setAttribute("userType", "member");
+            return "redirect:/";
+        } else {
+            model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
+            return "login";
+        }
+    }
+
+    // 회원가입 페이지
+    @GetMapping("/registForm")
+    public String registPage() {
+        return "regist";
+    }
+
+    // 개인회원 가입
+    @PostMapping("/register/member")
+    public String registM(MemberDto dto, Model model) {
+        System.out.println("회원가입 서블릿");
+        boolean result = memberService.regist(dto);
+        System.out.println(dto.toString());
+        if (result) {
+            return "redirect:/loginForm";
+        } else {
+            model.addAttribute("error", "이미 사용중인 아이디입니다.");
+            return "regist";
+        }
+    }
 
     // 기업회원 로그인
     @PostMapping("/login/company")
@@ -103,5 +117,4 @@ public class HomeController {
             return "regist";
         }
     }
-
 }
