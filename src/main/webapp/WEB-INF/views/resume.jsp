@@ -7,6 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>이력서 작성</h1>
+<hr>
 
+<form action="/regResume" method="POST">
+	성명: <input type="text" name="mname" value="${mname }"><br>
+	생년월일: <input type="text" name="mbirth" value="${mbirth }"><br>
+	이메일: <input type="text" name="memail" value="${memail }"><br>
+	전화번호: <input type="text" name="mphobe" value="${mphobe }"><br>
+	주소: <input type="text" name="address"><br>
+	학력: <input type="text" name="univ"><br>
+	전공: <input type="text" name="major"><br>
+	경력: <input type="text" name="career"><br>
+	경험: <input type="text" name="experi"><br>
+	자기소개: <textarea cols="100" rows="200" name="intro"></textarea><br>
+	<input type="submit" value="제출"><br>
+</form>
 </body>
 </html>

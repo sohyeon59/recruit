@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IResumeDao {
 	
 	void insertResume(ResumeDto resumeDto);
+	
+	void deleteResume(ResumeDto resumeDto);
+	
 	void unpdateResume(ResumeDto resumeDto);
 	
 	
