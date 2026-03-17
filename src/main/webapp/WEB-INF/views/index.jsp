@@ -8,5 +8,10 @@
 </head>
 <body>
 	<%@ include file="heafoo/header.jsp" %>
+	
+	<section id="main_menu">
+		
+	</section>
+	
 </body>
 </html>
