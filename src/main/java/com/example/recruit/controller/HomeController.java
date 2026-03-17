@@ -27,7 +27,18 @@ public class HomeController {
 		System.out.println("Index Page 접속 테스트입니다~");
 		return "index";
 	}
-	
+	//회원가입 페이지 가기
+    @GetMapping("/goRegister")
+    public String goReg() {
+        return "regist";
+    }
+   
+    //개인 로그인 페이지 가기
+    @GetMapping("/goLogin")
+    public String goLogin(){
+    	return "login";
+    }
+    
 	// 개인회원 로그인
 	@PostMapping("/login/member")
 	public String login(MemberDto dto, HttpSession session, Model model) {
