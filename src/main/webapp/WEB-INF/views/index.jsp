@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인</title>
+
+<title>메인화면</title>
 </head>
 <body>
+	<%@ include file="heafoo/header.jsp" %>
+	
+	<section id="main_menu">
+		
+	</section>
+	
 
 </body>
 </html>
