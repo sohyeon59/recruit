@@ -5,4 +5,15 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.example.recruit.jdbc.job.IJobDao">
+	<select id="list" resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT * FROM job
+	</select>
+	
+	<select id="jobList" resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT * FROM job WHERE cid = #{cid}
+	</select>
+	
+	<select id="getJobDetail" parameterType="int" resultType="com.example.recruit.jdbc.job.JobDto">
+    	SELECT * FROM job WHERE jno = #{jno}
+	</select>
 </mapper>
