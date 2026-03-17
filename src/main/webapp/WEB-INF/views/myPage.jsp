@@ -19,7 +19,7 @@
 		<th>마감기한</th>
 	</tr>
 	<% int no = 1; %>
-	<c:forEach var="resume" items="resumeList">
+	<c:forEach var="resume" items="${resumeList }">
 	<tr>
 		<td><%= no++ %></td>
 		<td>${resume.cname }</td>
