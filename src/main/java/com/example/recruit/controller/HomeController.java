@@ -16,20 +16,9 @@ import jakarta.servlet.http.HttpSession;
 // 공용 컨트롤러입니다.
 @Controller
 public class HomeController {
-<<<<<<< HEAD
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	CompanyService companyService;
-	
-	@GetMapping("/")
-	public String home() {
-		System.out.println("Index Page 접속 테스트입니다~");
-		return "index";
-	}
+
 	
 	//회원가입 페이지 가기
-=======
 
     @Autowired
     HttpSession session;
@@ -59,18 +48,6 @@ public class HomeController {
         return "login";
     }
 
-    // 회원가입 페이지 이동
->>>>>>> d64be4f53a3b6721693e6c544554ff60f02e387f
-    @GetMapping("/goRegister")
-    public String goReg() {
-        return "regist";
-    }
-
-    // 로그인 페이지 이동 (다른 경로)
-    @GetMapping("/goLogin")
-    public String goLogin() {
-        return "login";
-    }
 
     // 개인회원 로그인
     @PostMapping("/login/member")
