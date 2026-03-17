@@ -20,18 +20,18 @@
     <c:if test="${not empty error}">
       <p>${error}</p>
     </c:if>
-    <form action="${pageContext.request.contextPath}/login/member" method="post">
+    <form action="/login/member" method="post">
       <div>
-        <label>아이디</label>
-        <input type="text" name="mid" required autofocus>
+        <label for="mid">아이디</label>
+        <input type="text" name="mid" id="mid" required autofocus>
       </div>
       <div>
-        <label>비밀번호</label>
-        <input type="password" name="mpw" required>
+        <label for="mpw">비밀번호</label>
+        <input type="password" name="mpw" id="mpw" required>
       </div>
       <button type="submit">로그인</button>
     </form>
-    <a href="${pageContext.request.contextPath}/register?type=member">개인회원 가입</a>
+    <a href="/register?type=member">개인회원 가입</a>
   </div>
 
   <div id="panel-company" style="display:none;">
@@ -39,18 +39,18 @@
     <c:if test="${not empty error}">
       <p>${error}</p>
     </c:if>
-    <form action="${pageContext.request.contextPath}/login/company" method="post">
+    <form action="/login/company" method="post">
       <div>
-        <label>기업 아이디</label>
-        <input type="text" name="cid" required>
+        <label for="cid">기업 아이디</label>
+        <input type="text" name="cid" id="cid" required>
       </div>
       <div>
-        <label>비밀번호</label>
-        <input type="password" name="cpw" required>
+        <label for="cpw">비밀번호</label>
+        <input type="password" name="cpw" id="cpw" required>
       </div>
       <button type="submit">로그인</button>
     </form>
-    <a href="${pageContext.request.contextPath}/register?type=company">기업회원 가입</a>
+    <a href="/register?type=company">기업회원 가입</a>
   </div>
 
   <script>
