@@ -23,7 +23,7 @@ public class ResController {
 	}
 	
 	//이력서 리스트? => 마이페이지
-	@GetMapping("/resumeList")
+	@GetMapping("/myPage")
 	public String resumeList() {
 		
 		return "/member/myPage";
