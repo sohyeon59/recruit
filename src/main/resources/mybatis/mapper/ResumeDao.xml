@@ -32,11 +32,12 @@
 </update>
 
 <!-- 이력서 전체 -->
-<select id="list" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
+<select id="getMyList" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
 	select c.cname, j.deadline 
-	from company c 
-	join job j on c.cid = j.cid
-	where c.cid =?
+	from job j
+	join company c on j.cid = c.cid
+	join resume r on j.jno = r.jno
+	where r.mid = #{mid}
 </select>
 
 <!-- 이력서 상세보기 -->
