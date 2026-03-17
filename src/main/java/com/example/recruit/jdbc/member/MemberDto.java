@@ -1,5 +1,5 @@
 package com.example.recruit.jdbc.member;
 
-public interface ICompanyDao {
+public class MemberDto {
 
 }
