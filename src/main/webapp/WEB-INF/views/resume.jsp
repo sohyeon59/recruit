@@ -14,7 +14,7 @@
 	성명 <input type="text" name="mname" value="${mname }"><br>
 	생년월일 <input type="text" name="mbirth" value="${mbirth }"><br>
 	이메일 <input type="text" name="memail" value="${memail }"><br>
-	전화번호 <input type="text" name="mphobe" value="${mphobe }"><br>
+	전화번호 <input type="text" name="mphone" value="${mphone }"><br>
 	주소 <input type="text" name="address"><br>
 	학력 <input type="text" name="univ"><br>
 	전공 <input type="text" name="major"><br>

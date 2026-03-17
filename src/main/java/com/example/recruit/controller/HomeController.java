@@ -17,6 +17,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
+	
+	//회원가입 페이지 가기
+
     @Autowired
     HttpSession session;
 

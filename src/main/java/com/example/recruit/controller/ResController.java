@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.member.MemberDto;
+import com.example.recruit.jdbc.resume.ResumeDetail;
 import com.example.recruit.jdbc.resume.ResumeDto;
 import com.example.recruit.jdbc.resume.ResumeList;
 import com.example.recruit.service.ResumeService;
@@ -21,6 +22,7 @@ public class ResController {
 	
 	@Autowired
 	private ResumeService service;
+	HttpSession session;
 
 	// 지원서 작성 홈페이지 가기
 	@GetMapping("/goResume")
@@ -31,27 +33,30 @@ public class ResController {
 	// 지원서 등록
 	@PostMapping("/regResume")
 	public String regResume(ResumeDto resume) {
-		service.insertResume(resume);
+		int result = service.insertResume(resume);
+		session.setAttribute("regResult", result);
 		return "redirect:/myPage";
 	}
 	
 	// 지원서 수정
 	@PostMapping("/updateResume")
 	public String updateresume(ResumeDto resume) {
-		service.updateResume(resume);
+		int result = service.updateResume(resume);
+		session.setAttribute("modResult", result);
 		return "redirect:/myPage";
 	}
 	
 	// 지원서 삭제
 	@GetMapping("/deleteResume")
 	public String deleteResume(@RequestParam("rno")int rno) {
-		service.deleteResume(rno);
+		int result = service.deleteResume(rno);		
+		session.setAttribute("delResult", result);
 		return "redirect:/myPage";
 	}
 	
 	// 마이페이지 내지원서
 	@GetMapping("/myPage")
-	public String myPage(Model model, HttpSession session) {
+	public String myPage(Model model) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		String mid = mem.getMid();
 		List<ResumeList> rList = service.getMyList(mid);
@@ -62,15 +67,11 @@ public class ResController {
 	// 내지원서 상세보기
 	@GetMapping("/resumeDetail")
 	public String resumeDetail(@RequestParam("rno")int rno, Model model) {
-		model.addAttribute("detail", service.getMyResume(rno));
-		return "";
+		ResumeDetail detail = service.getMyResume(rno);
+		model.addAttribute("detail", detail);
+		return "detail";
 	}
-		
-	// 수정 페이지 이동
-	@GetMapping("/goEditPage")
-	public String goEdit() {
-		return "";
-	}
+
 	
 	
 	

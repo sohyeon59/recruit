@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.recruit.jdbc.resume.IResumeDao;
+import com.example.recruit.jdbc.resume.ResumeDetail;
 import com.example.recruit.jdbc.resume.ResumeDto;
 import com.example.recruit.jdbc.resume.ResumeList;
 
@@ -28,19 +29,17 @@ public class ResumeService {
 		return resumeDao.deleteResume(rno);
 	}
 	
-	// 마이페이지 내이력서
+	// 마이페이지 내지원서
 	public List<ResumeList> getMyList(String mid){
 		return resumeDao.getMyList(mid);
 	}
 	
-	// 이력서 상세보기
-	public ResumeDto getMyResume(int rno) {
+	// 내지원서 상세보기
+	public ResumeDetail getMyResume(int rno) {
 		return resumeDao.getMyResume(rno);
 	}
 	
-	
-	
-	
-	
-	
+	public List<ResumeDto> getResumeList(int jno) {
+	    return resumeDao.getResumeList(jno);
+	}
 }
