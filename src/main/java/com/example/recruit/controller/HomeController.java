@@ -17,6 +17,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	MemberService memberService;
 	@Autowired
 	CompanyService companyService;
@@ -27,24 +30,46 @@ public class HomeController {
 		return "index";
 	}
 	
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping("/loginForm")
+	public String loginPage() {
+		return "login";
+	}
+	
+	
 	// 개인회원 로그인
 	@PostMapping("/login/member")
-	public String login(MemberDto dto, HttpSession session, Model model) {
+	public String loginM(MemberDto dto, Model model) {
 		MemberDto result = memberService.login(dto);
 		if (result != null) {
 			session.setAttribute("loginMember", result);
+			session.setAttribute("loginName", result.getMname());
 			session.setAttribute("userType", "member");
-			return "redirect:/job/main";
+			return "redirect:/";
 		} else {
 			model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
 			return "login";
 		}
 	}
 
+	
+	@GetMapping("/registForm")
+	public String registPage() {
+		return "regist";
+	}
+	
 	// 개인회원 가입
 	@PostMapping("/register/member")
-	public String regist(MemberDto dto, Model model) {
+	public String registM(MemberDto dto, Model model) {
+		System.out.println("회원가입 서블릿");
 		boolean result = memberService.regist(dto);
+		System.out.println(dto.toString());
 		if (result) {
 			return "redirect:/loginForm";
 		} else {
@@ -55,7 +80,7 @@ public class HomeController {
 
     // 기업회원 로그인
     @PostMapping("/login/company")
-    public String login(CompanyDto dto, HttpSession session, Model model) {
+    public String loginC(CompanyDto dto, Model model) {
         CompanyDto result = companyService.login(dto);
         if (result != null) {
             session.setAttribute("loginCompany", result);
@@ -69,7 +94,7 @@ public class HomeController {
 
     // 기업회원 가입
     @PostMapping("/register/company")
-    public String regist(CompanyDto dto, Model model) {
+    public String registC(CompanyDto dto, Model model) {
         boolean result = companyService.regist(dto);
         if (result) {
             return "redirect:/loginForm";
