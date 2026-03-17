@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이력서 페이지</title>
 </head>
 <body>
 <h1>이력서 작성</h1>

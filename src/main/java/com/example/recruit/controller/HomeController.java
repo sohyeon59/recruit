@@ -45,18 +45,6 @@ public class HomeController {
         return "login";
     }
 
-    // 회원가입 페이지 이동
-    @GetMapping("/goRegister")
-    public String goReg() {
-        return "regist";
-    }
-
-    // 로그인 페이지 이동 (다른 경로)
-    @GetMapping("/goLogin")
-    public String goLogin() {
-        return "login";
-    }
-
     // 개인회원 로그인
     @PostMapping("/login/member")
     public String loginM(MemberDto dto, Model model) {
