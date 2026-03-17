@@ -11,6 +11,7 @@ import com.example.recruit.jdbc.member.MemberDto;
 import com.example.recruit.service.CompanyService;
 import com.example.recruit.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 // 공용 컨트롤러입니다. 
@@ -54,18 +55,21 @@ public class HomeController {
 	}
 
     // 기업회원 로그인
-    @PostMapping("/login/company")
-    public String login(CompanyDto dto, HttpSession session, Model model) {
-        CompanyDto result = companyService.login(dto);
-        if (result != null) {
-            session.setAttribute("loginCompany", result);
-            session.setAttribute("userType", "company");
-            return "redirect:/company/main";
-        } else {
-            model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
-            return "login";
-        }
-    }
+	@GetMapping("/company/login")
+	public String login(String id, String pw, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		CompanyDto result = companyService.login(id, pw);
+		if (result != null) {
+
+			session.setAttribute("cid", id);
+
+			return "redirect:/job/main";
+		} else {
+			model.addAttribute("error", "아이디 또는 비밀번호를 틀리셨습니다.");
+			return "/";
+		}
+	}
+	
 
     // 기업회원 가입
     @PostMapping("/register/company")
