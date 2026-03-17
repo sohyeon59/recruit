@@ -48,7 +48,6 @@ public class HomeController {
         return "login";
     }
 
-
     // 개인회원 로그인
     @PostMapping("/login/member")
     public String loginM(MemberDto dto, Model model) {

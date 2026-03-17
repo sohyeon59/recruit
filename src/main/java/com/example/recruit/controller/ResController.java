@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.member.MemberDto;
+import com.example.recruit.jdbc.resume.ResumeDetail;
 import com.example.recruit.jdbc.resume.ResumeDto;
 import com.example.recruit.jdbc.resume.ResumeList;
 import com.example.recruit.service.ResumeService;
@@ -60,22 +61,17 @@ public class ResController {
 		String mid = mem.getMid();
 		List<ResumeList> rList = service.getMyList(mid);
 		model.addAttribute("resumeList", rList);
-		model.addAttribute("result", 1);  // 등록, 수정, 삭제 결과
 		return "myPage";
 	}
 	
 	// 내지원서 상세보기
 	@GetMapping("/resumeDetail")
 	public String resumeDetail(@RequestParam("rno")int rno, Model model) {
-		model.addAttribute("detail", service.getMyResume(rno));
-		return "";
+		ResumeDetail detail = service.getMyResume(rno);
+		model.addAttribute("detail", detail);
+		return "detail";
 	}
-		
-	// 수정 페이지 이동
-	@GetMapping("/goEditPage")
-	public String goEdit() {
-		return "";
-	}
+
 	
 	
 	
