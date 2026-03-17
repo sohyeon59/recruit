@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ICompanyDao {
-    CompanyDto login(@Param("cid") String id, @Param("cpw")String pw);
+    CompanyDto login(CompanyDto dto);
     int regist(CompanyDto dto);
     int idCheck(String cid);
 }

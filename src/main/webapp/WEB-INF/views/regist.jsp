@@ -23,7 +23,7 @@
       			alert(${error});
       		</script>
 		</c:if>
-		<form action="${pageContext.request.contextPath}/register/member"
+		<form action="/register/member"
 			method="post">
 			<div>
 				<label>아이디</label> <input type="text" name="mid" required>
@@ -55,7 +55,7 @@
       			alert(${error});
       		</script>
 		</c:if>
-		<form action="${pageContext.request.contextPath}/register/company"
+		<form action="/register/company"
 			method="post">
 			<div>
 				<label>기업 아이디</label> <input type="text" name="cid" required>

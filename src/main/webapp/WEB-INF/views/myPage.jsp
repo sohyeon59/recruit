@@ -16,7 +16,7 @@
 	<tr>
 		<th>번호</th>
 		<th>기업명</th>
-		<th>마감기한</th>	
+		<th>마감기한</th>
 	</tr>
 	<% int no = 1; %>
 	<c:forEach var="resume" items="resumeList">

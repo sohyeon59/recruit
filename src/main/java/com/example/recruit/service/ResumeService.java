@@ -38,9 +38,7 @@ public class ResumeService {
 		return resumeDao.getMyResume(rno);
 	}
 	
-	
-	
-	
-	
-	
+	public List<ResumeDto> getResumeList(int jno) {
+	    return resumeDao.getResumeList(jno);
+	}
 }

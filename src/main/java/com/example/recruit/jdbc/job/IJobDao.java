@@ -10,4 +10,5 @@ public interface IJobDao {
 	
 	List<JobDto> list();
 	List<JobDto> jobList(@Param("cid") String cid);
+	JobDto getJobDetail(int jno);
 }

@@ -45,4 +45,8 @@
 	select * from resume where rno = #{rno}
 </select>
 
+<select id="getResumeList" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDto">
+    SELECT * FROM resume WHERE jno = #{jno} ORDER BY rno DESC
+</select>
+
 </mapper>

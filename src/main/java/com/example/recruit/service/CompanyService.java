@@ -9,6 +9,7 @@ import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.company.ICompanyDao;
 import com.example.recruit.jdbc.job.IJobDao;
 import com.example.recruit.jdbc.job.JobDto;
+import com.example.recruit.jdbc.resume.IResumeDao;
 import com.example.recruit.jdbc.resume.ResumeDto;
 
 @Service
@@ -16,11 +17,12 @@ public class CompanyService {
 
 	@Autowired
 	ICompanyDao companyDao;
+	IResumeDao resumeDao;
 	IJobDao jobDao;
 
 	// 로그인 - 성공하면 dto 반환, 실패하면 null
-	public CompanyDto login(String id, String pw) {
-		return companyDao.login(id, pw);
+	public CompanyDto login(CompanyDto dto) {
+		return companyDao.login(dto);
 	}
 
 	// 회원가입 - 아이디 중복이면 false
@@ -39,6 +41,6 @@ public class CompanyService {
 	}
 
 	public List<ResumeDto> getResumeList(int jno) {
-	    return jobDao.getResumeList(jno); // 이력서 목록을 DAO에 요청
+	    return resumeDao.getResumeList(jno); // 이력서 목록을 DAO에 요청
 	}
 }
