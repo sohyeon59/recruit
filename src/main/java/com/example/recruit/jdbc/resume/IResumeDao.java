@@ -7,6 +7,6 @@ public interface IResumeDao {
 	
 	void insertResume(ResumeDto resumeDto);
 	void unpdateResume(ResumeDto resumeDto);
-	
+	void deleteResume(int rno);
 	
 }
