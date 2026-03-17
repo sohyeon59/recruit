@@ -26,6 +26,7 @@ public class HomeController {
 		System.out.println("Index Page 접속 테스트입니다~");
 		return "index";
 	}
+	
 	//회원가입 페이지 가기
     @GetMapping("/goRegister")
     public String goReg() {
