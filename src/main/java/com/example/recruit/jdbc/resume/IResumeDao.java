@@ -1,5 +1,12 @@
 package com.example.recruit.jdbc.resume;
 
-public interface IResumeDao {
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
+public interface IResumeDao {
+	
+	void insertResume(ResumeDto resumeDto);
+	void unpdateResume(ResumeDto resumeDto);
+	
+	
 }
