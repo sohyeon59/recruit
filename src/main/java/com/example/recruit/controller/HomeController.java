@@ -1,7 +1,11 @@
 package com.example.recruit.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.recruit.jdbc.resume.ResumeDto;
 
 
 
@@ -14,4 +18,7 @@ public class HomeController {
     	System.out.println("Index Page 접속 테스트입니다~");
         return "index";
     }
+    
+ 
+    
 }

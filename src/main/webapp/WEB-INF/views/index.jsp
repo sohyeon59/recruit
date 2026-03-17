@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인화면</title>
 </head>
 <body>
-<h1>Index Page 까지 접속확인 완료!</h1>
+	<%@ include file="heafoo/header.jsp" %>
 </body>
 </html>
