@@ -19,17 +19,6 @@ public class HomeController {
         return "index";
     }
     
-    @GetMapping("/resumePage")
-    public String resumePage() { 	
-    	return "resume";
-    }
-    
-    @PostMapping("/regResume")
-    public String regResume(ResumeDto resume, Model model) {
-    	
-    	return "redirect:myPage";
-    }
-    
-    
+ 
     
 }
