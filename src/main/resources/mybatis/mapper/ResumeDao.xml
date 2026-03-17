@@ -2,28 +2,46 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.recruit.jdbc.IResumeDao">
+<mapper namespace="com.example.recruit.jdbc.resume.IResumeDao">
 
 <!-- 지원서 입력 -->
+
 <insert id="insertResume">
-	insert into resume (rno, address, univ, major, career, experience, intro) 
-	values(seq_resume.nextVal, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
+	insert into resume (rno, mid, address, univ, major, career, experience, intro) 
+	values (seq_resume.nextVal, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
 </insert>
 
-<!-- 지원서 삭제 -->
+<!-- 이력서 삭제 -->
+
 <delete id="deleteResume">
-	delete from resume where rno = #{rno}
+	delete from resume 
+	where rno = #{rno}
 </delete>
 
 <!-- 수정 -->
+
 <update id="updateResume">
-	update resume
-	set address = #{address}, univ = #{univ}, major = #{major}, 
-		career = #{career}, experi = #{experi}, intro = #{intro} 
-	where rno = ?
+	update resume 
+	set address = #{address}, 
+		univ = #{univ}, 
+		major = #{major}, 
+		career = #{career},
+		experi = #{experi}, 
+		intro = #{intro} 
+		where rno = ${rno}
 </update>
 
-<!-- -->
+<!-- 이력서 전체 -->
+<select id="list" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
+	select c.cname, j.deadline 
+	from company c 
+	join job j on c.cid = j.cid
+	where c.cid =?
+</select>
 
+<!-- 이력서 상세보기 -->
+<select id="detail" resultType="com.example.recruit.jdbc.resume.IResumeDao"> 
+	select * from resume where rno = #{rno}
+</select>
 
 </mapper>
