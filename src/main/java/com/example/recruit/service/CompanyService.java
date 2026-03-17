@@ -16,9 +16,13 @@ import com.example.recruit.jdbc.resume.ResumeDto;
 public class CompanyService {
 
 	@Autowired
-	ICompanyDao companyDao;
-	IResumeDao resumeDao;
-	IJobDao jobDao;
+    ICompanyDao companyDao;
+    
+    @Autowired
+    IResumeDao resumeDao;
+    
+    @Autowired
+    IJobDao jobDao;
 
 	// 로그인 - 성공하면 dto 반환, 실패하면 null
 	public CompanyDto login(CompanyDto dto) {
