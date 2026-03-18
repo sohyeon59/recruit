@@ -16,4 +16,9 @@
 	<select id="getJobDetail" parameterType="int" resultType="com.example.recruit.jdbc.job.JobDto">
     	SELECT * FROM job WHERE jno = #{jno}
 	</select>
+	
+	<insert id="writeJob" parameterType="com.example.recruit.jdbc.job.JobDto">
+	    INSERT INTO job (jno, cid, title, content, deadline)
+	    VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
+	</insert>
 </mapper>
