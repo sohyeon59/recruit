@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.service.CompanyService;
+import com.example.recruit.service.JobService;
 import com.example.recruit.service.ResumeService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class ComController {
 	CompanyService companyService;
 	@Autowired
 	ResumeService resumeService;
+	@Autowired
+	JobService jobService;
 	
 	@GetMapping("/company/main")
 	public String printJobList(Model model, HttpServletRequest request) {
@@ -38,7 +41,7 @@ public class ComController {
 	    }
 	    
 	    // 3. 해당 기업이 올린 공고 목록만 모델에 담기
-	    model.addAttribute("jobList", companyService.jobList(dto.getCid()));
+	    model.addAttribute("jobList", jobService.jobList(dto.getCid()));
 	    
 	    // 4. 기업 이름도 JSP에서 쓰기 편하게 모델에 바로 담아주기
 	    model.addAttribute("companyName", dto.getCname()); 
@@ -48,7 +51,7 @@ public class ComController {
 	
 	@GetMapping("/company/detail")
 	public String showdetails(Model model, @RequestParam("jno") int jno) {
-	    model.addAttribute("job", companyService.getJobDetail(jno));
+	    model.addAttribute("job", jobService.getJobDetail(jno));
 	    model.addAttribute("resumeList", resumeService.getResumeList(jno));
 	    
 	    return "company/detail"; 
@@ -71,7 +74,7 @@ public class ComController {
 	    
 	    if (loginCompany != null) {
 	        jobDto.setCid(loginCompany.getCid());
-	        companyService.writeJob(jobDto);
+	        jobService.writeJob(jobDto);
 	    }
 	    
 	    return "redirect:/company/main";
