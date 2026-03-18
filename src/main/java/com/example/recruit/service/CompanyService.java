@@ -55,4 +55,8 @@ public class CompanyService {
 	public int writeJob(JobDto dto) {
 	    return jobDao.writeJob(dto);
 	}
+	
+	public void updateJob(JobDto jobDto) {
+        jobDao.updateJob(jobDto);
+    }
 }
