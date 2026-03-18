@@ -23,7 +23,7 @@ public class CompanyService {
     
     @Autowired
     IJobDao jobDao;
-    
+
 	// 로그인 - 성공하면 dto 반환, 실패하면 null
 	public CompanyDto login(CompanyDto dto) {
 		return companyDao.login(dto);
@@ -31,22 +31,12 @@ public class CompanyService {
 
 	// 회원가입 - 아이디 중복이면 false
 	public boolean regist(CompanyDto dto) {
-		if (companyDao.idCheck(dto.getCid()) > 0)
-			return false;
+		if (companyDao.idCheck(dto.getCid()) > 0) return false;
 		return companyDao.regist(dto) > 0;
 	}
 
-	//공고 내의 이력서 리스트를 조회
+	// 공고 내 지원서 목록 조회
 	public List<ResumeDto> getResumeList(int jno) {
-	    return resumeDao.getResumeList(jno); // 이력서 목록을 DAO에 요청
+		return resumeDao.getResumeList(jno);
 	}
-	
-	// 새 구인공고 등록
-	public int writeJob(JobDto dto) {
-	    return jobDao.writeJob(dto);
-	}
-	
-	public void updateJob(JobDto jobDto) {
-        jobDao.updateJob(jobDto);
-    }
 }
