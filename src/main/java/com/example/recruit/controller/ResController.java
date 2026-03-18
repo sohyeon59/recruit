@@ -34,12 +34,16 @@ public class ResController {
 	
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session, int jno) {
+	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno")int jno) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		String mid = mem.getMid();
-		for
-		int result = service.insertResume(resume);
-		session.setAttribute("regResult", result);
+		int check = service.checkJNO(mid, jno);
+		if(check == 0) {
+			int result = service.insertResume(resume);
+			session.setAttribute("regResult", result);
+		}else {
+			session.setAttribute("regResult", 0);
+		}	
 		return "redirect:/resume/myPage";
 	}
 	

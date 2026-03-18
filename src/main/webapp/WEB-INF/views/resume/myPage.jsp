@@ -56,9 +56,18 @@
 </script>
 
 <c:if test="${not empty regResult }">
-<script>
-	alert("지원서가 제출되었습니다. 마감기한까지 수정이 가능합니다.");
-</script>
+	 <c:choose>
+        <c:when test="${regResult == 1}">
+            <script>
+                alert("지원서가 제출되었습니다. 마감기한까지 수정이 가능합니다.");
+            </script>
+        </c:when>
+        <c:otherwise>
+            <script>
+                alert("이미 지원한 공고입니다.");
+            </script>
+        </c:otherwise>
+    </c:choose>
 </c:if>
 
 <c:if test="${not empty modResult }">
