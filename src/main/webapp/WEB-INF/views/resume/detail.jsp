@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>디테일 페이지</title>
-<link rel="stylesheet" href="css/detail.css">
+<link rel="stylesheet" href="../css/detail.css">
 </head>
 <body>
 
