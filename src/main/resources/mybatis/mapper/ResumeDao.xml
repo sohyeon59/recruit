@@ -32,8 +32,8 @@
 </update>
 
 <!-- 이력서 전체 -->
-<select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeDto"> 
-	select c.cname, j.deadline 
+<select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeList"> 
+	select r.rno, c.cname, j.deadline 
 	from job j
 	join company c on j.cid = c.cid
 	join resume r on j.jno = r.jno
@@ -42,14 +42,15 @@
 
 <!-- 이력서 상세보기 -->
 <select id="getMyResume" resultType="com.example.recruit.jdbc.resume.ResumeDetail"> 
-	select c.cname,	m.mname, m.mbirth, m.memail,
-		   m.mphone, r.address, r.univ, r.major,
-		   r.career, r.experi, r.intro
-	from resume r
-	join member m on r.mid = m.mid	
-	join job j on r.jno = j.jno
-	join company c on j.cid = c.cid
-	where r.rno = #{rno}
+    select r.rno,
+           c.cname, m.mname, m.mbirth, m.memail,
+           m.mphone, r.address, r.univ, r.major,
+           r.career, r.experi, r.intro
+    from resume r
+    join member m on r.mid = m.mid    
+    join job j on r.jno = j.jno
+    join company c on j.cid = c.cid
+    where r.rno = #{rno}
 </select>
 
 <select id="getResumeList" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDto">
