@@ -52,6 +52,20 @@ public class ResController {
 	// 지원서 등록
 	@PostMapping("/regResume")
 	public String regResume(ResumeDto resume, HttpSession session) {
+
+		// 로그인 체크
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
+		// 마감일 체크
+		JobDto job = jobService.getJobDetail(resume.getJno());
+		if (job.getDeadline().before(new java.util.Date())) {
+			session.setAttribute("alertMsg", "마감된 공고입니다.");
+			return "redirect:/";
+		}
 		int result = service.insertResume(resume);
 		session.setAttribute("regResult", result);
 		return "redirect:/resume/myPage";
@@ -90,17 +104,17 @@ public class ResController {
 	// 내지원서 상세보기
 
 	@GetMapping("/resumeDetail")
-	public String resumeDetail(@RequestParam("rno")int rno, Model model, HttpSession session) {
+	public String resumeDetail(@RequestParam("rno") int rno, Model model, HttpSession session) {
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
 		return "/resume/detail";
 	}
 
-	//이력서 조회(기업 회원)
+	// 이력서 조회(기업 회원)
 	@GetMapping("/company/detailApplicant")
 	public String detailApplicant(@RequestParam("rno") int rno, Model model) {
-	    ResumeDetail applicantDetail = service.getApplicantResume(rno);
-	    model.addAttribute("detail", applicantDetail);   
-	    return "/company/detailApplicant";
+		ResumeDetail applicantDetail = service.getApplicantResume(rno);
+		model.addAttribute("detail", applicantDetail);
+		return "/company/detailApplicant";
 	}
 }
