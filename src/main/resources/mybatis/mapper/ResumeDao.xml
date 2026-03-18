@@ -21,7 +21,7 @@
 <!-- 수정 -->
 
 <update id="updateResume">
-	update resume
+	update resume 
 	set address = #{address}, 
 		univ = #{univ}, 
 		major = #{major}, 
@@ -54,7 +54,7 @@
 </select>
 
 <select id="getResumeList" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDto">
-    SELECT * FROM resume1 WHERE jno = #{jno} ORDER BY rno DESC
+    SELECT * FROM resume WHERE jno = #{jno} ORDER BY rno DESC
 </select>
 
 <select id="getApplicantResume" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDetail">
