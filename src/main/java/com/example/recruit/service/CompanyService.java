@@ -59,8 +59,4 @@ public class CompanyService {
 	public void updateJob(JobDto jobDto) {
         jobDao.updateJob(jobDto);
     }
-
-    public void deleteJob(int jno) {
-        jobDao.deleteJob(jno);
-    }
 }

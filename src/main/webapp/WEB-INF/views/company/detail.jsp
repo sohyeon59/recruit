@@ -48,19 +48,9 @@
 		</table>
 		
 		<div class="btn-wrap">
-			<a href="/company/editJobForm?jno=${job.jno}" class="btn-edit">수정하기</a><br>
-
-			<button onclick="deleteJob(${job.jno})" class="btn-delete">삭제하기</button><br>
-
+			<a href="/company/editJobForm?jno=${job.jno}" class="btn-edit">수정하기</a><br><br>
 			<a href="/company/main" class="btn-back">목록으로 돌아가기</a>
 		</div>
 	</div>
-	<script>
-       function deleteJob(jno) {
-           if(confirm("정말 이 공고를 삭제하시겠습니까? 지원자 정보도 함께 영향을 받을 수 있습니다.")) {
-               location.href = "/company/deleteJob?jno=" + jno;
-           }
-       }
-   	</script>
 </body>
 </html>

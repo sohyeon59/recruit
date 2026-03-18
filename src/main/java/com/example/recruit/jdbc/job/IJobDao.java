@@ -17,7 +17,4 @@ public interface IJobDao {
 	
 	//구인 공고 수정
 	public void updateJob(JobDto jobDto);
-	
-	//구인 공고 삭제
-    public void deleteJob(int jno);
 }

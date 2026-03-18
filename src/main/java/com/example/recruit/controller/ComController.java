@@ -91,11 +91,4 @@ public class ComController {
         companyService.updateJob(jobDto);
         return "redirect:/company/detail?jno=" + jobDto.getJno();
     }
-
-    // 공고 삭제
-    @GetMapping("/company/deleteJob")
-    public String deleteJob(@RequestParam("jno") int jno) {
-        companyService.deleteJob(jno);
-        return "redirect:/company/main"; 
-    }
 }

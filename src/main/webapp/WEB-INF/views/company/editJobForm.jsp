@@ -17,18 +17,18 @@
             
             <div>
                 <label for="title">공고 제목</label>
-                <input type="text" id="title" name="title" value="${job.title}" required>
+                <input type="text" name="title" value="${job.title}" required>
             </div>
             
             <div>
                 <label for="deadline">마감일</label>
-                <input type="date" id="deadline" name="deadline" 
+                <input type="date" name="deadline" 
                        value="<fmt:formatDate value='${job.deadline}' pattern='yyyy-MM-dd'/>" required>
             </div>
             
             <div>
                 <label for="content">상세 내용</label>
-                <textarea id="content" name="content" required>${job.content}</textarea>
+                <textarea name="content" required>${job.content}</textarea>
             </div>
             
             <div>

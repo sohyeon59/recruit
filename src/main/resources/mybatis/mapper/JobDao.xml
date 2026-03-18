@@ -29,9 +29,4 @@
             deadline = #{deadline}
         WHERE jno = #{jno}
     </update>
-
-    <delete id="deleteJob" parameterType="int">
-        DELETE FROM job
-        WHERE jno = #{jno}
-    </delete>
 </mapper>
