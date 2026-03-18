@@ -34,7 +34,10 @@ public class ResController {
 	
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session) {
+	public String regResume(ResumeDto resume, HttpSession session, int jno) {
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		String mid = mem.getMid();
+		for
 		int result = service.insertResume(resume);
 		session.setAttribute("regResult", result);
 		return "redirect:/resume/myPage";
