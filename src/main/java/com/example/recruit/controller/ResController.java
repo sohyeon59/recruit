@@ -22,11 +22,15 @@ public class ResController {
 	
 	@Autowired
 	private ResumeService service;
+	@Autowired
 	HttpSession session;
 
-	// 지원서 작성 홈페이지 가기
+	// 지원서 작성 페이지 가기
 	@GetMapping("/goResume")
 	public String goResume() {		
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		//		System.out.println(mem);
+//		session.setAttribute("mem", mem);
 		return "resume";
 	}
 	

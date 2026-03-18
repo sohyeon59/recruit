@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,8 @@
 <form action="/regResume" method="POST">
 	<input type="hidden" name="rno" value="${detail.rno}">
 	성명 <input type="text" name="mname" value="${detail.mname }" readonly><br>
-	생년월일 <input type="text" name="mbirth" value="<fmt:formatDate value='${detail.mbirth}' pattern='yyyy-MM-dd'/>" readonly><br>
+	<fmt:formatDate value="${detail.mbirth}" pattern="yyyy-MM-dd" var="mbirth"/>
+	생년월일 <input type="date" name="mbirth" value="${mbirth}" readonly><br>
 	이메일 <input type="text" name="memail" value="${detail.memail }" readonly><br>
 	전화번호 <input type="text" name="mphone" value="${detail.mphone }" readonly><br>
 	주소 <input type="text" name="address" value="${detail.address }"><br>
