@@ -23,10 +23,13 @@ public class ResController {
 	@Autowired
 	private ResumeService service;
 
-	// 지원서 작성 홈페이지 가기
+	// 지원서 작성 페이지 가기
 	@GetMapping("/goResume")
-	public String goResume() {		
-		return "resume";
+	public String goResume(HttpSession session) {		
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+//		System.out.println(mem);
+//		session.setAttribute("mem", mem);
+		return "/resume/resume";
 	}
 	
 	// 지원서 등록
@@ -34,7 +37,7 @@ public class ResController {
 	public String regResume(ResumeDto resume, HttpSession session) {
 		int result = service.insertResume(resume);
 		session.setAttribute("regResult", result);
-		return "redirect:/myPage";
+		return "redirect:/resume/myPage";
 	}
 	
 	// 지원서 수정
@@ -42,7 +45,7 @@ public class ResController {
 	public String updateresume(ResumeDto resume, HttpSession session) {
 		int result = service.updateResume(resume);
 		session.setAttribute("modResult", result);
-		return "redirect:/myPage";
+		return "redirect:/resume/myPage";
 	}
 	
 	// 지원서 삭제
@@ -50,11 +53,11 @@ public class ResController {
 	public String deleteResume(@RequestParam("rno")int rno, HttpSession session) {
 		int result = service.deleteResume(rno);		
 		session.setAttribute("delResult", result);
-		return "redirect:/myPage";
+		return "redirect:/resume/myPage";
 	}
 	
 	// 마이페이지 내지원서
-	@GetMapping("/myPage")
+	@GetMapping("/resume/myPage")
 	public String myPage(Model model, HttpSession session) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
@@ -64,15 +67,15 @@ public class ResController {
 		List<ResumeList> rList = service.getMyList(mid);
 		model.addAttribute("resumeList", rList);
 		System.out.println("rList size = " + rList.size());
-		return "myPage";
+		return "/resume/myPage";
 	}
 	
 	// 내지원서 상세보기
-	@GetMapping("/resumeDetail")
+	@GetMapping("/resume/resumeDetail")
 	public String resumeDetail(@RequestParam("rno")int rno, Model model, HttpSession session) {
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
-		return "detail";
+		return "/resume/detail";
 	}
 
 	//이력서 조회(기업 회원)

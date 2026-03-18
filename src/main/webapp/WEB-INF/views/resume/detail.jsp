@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<%@ include file="heafoo/header.jsp" %>
+<%@ include file="../heafoo/header.jsp" %>
 
 <section id="resume_section">
 	<div id="resume_title">
