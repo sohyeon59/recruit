@@ -15,13 +15,13 @@
 		</ul>
 <% 		}else{	%>		
 		<ul id="lgsg">
-			<li><a href="/myPage"><%= session.getAttribute("loginName") %>님 환영합니다.</a></li>
+			<li><a href="/resume/myPage"><%= session.getAttribute("loginName") %>님 환영합니다.</a></li>
 			<li>/</li>
 			<li><a href="/logout">로그아웃</a></li>
 		</ul>
 <%		}	 %>
 		<ul id="headermenu">
-			<li>메뉴 1</li>
+			<li><a href="/goResume">이력서작성</a></li>
 			<li>메뉴 2</li>
 			<li>메뉴 3</li>
 		</ul>

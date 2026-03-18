@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
-<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
-<%@ include file="heafoo/header.jsp" %>
+<%@ include file="../heafoo/header.jsp" %>
 
 <section id="mypage_section">
 
