@@ -11,5 +11,13 @@ public interface IJobDao {
 	List<JobDto> list();
 	List<JobDto> jobList(@Param("cid") String cid);
 	JobDto getJobDetail(int jno);
+	
+	//구인 공고 작성
 	public int writeJob(JobDto dto);
+	
+	//구인 공고 수정
+	public void updateJob(JobDto jobDto);
+	
+	//구인 공고 삭제
+    public void deleteJob(int jno);
 }
