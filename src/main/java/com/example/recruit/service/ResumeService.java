@@ -16,6 +16,11 @@ public class ResumeService {
 	@Autowired
 	IResumeDao resumeDao;
 	
+	// 공고 - 지원서 1:1 확인
+	public int checkJNO(String mid, int jno) {
+		return resumeDao.checkJNO(mid, jno);
+	}
+	
 	// 지원서 등록, 수정, 삭제 - 성공 1 실패 null
 	public int insertResume(ResumeDto dto) {
 		return resumeDao.insertResume(dto);
@@ -28,6 +33,8 @@ public class ResumeService {
 	public int deleteResume(int rno) {
 		return resumeDao.deleteResume(rno);
 	}
+	
+	
 	
 	// 마이페이지 내지원서
 	public List<ResumeList> getMyList(String mid){

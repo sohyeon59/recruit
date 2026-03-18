@@ -51,23 +51,17 @@ public class ResController {
 
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session) {
 
-		// 로그인 체크
+	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno")int jno) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-		if (mem == null) {
-			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
-			return "redirect:/loginForm";
-		}
-
-		// 마감일 체크
-		JobDto job = jobService.getJobDetail(resume.getJno());
-		if (job.getDeadline().before(new java.util.Date())) {
-			session.setAttribute("alertMsg", "마감된 공고입니다.");
-			return "redirect:/";
-		}
-		int result = service.insertResume(resume);
-		session.setAttribute("regResult", result);
+		String mid = mem.getMid();
+		int check = service.checkJNO(mid, jno);
+		if(check == 0) {
+			int result = service.insertResume(resume);
+			session.setAttribute("regResult", result);
+		}else {
+			session.setAttribute("regResult", 0);
+		}	
 		return "redirect:/resume/myPage";
 	}
 
@@ -95,6 +89,7 @@ public class ResController {
 			return "redirect:/login";
 		}
 		String mid = mem.getMid();
+		System.out.println(mid);
 		List<ResumeList> rList = service.getMyList(mid);
 		model.addAttribute("resumeList", rList);
 		System.out.println("rList size = " + rList.size());

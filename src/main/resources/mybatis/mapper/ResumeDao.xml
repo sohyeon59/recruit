@@ -5,21 +5,25 @@
 <mapper namespace="com.example.recruit.jdbc.resume.IResumeDao">
 
 <!-- 지원서 입력 -->
+<!-- 공고 - 지원서 1:1 확인 -->
+<select id="checkJNO">
+	select count(*) from resume
+	where mid = #{mid} and jno = #{jno}
+</select>
 
+<!-- 지원서 등록 -->
 <insert id="insertResume">
 	insert into resume (rno, mid, address, univ, major, career, experi, intro) 
 	values (seq_resume.nextVal, #{mid}, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
 </insert>
 
-<!-- 이력서 삭제 -->
-
+<!-- 지원서 삭제 -->
 <delete id="deleteResume">
 	delete from resume 
 	where rno = #{rno}
 </delete>
 
 <!-- 수정 -->
-
 <update id="updateResume">
 	update resume 
 	set address = #{address}, 
@@ -31,7 +35,7 @@
 		where rno = #{rno}
 </update>
 
-<!-- 이력서 전체 -->
+<!-- 지원서 전체 -->
 <select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeList"> 
 	select r.rno, c.cname, j.deadline 
 	from job j
@@ -40,7 +44,7 @@
 	where r.mid = #{mid}
 </select>
 
-<!-- 이력서 상세보기 -->
+<!-- 지원서 상세보기 -->
 <select id="getMyResume" resultType="com.example.recruit.jdbc.resume.ResumeDetail"> 
     select r.rno,
            c.cname, m.mname, m.mbirth, m.memail,

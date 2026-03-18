@@ -8,11 +8,15 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IResumeDao {
 
+	// 공고 - 지원서 1:1 확인
+	int checkJNO(@Param("mid") String mid, @Param("jno") int jno);
+		
+	// 지원서 등록, 수정, 삭제
 	int insertResume(ResumeDto resumeDto);
 	int updateResume(ResumeDto resumeDto);
 	int deleteResume(@Param("rno") int rno);
 	
-	// 이력서 전체 보기
+	// 지원서 전체 보기
 	List<ResumeList> getMyList(@Param("mid") String mid);
 	
 	// 상세보기
