@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.company.ICompanyDao;
-import com.example.recruit.jdbc.job.IJobDao;
-import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.jdbc.resume.IResumeDao;
 import com.example.recruit.jdbc.resume.ResumeDto;
 
@@ -21,9 +19,6 @@ public class CompanyService {
     @Autowired
     IResumeDao resumeDao;
     
-    @Autowired
-    IJobDao jobDao;
-
 	// 로그인 - 성공하면 dto 반환, 실패하면 null
 	public CompanyDto login(CompanyDto dto) {
 		return companyDao.login(dto);
@@ -35,16 +30,6 @@ public class CompanyService {
 			return false;
 		return companyDao.regist(dto) > 0;
 	}
-	
-	//기업 회원의 공고 조회
-	public List<JobDto> jobList(String cid) {
-		return jobDao.jobList(cid);
-	}
-	
-	//기업 회원의 공고의 세부사항 조회
-	public JobDto getJobDetail(int jno) {
-	    return jobDao.getJobDetail(jno);
-	}
 
 	//공고 내의 이력서 리스트를 조회
 	public List<ResumeDto> getResumeList(int jno) {
@@ -55,4 +40,8 @@ public class CompanyService {
 	public int writeJob(JobDto dto) {
 	    return jobDao.writeJob(dto);
 	}
+	
+	public void updateJob(JobDto jobDto) {
+        jobDao.updateJob(jobDto);
+    }
 }

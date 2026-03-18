@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.member.MemberDto;
 import com.example.recruit.service.CompanyService;
+import com.example.recruit.service.JobService;
 import com.example.recruit.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,10 +29,13 @@ public class HomeController {
 
     @Autowired
     CompanyService companyService;
+    
+    @Autowired
+    JobService jobService;
 
     @GetMapping("/")
-    public String home() {
-        System.out.println("Index Page 접속 테스트입니다~");
+    public String home(Model model) {
+        model.addAttribute("jobList", jobService.list());
         return "index";
     }
 
@@ -89,6 +93,7 @@ public class HomeController {
         CompanyDto result = companyService.login(dto);
         if (result != null) {
             session.setAttribute("loginCompany", result);
+            session.setAttribute("loginName", result.getCname());
             session.setAttribute("userType", "company");
             return "redirect:/company/main";
         } else {

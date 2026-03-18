@@ -8,6 +8,7 @@ import lombok.Data;
 public class JobDto {
 	private int jno;
 	private String cid;
+	private String cname;
 	private String title;
 	private String content;
 	private Date deadline;

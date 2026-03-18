@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.example.recruit.jdbc.job.IJobDao">
-	<select id="list" resultType="com.example.recruit.jdbc.job.JobDto">
-		SELECT * FROM job
+
+	<select id="list"
+		resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT j.*, c.cname
+		FROM job j
+		JOIN company c ON j.cid = c.cid
 	</select>
-	
-	<select id="jobList" resultType="com.example.recruit.jdbc.job.JobDto">
+
+	<select id="jobList"
+		resultType="com.example.recruit.jdbc.job.JobDto">
 		SELECT * FROM job WHERE cid = #{cid}
 	</select>
-	
-	<select id="getJobDetail" parameterType="int" resultType="com.example.recruit.jdbc.job.JobDto">
-    	SELECT * FROM job WHERE jno = #{jno}
+
+	<select id="getJobDetail"
+		resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT * FROM job WHERE jno = #{jno}
 	</select>
-	
-	<insert id="writeJob" parameterType="com.example.recruit.jdbc.job.JobDto">
-	    INSERT INTO job (jno, cid, title, content, deadline)
-	    VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
+
+	<insert id="writeJob">
+		INSERT INTO job (jno, cid, title, content, deadline)
+		VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
 	</insert>
+	
+	<update id="updateJob" parameterType="com.example.recruit.jdbc.job.JobDto">
+        UPDATE job
+        SET title = #{title},
+            content = #{content},
+            deadline = #{deadline}
+        WHERE jno = #{jno}
+    </update>
 </mapper>
