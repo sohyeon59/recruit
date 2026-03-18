@@ -27,9 +27,8 @@ public class ResController {
 	@Autowired
 	private JobService jobService;
 
-	// 지원서 작성 페이지 가기
+	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
-
 	public String goResume(int jno, HttpSession session) {
 
 		// 로그인 체크
@@ -51,63 +50,103 @@ public class ResController {
 
 	// 지원서 등록
 	@PostMapping("/regResume")
+	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno") int jno) {
 
-	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno")int jno) {
+		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-		String mid = mem.getMid();
-		int check = service.checkJNO(mid, jno);
-		if(check == 0) {
-			int result = service.insertResume(resume);
-			session.setAttribute("regResult", result);
-		}else {
-			session.setAttribute("regResult", 0);
-		}	
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
+		// 마감일 체크
+		JobDto job = jobService.getJobDetail(jno);
+		if (job.getDeadline().before(new java.util.Date())) {
+			session.setAttribute("alertMsg", "마감된 공고입니다.");
+			return "redirect:/";
+		}
+
+		// 중복 지원 체크
+		int check = service.checkJNO(mem.getMid(), jno);
+		if (check == 0) {
+			service.insertResume(resume);
+			session.setAttribute("alertMsg", "이력서가 등록되었습니다.");
+		} else {
+			session.setAttribute("alertMsg", "이미 지원한 공고입니다.");
+		}
+
 		return "redirect:/resume/myPage";
 	}
 
 	// 지원서 수정
 	@PostMapping("/updateResume")
-	public String updateresume(ResumeDto resume, HttpSession session) {
-		int result = service.updateResume(resume);
-		session.setAttribute("modResult", result);
+	public String updateResume(ResumeDto resume, HttpSession session) {
+
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
+		service.updateResume(resume);
+		session.setAttribute("alertMsg", "이력서가 수정되었습니다.");
 		return "redirect:/resume/myPage";
 	}
 
 	// 지원서 삭제
 	@GetMapping("/deleteResume")
 	public String deleteResume(@RequestParam("rno") int rno, HttpSession session) {
-		int result = service.deleteResume(rno);
-		session.setAttribute("delResult", result);
+
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
+		service.deleteResume(rno);
+		session.setAttribute("alertMsg", "이력서가 삭제되었습니다.");
 		return "redirect:/resume/myPage";
 	}
 
-	// 마이페이지 내지원서
+	// 마이페이지 내 지원서 목록
 	@GetMapping("/resume/myPage")
 	public String myPage(Model model, HttpSession session) {
+
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
-			return "redirect:/login";
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
 		}
-		String mid = mem.getMid();
-		System.out.println(mid);
-		List<ResumeList> rList = service.getMyList(mid);
+
+		List<ResumeList> rList = service.getMyList(mem.getMid());
 		model.addAttribute("resumeList", rList);
-		System.out.println("rList size = " + rList.size());
 		return "/resume/myPage";
 	}
 
-	// 내지원서 상세보기
-
+	// 내 지원서 상세보기
 	@GetMapping("/resumeDetail")
 	public String resumeDetail(@RequestParam("rno") int rno, Model model, HttpSession session) {
+
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
 		return "/resume/detail";
 	}
 
-	// 이력서 조회(기업 회원)
+	// 지원서 상세보기 (기업용)
 	@GetMapping("/company/detailApplicant")
-	public String detailApplicant(@RequestParam("rno") int rno, Model model) {
+	public String detailApplicant(@RequestParam("rno") int rno, Model model, HttpSession session) {
+
+		if (session.getAttribute("loginCompany") == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+
 		ResumeDetail applicantDetail = service.getApplicantResume(rno);
 		model.addAttribute("detail", applicantDetail);
 		return "/company/detailApplicant";
