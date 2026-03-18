@@ -26,5 +26,12 @@
 		INSERT INTO job (jno, cid, title, content, deadline)
 		VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
 	</insert>
-
+	
+	<update id="updateJob" parameterType="com.example.recruit.jdbc.job.JobDto">
+        UPDATE job
+        SET title = #{title},
+            content = #{content},
+            deadline = #{deadline}
+        WHERE jno = #{jno}
+    </update>
 </mapper>

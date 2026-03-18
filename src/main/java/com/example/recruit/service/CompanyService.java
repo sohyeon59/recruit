@@ -36,4 +36,12 @@ public class CompanyService {
 	    return resumeDao.getResumeList(jno); // 이력서 목록을 DAO에 요청
 	}
 	
+	// 새 구인공고 등록
+	public int writeJob(JobDto dto) {
+	    return jobDao.writeJob(dto);
+	}
+	
+	public void updateJob(JobDto jobDto) {
+        jobDao.updateJob(jobDto);
+    }
 }

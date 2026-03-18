@@ -79,4 +79,19 @@ public class ComController {
 	    
 	    return "redirect:/company/main";
 	}
+	
+	// 공고 수정 화면(Form)
+    @GetMapping("/company/editJobForm")
+    public String editJobForm(@RequestParam("jno") int jno, Model model) {
+        JobDto job = companyService.getJobDetail(jno);
+        model.addAttribute("job", job);
+        return "company/editJobForm";
+    }
+
+    // 공고 수정
+    @PostMapping("/company/editJob")
+    public String editJob(JobDto jobDto) {
+        companyService.updateJob(jobDto);
+        return "redirect:/company/detail?jno=" + jobDto.getJno();
+    }
 }
