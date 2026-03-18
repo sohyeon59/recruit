@@ -15,7 +15,7 @@
 		</ul>
 <% 		}else{	%>		
 		<ul id="lgsg">
-			<li><a href="/myPage"><%= session.getAttribute("loginName") %>님 환영합니다.</a></li>
+			<li><a href="/resume/myPage"><%= session.getAttribute("loginName") %>님 환영합니다.</a></li>
 			<li>/</li>
 			<li><a href="/logout">로그아웃</a></li>
 		</ul>
