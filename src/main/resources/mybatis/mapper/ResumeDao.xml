@@ -7,21 +7,21 @@
 <!-- 지원서 입력 resume1 다 고치기 !!!!!!!!! -->
 
 <insert id="insertResume">
-	insert into resume1 (rno, mid, jno, address, univ, major, career, experi, intro) 
+	insert into resume (rno, mid, jno, address, univ, major, career, experi, intro) 
 	values (seq_resume.nextVal, #{mid}, #{jno}, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
 </insert>
 
 <!-- 이력서 삭제 -->
 
 <delete id="deleteResume">
-	delete from resume1 
+	delete from resume
 	where rno = #{rno}
 </delete>
 
 <!-- 수정 -->
 
 <update id="updateResume">
-	update resume1 
+	update resume
 	set address = #{address}, 
 		univ = #{univ}, 
 		major = #{major}, 
@@ -36,7 +36,7 @@
 	select r.rno, c.cname, j.deadline 
 	from job j
 	join company c on j.cid = c.cid
-	join resume1 r on j.jno = r.jno
+	join resume r on j.jno = r.jno
 	where r.mid = #{mid}
 </select>
 

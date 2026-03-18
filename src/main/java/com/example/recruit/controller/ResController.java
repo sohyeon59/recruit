@@ -64,6 +64,7 @@ public class ResController {
 		    return "redirect:/login";
 		}		
 		String mid = mem.getMid();
+		System.out.println(mid);
 		List<ResumeList> rList = service.getMyList(mid);
 		model.addAttribute("resumeList", rList);
 		System.out.println("rList size = " + rList.size());
