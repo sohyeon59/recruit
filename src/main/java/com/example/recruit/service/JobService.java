@@ -33,4 +33,9 @@ public class JobService {
 	public int writeJob(JobDto dto) {
 		return jobDao.writeJob(dto);
 	}
+
+	// 공고 수정
+	public void updateJob(JobDto dto) {
+		jobDao.updateJob(dto);
+	}
 }
