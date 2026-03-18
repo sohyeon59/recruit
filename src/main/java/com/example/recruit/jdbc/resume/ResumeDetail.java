@@ -4,20 +4,23 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Data;
+
+@Data
 public class ResumeDetail {
-	
-	String cname;
-	String mname;
+	private int rno;
+	private String cname;
+	private String mname;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date mbirth;
-	String memail;
-	String mphone;
-	String address;
-	String univ;
-	String major;
-	String career;
-	String experi;
-	String intro;
+	private Date mbirth;
+	private String memail;
+	private String mphone;
+	private String address;
+	private String univ;
+	private String major;
+	private String career;
+	private String experi;
+	private String intro;
 	
 
 }

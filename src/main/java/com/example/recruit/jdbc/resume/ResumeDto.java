@@ -18,5 +18,5 @@ public class ResumeDto {
 	String career;
 	String experi;
 	String intro;
-	
+	String cname;
 }

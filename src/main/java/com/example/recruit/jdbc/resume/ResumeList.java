@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ResumeList {
-	
+	int rno;
 	String cname;
 	Date deadline;
 }
