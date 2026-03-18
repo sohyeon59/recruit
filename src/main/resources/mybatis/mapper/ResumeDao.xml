@@ -56,4 +56,21 @@
     SELECT * FROM resume WHERE jno = #{jno} ORDER BY rno DESC
 </select>
 
+<select id="getApplicantResume" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDetail">
+    SELECT 
+    	c.cname,      
+        m.mname, m.mbirth, m.memail, m.mphone,     
+        r.address, r.univ, r.major, r.career, r.experi, r.intro       
+    FROM 
+        resume r
+    JOIN 
+        member m ON r.mid = m.mid
+    JOIN 
+        job j ON r.jno = j.jno
+    JOIN 
+        company c ON j.cid = c.cid
+    WHERE 
+        r.rno = #{rno}
+</select>
+
 </mapper>

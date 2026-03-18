@@ -36,14 +36,17 @@ public class CompanyService {
 		return companyDao.regist(dto) > 0;
 	}
 	
+	//기업 회원의 공고 조회
 	public List<JobDto> jobList(String cid) {
 		return jobDao.jobList(cid);
 	}
 	
+	//기업 회원의 공고의 세부사항 조회
 	public JobDto getJobDetail(int jno) {
 	    return jobDao.getJobDetail(jno);
 	}
 
+	//공고 내의 이력서 리스트를 조회
 	public List<ResumeDto> getResumeList(int jno) {
 	    return resumeDao.getResumeList(jno); // 이력서 목록을 DAO에 요청
 	}

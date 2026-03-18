@@ -28,7 +28,7 @@
                 <c:choose>
                     <c:when test="${not empty resumeList}">
                         <c:forEach var="resume" items="${resumeList}">
-                            <tr>
+                            <tr onclick="location.href='/company/detailApplicant?rno=${resume.rno}'" style="cursor: pointer;">
                                 <td>${resume.mid}</td>
                                 <td>${resume.major}</td>
                                 <td>${resume.career}</td>
