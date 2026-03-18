@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>내 구인공고 관리</title>
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+<section id="joblist_section">
+
     <div class="container">
         <h2>내 구인공고 관리</h2>
 
@@ -26,7 +29,7 @@
                             <tr onclick="location.href='/company/detail?jno=${job.jno}'" style="cursor: pointer;">
                                 <td>${job.jno}</td>
                                 <td>${companyName}</td>
-                                <td class="title-cell">${job.title}</td> 
+                                <td class="title-cell">${job.title}</td>
                                 <td>${job.deadline}</td>
                             </tr>
                         </c:forEach>
@@ -40,10 +43,12 @@
             </tbody>
         </table>
 
-        <div style="text-align: right; margin-top: 20px;">
-            <button type="button" onclick="location.href='/company/write'" style="padding: 10px 20px; cursor: pointer;">새 공고 등록</button>
+        <div class="btn-area">
+            <button type="button" onclick="location.href='/company/write'">새 공고 등록</button>
         </div>
 
     </div>
+
+</section>
 </body>
 </html>
