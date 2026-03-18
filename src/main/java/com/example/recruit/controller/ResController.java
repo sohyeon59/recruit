@@ -71,7 +71,7 @@ public class ResController {
 	}
 	
 	// 내지원서 상세보기
-	@GetMapping("/resume/resumeDetail")
+	@GetMapping("/resumeDetail")
 	public String resumeDetail(@RequestParam("rno")int rno, Model model, HttpSession session) {
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
