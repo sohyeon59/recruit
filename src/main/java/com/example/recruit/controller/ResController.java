@@ -34,9 +34,16 @@ public class ResController {
 	
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session) {
-		int result = service.insertResume(resume);
-		session.setAttribute("regResult", result);
+	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno")int jno) {
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		String mid = mem.getMid();
+		int check = service.checkJNO(mid, jno);
+		if(check == 0) {
+			int result = service.insertResume(resume);
+			session.setAttribute("regResult", result);
+		}else {
+			session.setAttribute("regResult", 0);
+		}	
 		return "redirect:/resume/myPage";
 	}
 	
@@ -64,6 +71,7 @@ public class ResController {
 		    return "redirect:/login";
 		}		
 		String mid = mem.getMid();
+		System.out.println(mid);
 		List<ResumeList> rList = service.getMyList(mid);
 		model.addAttribute("resumeList", rList);
 		System.out.println("rList size = " + rList.size());
