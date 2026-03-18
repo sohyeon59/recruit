@@ -27,9 +27,6 @@ public class ResController {
 	@GetMapping("/goResume")
 	public String goResume(HttpSession session) {		
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-		if (mem == null) {
-		    return "redirect:/login";
-		}
 //		System.out.println(mem);
 //		session.setAttribute("mem", mem);
 		return "/resume/resume";
