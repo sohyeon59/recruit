@@ -26,7 +26,6 @@
 		</tr>
 
 		<tbody id="tbody">
-			<% int no = 1; %>
 			<c:forEach var="resume" items="${resumeList}" varStatus="status">
 			<tr data-rno="${resume.rno}">
 			    <td>${status.count}</td>

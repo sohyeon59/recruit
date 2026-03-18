@@ -13,7 +13,7 @@
 
 <form action="/regResume" method="POST">
 	<input type="hidden" name="mid" value="${sessionScope.loginMember.mid }">
-	<input type="hidden" name="jno" value="1">
+	공고번호 <input type="text" name="jno">
 	성명 <input type="text" name="mname" value="${sessionScope.loginMember.mname }"><br>
 	<fmt:formatDate value="${sessionScope.loginMember.mbirth}" pattern="yyyy-MM-dd" var="mbirth"/>
 	생년월일 <input type="date" name="mbirth" value="${mbirth}"><br>
