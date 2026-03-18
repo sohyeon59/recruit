@@ -75,11 +75,11 @@ public class ResController {
 		return "detail";
 	}
 
-	
-	
-	
-	
-	
-	
-	
+	//이력서 조회(기업 회원)
+	@GetMapping("/company/detailApplicant")
+	public String detailApplicant(@RequestParam("rno") int rno, Model model) {
+	    ResumeDetail applicantDetail = service.getApplicantResume(rno);
+	    model.addAttribute("detail", applicantDetail);   
+	    return "/company/detailApplicant";
+	}
 }

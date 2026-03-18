@@ -18,6 +18,9 @@ public interface IResumeDao {
 	// 상세보기
 	ResumeDetail getMyResume(@Param("rno") int rno);
 	
-	// 상세보기(기업용)
+	// 지원서 리스트 보기(기업용)
 	List<ResumeDto> getResumeList(int jno);
+	
+	// 지원서 상세보기(기업용)
+	ResumeDetail getApplicantResume(int rno);
 }

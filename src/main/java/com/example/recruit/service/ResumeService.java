@@ -39,7 +39,13 @@ public class ResumeService {
 		return resumeDao.getMyResume(rno);
 	}
 	
+	//공고에 올라온 지원서 확인
 	public List<ResumeDto> getResumeList(int jno) {
 	    return resumeDao.getResumeList(jno);
+	}
+	
+	//공고에 올라온 지원서의 세부사항 확인
+	public ResumeDetail getApplicantResume(int rno){
+		return resumeDao.getApplicantResume(rno);
 	}
 }

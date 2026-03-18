@@ -39,6 +39,11 @@
                 </c:choose>
             </tbody>
         </table>
+
+        <div style="text-align: right; margin-top: 20px;">
+            <button type="button" onclick="location.href='/company/write'" style="padding: 10px 20px; cursor: pointer;">새 공고 등록</button>
+        </div>
+
     </div>
 </body>
 </html>

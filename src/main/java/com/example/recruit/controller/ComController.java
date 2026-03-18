@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.company.CompanyDto;
+import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.service.CompanyService;
 import com.example.recruit.service.ResumeService;
 
@@ -50,5 +52,28 @@ public class ComController {
 	    model.addAttribute("resumeList", resumeService.getResumeList(jno));
 	    
 	    return "company/detail"; 
+	}
+	
+	@GetMapping("/company/write")
+	public String writeForm(HttpServletRequest request) {
+	    HttpSession session = request.getSession();
+	    if (session.getAttribute("loginCompany") == null) {
+	        return "redirect:/login";
+	    }
+	    return "company/write"; 
+	}
+
+	@PostMapping("/company/write")
+	public String writeProcess(JobDto jobDto, HttpServletRequest request) {
+	    HttpSession session = request.getSession();
+	    
+	    CompanyDto loginCompany = (CompanyDto) session.getAttribute("loginCompany");
+	    
+	    if (loginCompany != null) {
+	        jobDto.setCid(loginCompany.getCid());
+	        companyService.writeJob(jobDto);
+	    }
+	    
+	    return "redirect:/company/main";
 	}
 }
