@@ -80,25 +80,22 @@ public class ComController {
 	// 공고 수정 화면(Form)
     @GetMapping("/company/editJobForm")
     public String editJobForm(@RequestParam("jno") int jno, Model model) {
-        // 기존 공고 정보를 불러와서 화면에 뿌려주기 위해 모델에 담음
-        JobDto job = companyService.getJobDetail(jno); // 기존에 만들어둔 상세조회 메서드 활용
+        JobDto job = companyService.getJobDetail(jno);
         model.addAttribute("job", job);
-        return "company/editJobForm"; // 새로 만들 수정 폼 JSP 페이지 경로
+        return "company/editJobForm";
     }
 
     // 공고 수정
     @PostMapping("/company/editJob")
     public String editJob(JobDto jobDto) {
         companyService.updateJob(jobDto);
-        // 수정 완료 후 다시 해당 공고의 상세 페이지로 리다이렉트
-        return "redirect:/company/jobDetail?jno=" + jobDto.getJno(); 
+        return "redirect:/company/detail?jno=" + jobDto.getJno();
     }
 
     // 공고 삭제
     @GetMapping("/company/deleteJob")
     public String deleteJob(@RequestParam("jno") int jno) {
         companyService.deleteJob(jno);
-        // 삭제 완료 후 기업의 메인(목록) 페이지로 리다이렉트
         return "redirect:/company/main"; 
     }
 }
