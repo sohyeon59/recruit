@@ -17,7 +17,7 @@
 			<h1>Resume Detail</h1>
 		</div>
 
-		<form action="/regResume" method="POST">
+		<form action="/updateResume" method="POST">
 			<input type="hidden" name="rno" value="${detail.rno}">
 
 			<div class="form_row">
@@ -70,9 +70,9 @@
 				<label>자기소개</label>
 				<textarea name="intro">${detail.intro}</textarea>
 			</div>
-			</form>
-			<button onclick="deleteResume(${detail.rno})">삭제</button>
-			<button onclick="/updateResume(${detail})">저장 및 제출</button>
+			<button type="submit">저장 및 제출</button>
+		</form>
+		<button onclick="deleteResume(${detail.rno})">삭제</button>
 		
 
 		<script>
@@ -83,11 +83,7 @@
     		}
 		}
 		
-		function updateResume(resume){
-			if(confirm("수정하시겠습니까?")){
-				location.href="/updateResume"
-			}			
-		}
+	
 		
 		</script>
 
