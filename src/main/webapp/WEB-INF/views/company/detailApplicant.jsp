@@ -10,8 +10,11 @@
 <head>
 <meta charset="UTF-8">
 <title>지원자 이력서 상세</title>
+<link rel="stylesheet" href="../css/detailApplicant.css">
 </head>
 <body>
+
+<div class="resume-detail-page">
 
     <h2>지원자 이력서 상세 정보</h2>
     
@@ -43,13 +46,15 @@
     <hr>
 
     <h3>[ 자기소개서 ]</h3>
-    <div style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+    <div class="intro-box">
         ${fn:replace(detail.intro, newLineChar, "<br>")}
     </div>
 
-    <br>
-    
-    <button type="button" onclick="history.back();">목록으로 돌아가기</button>
+    <div class="btn-wrap">
+        <button type="button" onclick="history.back();">목록으로 돌아가기</button>
+    </div>
+
+</div>
 
 </body>
 </html>

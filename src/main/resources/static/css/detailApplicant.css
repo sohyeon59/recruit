@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.resume-detail-page {
+	width: 800px;
+	margin: 50px auto;
+}
+
+.resume-detail-page h2 {
+	margin-bottom: 20px;
+}
+
+.resume-detail-page h3 {
+	margin: 20px 0 10px;
+}
+
+.resume-detail-page ul {
+	list-style: none;
+	padding: 0;
+}
+
+.resume-detail-page ul li {
+	padding: 8px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.resume-detail-page strong {
+	display: inline-block;
+	width: 120px;
+}
+
+.resume-detail-page .intro-box {
+	border: 1px solid #ccc;
+	padding: 15px;
+	margin-top: 10px;
+	line-height: 1.6;
+	background-color: #fafafa;
+}
+
+.resume-detail-page .btn-wrap {
+	margin-top: 20px;
+}
+
+.resume-detail-page button {
+	padding: 10px 15px;
+	border: 1px solid black;
+	background-color: white;
+	cursor: pointer;
+}
+
+.resume-detail-page button:hover {
+	background-color: #f5f5f5;
+}
