@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.edit-page {
+	width: 600px;
+	margin: 50px auto;
+	font-family: Arial, sans-serif;
+}
+
+.edit-page h2 {
+	margin-bottom: 20px;
+}
+
+.edit-page form div {
+	margin-bottom: 15px;
+}
+
+.edit-page label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.edit-page input[type="text"],
+.edit-page input[type="date"],
+.edit-page textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.edit-page textarea {
+	height: 150px;
+	resize: none;
+}
+
+.edit-page button {
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	background-color: #4CAF50;
+	color: white;
+	cursor: pointer;
+}
+
+.edit-page button:hover {
+	background-color: #45a049;
+}
+
+.edit-page a {
+	margin-left: 10px;
+	text-decoration: none;
+	color: #555;
+}
