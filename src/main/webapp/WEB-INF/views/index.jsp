@@ -26,7 +26,7 @@
                         <c:forEach var="job" items="${jobList}">
                             <tr onclick="location.href='/job/detail?jno=${job.jno}'" style="cursor: pointer;">
                                 <td>${job.jno}</td>
-                                <td>${companyName}</td>
+                                <td>${job.cname}</td>
                                 <td class="title-cell">${job.title}</td> 
                                 <td>${job.deadline}</td>
                             </tr>
