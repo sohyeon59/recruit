@@ -9,7 +9,7 @@
 </head>
 <body>
 <section id="joblist_section">
-
+<%@ include file="../heafoo/header.jsp" %>
     <div class="container">
         <h2>내 구인공고 관리</h2>
 

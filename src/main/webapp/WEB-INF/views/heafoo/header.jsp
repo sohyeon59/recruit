@@ -20,6 +20,13 @@
     Object loginCompany = session.getAttribute("loginCompany");
     boolean isLogin     = loginMember != null || loginCompany != null;
     boolean isCompany   = loginCompany != null;
+    
+    
+    // 기업회원인지 개인회원인지 구별
+    Object usertype = session.getAttribute("userType");
+    if(usertype == null){
+    	usertype = "nologin";
+    }
 %>
 
 <header>
@@ -45,11 +52,34 @@
             </ul>
         <% } %>
 
+
+<%			if(usertype.equals("company")){%>
         <ul id="headermenu">
-            <li>메뉴 1</li>
-            <li>메뉴 2</li>
+            <li><a href="/">전체 공고</a></li>
+            <li><a href="/company/main">공고 목록</a></li>
             <li>메뉴 3</li>
         </ul>
 
+<% 			}else if(usertype.equals("member")){%>
+        <ul id="headermenu">
+            <li><a href="/">전체 공고</a></li>
+            <li><a href="/resume/myPage">마이페이지</a></li>
+            <li>메뉴 3</li>
+        </ul>
+
+<%			}else if(usertype.equals("nologin")){ %>
+        <ul id="headermenu">
+            <li><a href="/">전체 공고</a></li>
+            <li>메뉴 2</li>
+            <li>메뉴 3</li>
+        </ul>
+<%			}else{%>
+	    <ul id="headermenu">
+		    <li><a href="/">전체 공고</a></li>
+		    <li>메뉴 2</li>
+		    <li>메뉴 3</li>
+		</ul>
+	
+<%			} %>
     </div>
 </header>
