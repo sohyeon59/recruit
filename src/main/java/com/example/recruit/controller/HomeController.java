@@ -113,4 +113,9 @@ public class HomeController {
             return "regist";
         }
     }
+    
+    @GetMapping("/myPage")
+    public String gomyPage() {
+    	return "/resume/myPage";
+    }
 }
