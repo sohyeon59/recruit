@@ -6,26 +6,76 @@
 <head>
 <meta charset="UTF-8">
 <title>이력서 페이지</title>
+<link rel="stylesheet" href="/css/resume.css">
 </head>
 <body>
-<h1>이력서 작성</h1>
-<hr>
 
-<form action="/regResume" method="POST">
-	<input type="hidden" name="mid" value="${sessionScope.loginMember.mid }">
-	<input type="hidden" name="jno" value="${param.jno }">
-	성명 <input type="text" name="mname" value="${sessionScope.loginMember.mname }"><br>
-	<fmt:formatDate value="${sessionScope.loginMember.mbirth}" pattern="yyyy-MM-dd" var="mbirth"/>
-	생년월일 <input type="date" name="mbirth" value="${mbirth}"><br>
-	이메일 <input type="email" name="memail" value="${sessionScope.loginMember.memail }"><br>
-	전화번호 <input type="tel" name="mphone" value="${sessionScope.loginMember.mphone }"><br>
-	주소 <input type="text" name="address"><br>
-	학력 <input type="text" name="univ"><br>
-	전공 <input type="text" name="major"><br>
-	경력 <input type="text" name="career"><br>
-	경험 <input type="text" name="experi"><br>
-	자기소개<br><textarea cols="100" rows="30" name="intro"></textarea>
-	<input type="submit" value="제출"><br>
-</form>
+<section id="resume_section">
+
+    <div id="resume_title">
+        <h1>이력서 작성</h1>
+    </div>
+
+    <form action="/regResume" method="POST">
+        <input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
+        <input type="hidden" name="jno" value="${param.jno}">
+
+        <div class="form_row">
+            <label>성명</label>
+            <input type="text" name="mname" value="${sessionScope.loginMember.mname}">
+        </div>
+
+        <fmt:formatDate value="${sessionScope.loginMember.mbirth}" pattern="yyyy-MM-dd" var="mbirth"/>
+
+        <div class="form_row">
+            <label>생년월일</label>
+            <input type="date" name="mbirth" value="${mbirth}">
+        </div>
+
+        <div class="form_row">
+            <label>이메일</label>
+            <input type="email" name="memail" value="${sessionScope.loginMember.memail}">
+        </div>
+
+        <div class="form_row">
+            <label>전화번호</label>
+            <input type="tel" name="mphone" value="${sessionScope.loginMember.mphone}">
+        </div>
+
+        <div class="form_row">
+            <label>주소</label>
+            <input type="text" name="address">
+        </div>
+
+        <div class="form_row">
+            <label>학력</label>
+            <input type="text" name="univ">
+        </div>
+
+        <div class="form_row">
+            <label>전공</label>
+            <input type="text" name="major">
+        </div>
+
+        <div class="form_row">
+            <label>경력</label>
+            <input type="text" name="career">
+        </div>
+
+        <div class="form_row">
+            <label>경험</label>
+            <input type="text" name="experi">
+        </div>
+
+        <div class="form_row textarea_row">
+            <label>자기소개</label>
+            <textarea name="intro"></textarea>
+        </div>
+
+        <button type="submit">제출</button>
+    </form>
+
+</section>
+
 </body>
 </html>
