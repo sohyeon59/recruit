@@ -7,7 +7,7 @@
 <title>공고 상세</title>
 </head>
 <body>
-<%@ include file="heafoo/header.jsp" %>
+<%@ include file="../heafoo/header.jsp" %>
 
 <h2>공고 상세</h2>
 <hr>
