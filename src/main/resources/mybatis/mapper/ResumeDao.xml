@@ -6,7 +6,7 @@
 
 <!-- 지원서 입력 -->
 <!-- 공고 - 지원서 1:1 확인 -->
-<select id="checkJNO">
+<select id="checkJNO" resultType="int">
 	select count(*) from resume
 	where mid = #{mid} and jno = #{jno}
 </select>
@@ -59,6 +59,17 @@
 
 <select id="getResumeList" parameterType="int" resultType="com.example.recruit.jdbc.resume.ResumeDto">
     SELECT * FROM resume WHERE jno = #{jno} ORDER BY rno DESC
+</select>
+
+<select id="getApplicantResume" resultType="com.example.recruit.jdbc.resume.ResumeDetail">
+    select r.rno, c.cname, m.mname, m.mbirth, m.memail,
+           m.mphone, r.address, r.univ, r.major,
+           r.career, r.experi, r.intro
+    from resume r
+    join member m on r.mid = m.mid
+    join job j on r.jno = j.jno
+    join company c on j.cid = c.cid
+    where r.rno = #{rno}
 </select>
 
 </mapper>
