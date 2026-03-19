@@ -37,7 +37,7 @@
 
 <!-- 지원서 전체 -->
 <select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeList"> 
-	select r.rno, c.cname, j.deadline 
+	select r.rno, c.cname, j.title, j.deadline 
 	from job j
 	join company c on j.cid = c.cid
 	join resume r on j.jno = r.jno

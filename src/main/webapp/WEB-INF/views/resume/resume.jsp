@@ -72,8 +72,10 @@
             <textarea name="intro"></textarea>
         </div>
 
-        <button type="submit">제출</button>
-    </form>
+        <button type="submit">제출</button>        
+        <button type="button" onclick="location.href='/job/detail?jno=${jno}'">작성 취소</button>
+    </form>    
+		
 </section>
 </body>
 </html>

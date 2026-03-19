@@ -22,6 +22,7 @@
 		<tr>
 			<th>번호</th>
 			<th>기업명</th>
+			<th>공고명</th>
 			<th>마감기한</th>
 		</tr>
 
@@ -30,6 +31,7 @@
 			<tr data-rno="${resume.rno}">
 			    <td>${status.count}</td>
 			    <td>${resume.cname}</td>
+			    <td>${resume.title}</td>
 			    <td>
 			        <fmt:formatDate value="${resume.deadline}" pattern="yyyy-MM-dd"/>
 			    </td>
