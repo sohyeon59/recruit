@@ -14,14 +14,26 @@ public class JobService {
 	@Autowired
 	private IJobDao jobDao;
 
-	// 전체 공고 목록 (메인화면용)
-	public List<JobDto> list() {
-		return jobDao.list();
+	// 전체 공고 목록 (메인화면용 - 페이징)
+	public List<JobDto> list(int page, int pageSize) {
+		int offset = (page - 1) * pageSize;
+		return jobDao.list(offset, pageSize);
 	}
 
-	// 기업별 공고 목록 (기업 메인용)
-	public List<JobDto> jobList(String cid) {
-		return jobDao.jobList(cid);
+	// 전체 공고 수
+	public int totalCount() {
+		return jobDao.totalCount();
+	}
+
+	// 기업별 공고 목록 (기업 메인용 - 페이징)
+	public List<JobDto> jobList(String cid, int page, int pageSize) {
+		int offset = (page - 1) * pageSize;
+		return jobDao.jobList(cid, offset, pageSize);
+	}
+
+	// 기업별 공고 수
+	public int jobListCount(String cid) {
+		return jobDao.jobListCount(cid);
 	}
 
 	// 공고 상세

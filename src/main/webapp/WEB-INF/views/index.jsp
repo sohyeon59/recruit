@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>메인화면</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/pagination.css">
 </head>
 <body>
 	<%@ include file="heafoo/header.jsp" %>
-	
+
 	<section id="main_menu">
 		<table>
             <thead>
@@ -23,11 +24,11 @@
             <tbody>
                 <c:choose>
                     <c:when test="${not empty jobList}">
-                        <c:forEach var="job" items="${jobList}">
+                        <c:forEach var="job" items="${jobList}" varStatus="status">
                             <tr onclick="location.href='/job/detail?jno=${job.jno}'" style="cursor: pointer;">
-                                <td>${job.jno}</td>
+                                <td>${(ph.page - 1) * 10 + status.count}</td>
                                 <td>${job.cname}</td>
-                                <td class="title-cell">${job.title}</td> 
+                                <td class="title-cell">${job.title}</td>
                                 <td>${job.deadline}</td>
                             </tr>
                         </c:forEach>
@@ -40,8 +41,11 @@
                 </c:choose>
             </tbody>
         </table>
+
+        <%-- 페이지네이션 --%>
+        <%@ include file="pagination.jsp" %>
+
 	</section>
-	
 
 </body>
 </html>
