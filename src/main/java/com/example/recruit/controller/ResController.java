@@ -29,7 +29,7 @@ public class ResController {
 
 	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
-	public String goResume(int jno, HttpSession session) {
+	public String goResume(@RequestParam("jno")int jno, HttpSession session) {
 
 		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
@@ -44,13 +44,13 @@ public class ResController {
 			session.setAttribute("alertMsg", "마감된 공고입니다.");
 			return "redirect:/";
 		}
-
+		
 		return "resume";
 	}
 
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno") int jno) {
+	public String regResume(@RequestParam("jno") int jno, ResumeDto resume, HttpSession session) {
 
 		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
