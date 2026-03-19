@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="/css/resume.css">
 </head>
 <body>
-
 <section id="resume_section">
 
     <div id="resume_title">
@@ -20,7 +19,6 @@
    		<p>모든 항목을 기입해주시기 바랍니다. 비워야하는 항목은 없음이라고 적어주세요.</p>
         <input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
         <input type="hidden" name="jno" value="${jno}">
-
         <div class="form_row">
             <label>성명</label>
             <input type="text" name="mname" value="${sessionScope.loginMember.mname}">

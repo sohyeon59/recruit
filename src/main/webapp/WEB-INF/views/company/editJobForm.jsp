@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/editJobForm.css">
 </head>
 <body>
-    <div>
+    <div class="editjob-page">
         <h2>구인공고 수정</h2>
         
         <form action="/company/editJob" method="post">
