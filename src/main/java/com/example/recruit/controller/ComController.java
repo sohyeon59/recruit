@@ -70,7 +70,7 @@ public class ComController {
 		session.setAttribute("alertMsg", "공고가 등록되었습니다.");
 		return "redirect:/company/main";
 	}
-	
+
 	// 공고 수정 폼
 	@GetMapping("/company/editJobForm")
 	public String editJobForm(@RequestParam("jno") int jno, Model model, HttpSession session) {
