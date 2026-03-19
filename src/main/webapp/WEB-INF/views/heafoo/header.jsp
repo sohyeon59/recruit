@@ -55,6 +55,7 @@
 
 <%			if(usertype.equals("company")){%>
         <ul id="headermenu">
+            <li><a href="/goResume">지원서 작성</a></li>
             <li><a href="/">전체 공고</a></li>
             <li><a href="/company/main">공고 목록</a></li>
             <li>메뉴 3</li>
