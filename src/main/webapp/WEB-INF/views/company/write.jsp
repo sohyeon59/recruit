@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../css/write.css">
 </head>
 <body>
+<%@ include file="../heafoo/header.jsp" %>
 <section id="jobwrite_section">
 
     <div class="container">
