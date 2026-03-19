@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>구인공고 상세 및 지원자 목록</title>
+<link rel="stylesheet" href="../css/Comdetail.css">
 </head>
 <body>
 	<div class="container">
