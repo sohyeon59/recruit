@@ -71,6 +71,7 @@
 			<textarea name="intro">${detail.intro}</textarea>
 		</div>
 		<button type="submit">저장 및 제출</button>
+		<button>지원서 삭제</button>
 	</form>
 </section>
 </body>

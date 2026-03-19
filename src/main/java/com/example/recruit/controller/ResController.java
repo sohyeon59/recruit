@@ -44,7 +44,6 @@ public class ResController {
 			session.setAttribute("alertMsg", "마감된 공고입니다.");
 			return "redirect:/";
 		}
-
 		return "resume";
 	}
 

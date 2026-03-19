@@ -71,14 +71,6 @@ public class ComController {
 		return "redirect:/company/main";
 	}
 	
-	// 공고 수정 화면(Form)
-    @GetMapping("/company/editJobForm")
-    public String editJobForm(@RequestParam("jno") int jno, Model model) {
-        JobDto job = jobService.getJobDetail(jno);
-        model.addAttribute("job", job);
-        return "company/editJobForm";
-    }
-
 	// 공고 수정 폼
 	@GetMapping("/company/editJobForm")
 	public String editJobForm(@RequestParam("jno") int jno, Model model, HttpSession session) {
