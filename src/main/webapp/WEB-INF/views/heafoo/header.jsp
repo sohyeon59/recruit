@@ -55,29 +55,25 @@
 
 <%			if(usertype.equals("company")){%>
         <ul id="headermenu">
-            <li><a href="/">전체 공고</a></li>
-            <li><a href="/company/main">공고 목록</a></li>
-            <li>메뉴 3</li>
+            <li><a href="/"><b>전체 공고</b></a></li>
+            <li>/</li>
+            <li><a href="/company/main"><b>공고 목록</b></a></li>
         </ul>
 
 <% 			}else if(usertype.equals("member")){%>
         <ul id="headermenu">
-            <li><a href="/">전체 공고</a></li>
-            <li><a href="/resume/myPage">마이페이지</a></li>
-            <li>메뉴 3</li>
+            <li><a href="/"><b>전체 공고</b></a></li>
+            <li>/</li>
+            <li><a href="/resume/myPage"><b>마이페이지</b></a></li>
         </ul>
 
 <%			}else if(usertype.equals("nologin")){ %>
         <ul id="headermenu">
-            <li><a href="/">전체 공고</a></li>
-            <li>메뉴 2</li>
-            <li>메뉴 3</li>
+            <li><a href="/"><b>전체 공고</b></a></li>
         </ul>
 <%			}else{%>
 	    <ul id="headermenu">
-		    <li><a href="/">전체 공고</a></li>
-		    <li>메뉴 2</li>
-		    <li>메뉴 3</li>
+		    <li><a href="/"><b>전체 공고</b></a></li>
 		</ul>
 	
 <%			} %>

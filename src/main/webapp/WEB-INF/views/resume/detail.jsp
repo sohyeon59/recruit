@@ -70,9 +70,9 @@
 				<label>자기소개</label>
 				<textarea name="intro">${detail.intro}</textarea>
 			</div>
-			</form>
 			<button onclick="deleteResume(${detail.rno})">삭제</button>
 			<button onclick="/updateResume(${detail})">저장 및 제출</button>
+		</form>
 		
 
 		<script>
