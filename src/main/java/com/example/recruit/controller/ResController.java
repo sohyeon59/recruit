@@ -29,7 +29,9 @@ public class ResController {
 
 	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
-	public String goResume(@RequestParam("jno")int jno, HttpSession session) {
+	public String goResume(Model model, 
+						   @RequestParam("jno")int jno,
+						   HttpSession session) {
 
 		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
@@ -44,8 +46,8 @@ public class ResController {
 			session.setAttribute("alertMsg", "마감된 공고입니다.");
 			return "redirect:/";
 		}
-		
-		return "resume";
+		model.addAttribute("jno", jno);
+		return "resume/resume";
 
 	}
 
@@ -72,7 +74,7 @@ public class ResController {
 	public String updateResume(ResumeDto resume, HttpSession session) {
 		
 		service.updateResume(resume);
-		session.setAttribute("alertMsg", "이력서가 수정 후 체줄되었습니다. 마감지한까지 수정이 가능합니다.");
+		session.setAttribute("alertMsg", "이력서가 수정 후 제출되었습니다. 마감지한까지 수정이 가능합니다.");
 		return "redirect:/resume/myPage";
 	}
 
