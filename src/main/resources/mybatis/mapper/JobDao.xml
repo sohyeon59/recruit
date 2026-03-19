@@ -9,7 +9,8 @@
 		resultType="com.example.recruit.jdbc.job.JobDto">
 		SELECT j.*, c.cname
 		FROM job j
-		JOIN company c ON j.cid = c.cid
+		JOIN company c ON j.cid =
+		c.cid
 	</select>
 
 	<select id="jobList"
@@ -19,19 +20,23 @@
 
 	<select id="getJobDetail"
 		resultType="com.example.recruit.jdbc.job.JobDto">
-		SELECT * FROM job WHERE jno = #{jno}
+		SELECT j.*, c.cname
+		FROM job j
+		JOIN company c ON j.cid = c.cid
+		WHERE j.jno = #{jno}
 	</select>
 
 	<insert id="writeJob">
 		INSERT INTO job (jno, cid, title, content, deadline)
 		VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
 	</insert>
-	
-	<update id="updateJob" parameterType="com.example.recruit.jdbc.job.JobDto">
-        UPDATE job
-        SET title = #{title},
-            content = #{content},
-            deadline = #{deadline}
-        WHERE jno = #{jno}
-    </update>
+
+	<update id="updateJob"
+		parameterType="com.example.recruit.jdbc.job.JobDto">
+		UPDATE job
+		SET title = #{title},
+		content = #{content},
+		deadline = #{deadline}
+		WHERE jno = #{jno}
+	</update>
 </mapper>

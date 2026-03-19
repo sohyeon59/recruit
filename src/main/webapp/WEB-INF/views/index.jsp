@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>메인화면</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<%@ include file="heafoo/header.jsp" %>
@@ -26,7 +26,7 @@
                         <c:forEach var="job" items="${jobList}">
                             <tr onclick="location.href='/job/detail?jno=${job.jno}'" style="cursor: pointer;">
                                 <td>${job.jno}</td>
-                                <td>${companyName}</td>
+                                <td>${job.cname}</td>
                                 <td class="title-cell">${job.title}</td> 
                                 <td>${job.deadline}</td>
                             </tr>
