@@ -29,7 +29,7 @@ public class ResController {
 
 	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
-	public String goResume(int jno, HttpSession session) {
+	public String goResume(@RequestParam("jno")int jno, HttpSession session) {
 
 		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
@@ -57,7 +57,6 @@ public class ResController {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
 		// 마감일 체크
 		JobDto job = jobService.getJobDetail(jno);
 		if (job.getDeadline().before(new java.util.Date())) {
@@ -86,7 +85,6 @@ public class ResController {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
 		service.updateResume(resume);
 		session.setAttribute("alertMsg", "이력서가 수정되었습니다.");
 		return "redirect:/resume/myPage";
@@ -101,7 +99,6 @@ public class ResController {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
 		service.deleteResume(rno);
 		session.setAttribute("alertMsg", "이력서가 삭제되었습니다.");
 		return "redirect:/resume/myPage";
@@ -116,7 +113,6 @@ public class ResController {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
 		List<ResumeList> rList = service.getMyList(mem.getMid());
 		model.addAttribute("resumeList", rList);
 		return "/resume/myPage";

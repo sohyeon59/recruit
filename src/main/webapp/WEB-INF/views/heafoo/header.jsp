@@ -46,7 +46,7 @@
         <% } %>
 
         <ul id="headermenu">
-            <li>메뉴 1</li>
+            <li><a href="/goResume">지원서 작성</a></li>
             <li>메뉴 2</li>
             <li>메뉴 3</li>
         </ul>

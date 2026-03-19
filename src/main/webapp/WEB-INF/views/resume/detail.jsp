@@ -69,10 +69,10 @@
 		<div class="form_row textarea_row">
 			<label>자기소개</label>
 			<textarea name="intro">${detail.intro}</textarea>
-		</div>
-		<button type="submit">저장 및 제출</button>
-		<button>지원서 삭제</button>
+		</div>		
 	</form>
+	<button onclick="updateResume(${detail.rno})">저장 및 제출</button>
+	<button onclick="deleteResume(${detail.rno})">지원서 삭제</button>
 </section>
 </body>
 </html>
