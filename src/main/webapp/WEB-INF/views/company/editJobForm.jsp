@@ -34,10 +34,10 @@
             
             <div>
                 <button type="submit">수정 완료</button>
-                <a href="/company/detailApplicant?jno=${job.jno}">취소</a>
+                <a href="/company/detail?jno=${job.jno}">취소</a>
             </div>
             
-        </form>
+        </form> 
     </div>
 </body>
 </html>
