@@ -57,6 +57,7 @@ public class HomeController {
             session.setAttribute("loginMember", result);
             session.setAttribute("loginName", result.getMname());
             session.setAttribute("userType", "member");
+            session.setAttribute("alertMsg", result.getMname() + "님 로그인 되었습니다.");
             return "redirect:/";
         } else {
             model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
@@ -77,6 +78,7 @@ public class HomeController {
         boolean result = memberService.regist(dto);
         System.out.println(dto.toString());
         if (result) {
+        	session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/loginForm";
         } else {
             model.addAttribute("error", "이미 사용중인 아이디입니다.");
@@ -92,6 +94,7 @@ public class HomeController {
             session.setAttribute("loginCompany", result);
             session.setAttribute("loginName", result.getCname());
             session.setAttribute("userType", "company");
+            session.setAttribute("alertMsg", result.getCname() + "님 로그인 되었습니다.");
             return "redirect:/";
         } else {
             model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
@@ -104,6 +107,7 @@ public class HomeController {
     public String registC(CompanyDto dto, Model model) {
         boolean result = companyService.regist(dto);
         if (result) {
+        	session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/loginForm";
         } else {
             model.addAttribute("error", "이미 사용중인 아이디입니다.");
