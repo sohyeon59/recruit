@@ -127,7 +127,8 @@ public class ResController {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
+		
+		
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
 		return "/resume/detail";
