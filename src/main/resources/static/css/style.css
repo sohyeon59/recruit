@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* 전체 섹션 */
+#main_menu {
+	width: 1000px;
+	margin: 50px auto;
+}
+
+/* 테이블 */
+#main_menu table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+/* 헤더 / 셀 공통 */
+#main_menu th,
+#main_menu td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: center;
+}
+
+/* 헤더 스타일 */
+#main_menu th {
+	background-color: #f5f5f5;
+	font-weight: bold;
+}
+
+/* 행 hover 효과 */
+#main_menu tbody tr:hover {
+	background-color: #f9f9f9;
+	cursor: pointer;
+}
+
+/* 제목 컬럼 (왼쪽 정렬 + 강조) */
+#main_menu .title-cell {
+	text-align: left;
+	padding-left: 15px;
+	font-weight: 500;
+}
+
+/* 데이터 없을 때 메시지 */
+#main_menu .empty-message {
+	padding: 20px;
+	color: #888;
+	text-align: center;
+}
+
+/* 번호 컬럼 */
+#main_menu td:first-child {
+	font-weight: bold;
+}
+
+/* 마감일 컬럼 */
+#main_menu td:last-child {
+	color: #555;
+}
