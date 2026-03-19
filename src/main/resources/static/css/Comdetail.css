@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+.detail-page {
+	width: 1000px;
+	margin: 50px auto;
+}
+
+.detail-page .job-header h2 {
+	margin-bottom: 20px;
+}
+
+.detail-page .job-content {
+	border: 1px solid #ddd;
+	padding: 20px;
+	margin-bottom: 30px;
+	line-height: 1.6;
+	background-color: #fafafa;
+}
+
+.detail-page .section-title {
+	margin: 30px 0 10px;
+}
+
+.detail-page table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.detail-page th,
+.detail-page td {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: center;
+}
+
+.detail-page th {
+	background-color: #f5f5f5;
+}
+
+.detail-page tbody tr:hover {
+	background-color: #f9f9f9;
+	cursor: pointer;
+}
+
+.detail-page .empty-msg {
+	padding: 20px;
+	color: #888;
+}
+
+.detail-page .btn-wrap {
+	margin-top: 30px;
+}
+
+.detail-page .btn-wrap a {
+	display: inline-block;
+	padding: 10px 15px;
+	text-decoration: none;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+.detail-page .btn-edit {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.detail-page .btn-back {
+	background-color: #777;
+	color: white;
+}

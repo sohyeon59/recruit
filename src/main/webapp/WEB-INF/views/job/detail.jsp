@@ -5,34 +5,44 @@
 <head>
 <meta charset="UTF-8">
 <title>공고 상세</title>
+<link rel="stylesheet" href="/css/jobdetail.css">
 </head>
 <body>
+
 <%@ include file="../heafoo/header.jsp" %>
 
-<h2>공고 상세</h2>
-<hr>
+<div class="jobdetail-page">
 
-<table border="1">
-    <tr><th>제목</th><td>${job.title}</td></tr>
-    <tr><th>마감일</th><td>${job.deadline}</td></tr>
-    <tr><th>내용</th><td>${job.content}</td></tr>
-</table>
+	<h2 class="page-title">공고 상세</h2>
+	<hr>
 
-<hr>
+	<table class="job-table">
+	    <tr><th>제목</th><td>${job.title}</td></tr>
+	    <tr><th>마감일</th><td>${job.deadline}</td></tr>
+	    <tr><th>내용</th><td class="content-cell">${job.content}</td></tr>
+	</table>
 
-<c:choose>
-    <c:when test="${job.deadline lt today}">
-        <p>마감된 공고입니다.</p>
-    </c:when>
-    <c:when test="${isLogin}">
-        <a href="/goResume?jno=${job.jno}">
-            <button>이력서 등록하기</button>
-        </a>
-    </c:when>
-    <c:otherwise>
-        <p>이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.</p>
-    </c:otherwise>
-</c:choose>
+	<hr>
+
+	<div class="action-box">
+		<c:choose>
+		    <c:when test="${job.deadline lt today}">
+		        <p class="closed-msg">마감된 공고입니다.</p>
+		    </c:when>
+		    <c:when test="${isLogin}">
+		        <a href="/goResume?jno=${job.jno}" class="btn-apply">
+		            <button>이력서 등록하기</button>
+		        </a>
+		    </c:when>
+		    <c:otherwise>
+		        <p class="login-msg">
+		            이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
+		        </p>
+		    </c:otherwise>
+		</c:choose>
+	</div>
+
+</div>
 
 </body>
 </html>

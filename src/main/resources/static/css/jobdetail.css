@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.jobdetail-page {
+	width: 800px;
+	margin: 50px auto;
+}
+
+.jobdetail-page .page-title {
+	margin-bottom: 20px;
+}
+
+.jobdetail-page .job-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.jobdetail-page .job-table th,
+.jobdetail-page .job-table td {
+	border: 1px solid #ddd;
+	padding: 12px;
+	text-align: left;
+}
+
+.jobdetail-page .job-table th {
+	width: 20%;
+	background-color: #f5f5f5;
+	text-align: center;
+}
+
+.jobdetail-page .content-cell {
+	line-height: 1.6;
+	background-color: #fafafa;
+}
+
+.jobdetail-page .action-box {
+	margin-top: 20px;
+}
+
+.jobdetail-page .closed-msg {
+	color: #888;
+}
+
+.jobdetail-page .login-msg a {
+	color: #4CAF50;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.jobdetail-page .btn-apply {
+	display: inline-block;
+	padding: 10px 15px;
+	background-color: #4CAF50;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+}

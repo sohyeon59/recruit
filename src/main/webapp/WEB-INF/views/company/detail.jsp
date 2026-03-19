@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>구인공고 상세 및 지원자 목록</title>
+<link rel="stylesheet" href="../css/Comdetail.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container detail-page">
 
 		<div class="job-header">
 			<h2>${job.title}</h2>
@@ -29,9 +30,7 @@
 				<c:choose>
 					<c:when test="${not empty resumeList}">
 						<c:forEach var="resume" items="${resumeList}">
-							<tr
-								onclick="location.href='/company/detailApplicant?rno=${resume.rno}'"
-								style="cursor: pointer;">
+							<tr onclick="location.href='/company/detailApplicant?rno=${resume.rno}'">
 								<td>${resume.mid}</td>
 								<td>${resume.major}</td>
 								<td>${resume.career}</td>

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>구인공고 수정</title>
+<link rel="stylesheet" href="../css/editJobForm.css">
 </head>
 <body>
     <div>
