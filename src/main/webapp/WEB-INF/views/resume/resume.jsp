@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="/css/resume.css">
 </head>
 <body>
-
 <section id="resume_section">
 
     <div id="resume_title">
@@ -19,7 +18,6 @@
     <form action="/regResume" method="POST">
         <input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
         <input type="hidden" name="jno" value="${jno}">
-
         <div class="form_row">
             <label>성명</label>
             <input type="text" name="mname" value="${sessionScope.loginMember.mname}">
