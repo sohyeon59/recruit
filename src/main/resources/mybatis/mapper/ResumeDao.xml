@@ -13,8 +13,8 @@
 
 <!-- 지원서 등록 -->
 <insert id="insertResume">
-	insert into resume (rno, mid, address, univ, major, career, experi, intro) 
-	values (seq_resume.nextVal, #{mid}, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
+	insert into resume (rno, mid, jno, address, univ, major, career, experi, intro) 
+	values (seq_resume.nextVal, #{mid}, #{jno}, #{address}, #{univ}, #{major}, #{career}, #{experi}, #{intro})
 </insert>
 
 <!-- 지원서 삭제 -->
