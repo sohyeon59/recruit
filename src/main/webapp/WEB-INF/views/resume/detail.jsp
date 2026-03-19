@@ -70,18 +70,28 @@
 				<label>자기소개</label>
 				<textarea name="intro">${detail.intro}</textarea>
 			</div>
+			</form>
 			<button onclick="deleteResume(${detail.rno})">삭제</button>
-			<button type="submit">저장 및 제출</button>
-		</form>
+			<button onclick="/updateResume(${detail})">저장 및 제출</button>
+		
 
 		<script>
-function deleteResume(rno) {
-    if (confirm("정말 삭제하시겠습니까?")) {
-        // 컨트롤러의 @GetMapping("/deleteResume")으로 이동
-        location.href = "/deleteResume?rno=" + rno;
-    }
-}
-</script>
+		
+		function deleteResume(rno) {
+    		if (confirm("정말 삭제하시겠습니까?")) {
+        		location.href = "/deleteResume?rno=" + rno;
+    		}
+		}
+		
+		function updateResume(resume){
+			if(confirm("수정하시겠습니까?")){
+				location.href="/updateResume"
+			}
+			
+		}
+		
+		
+		</script>
 
 	</section>
 </body>
