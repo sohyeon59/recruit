@@ -69,7 +69,7 @@
     join member m on r.mid = m.mid
     join job j on r.jno = j.jno
     join company c on j.cid = c.cid
-    where r.rno = #{rno}
+    where r.rno = #{rno} 
 </select>
 
 </mapper>

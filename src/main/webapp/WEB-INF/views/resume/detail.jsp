@@ -71,7 +71,7 @@
 				<textarea name="intro">${detail.intro}</textarea>
 			</div>
 			<button type="submit">저장 및 제출</button>
-			<button onclick="deleteResume(${detail.rno})">삭제</button>
+			<button type="button" onclick="deleteResume(${detail.rno})">삭제</button>
 		</form>
 		
 

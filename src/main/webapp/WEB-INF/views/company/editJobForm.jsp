@@ -37,7 +37,7 @@
                 <a href="/company/detail?jno=${job.jno}">취소</a>
             </div>
             
-        </form>
+        </form> 
     </div>
 </body>
 </html>
