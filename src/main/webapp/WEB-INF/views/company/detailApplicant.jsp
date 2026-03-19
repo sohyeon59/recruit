@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../css/detailApplicant.css">
 </head>
 <body>
+<%@ include file="../heafoo/header.jsp" %>
 
 <div class="resume-detail-page">
 
