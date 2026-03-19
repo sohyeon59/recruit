@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>메인화면</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<%@ include file="heafoo/header.jsp" %>
