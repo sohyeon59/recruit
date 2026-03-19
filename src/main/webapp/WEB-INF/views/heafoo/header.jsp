@@ -57,7 +57,9 @@
         <ul id="headermenu">
             <li><a href="/"><b>전체 공고</b></a></li>
             <li>/</li>
-            <li><a href="/company/main"><b>공고 목록</b></a></li>
+            <li><a href="/company/main"><b>내 공고</b></a></li>
+            <li>/</li>
+            <li><a href="/company/write"><b>새 공고 등록</b></a></li>
         </ul>
 
 <% 			}else if(usertype.equals("member")){%>
@@ -75,7 +77,6 @@
 	    <ul id="headermenu">
 		    <li><a href="/"><b>전체 공고</b></a></li>
 		</ul>
-	
 <%			} %>
     </div>
 </header>

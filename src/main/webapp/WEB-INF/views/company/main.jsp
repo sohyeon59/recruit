@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-<section id="joblist_section">
 <%@ include file="../heafoo/header.jsp" %>
+
+<section id="joblist_section">
     <div class="container">
         <h2>내 구인공고 관리</h2>
 
@@ -27,7 +28,7 @@
                     <c:when test="${not empty jobList}">
                         <c:forEach var="job" items="${jobList}" varStatus="status">
                             <tr onclick="location.href='/company/detail?jno=${job.jno}'" style="cursor: pointer;">
-                                <td>${job.jno}</td>
+                                <td><b>${job.jno}</b></td>
                                 <td>${companyName}</td>
                                 <td class="title-cell">${job.title}</td>
                                 <td>${job.deadline}</td>
@@ -42,11 +43,6 @@
                 </c:choose>
             </tbody>
         </table>
-
-        <div class="btn-area">
-            <button type="button" onclick="location.href='/company/write'">새 공고 등록</button>
-        </div>
-
     </div>
 
 </section>
