@@ -1,55 +1,58 @@
 @charset "UTF-8";
 
-.edit-page {
+.editjob-page {
 	width: 600px;
 	margin: 50px auto;
-	font-family: Arial, sans-serif;
 }
 
-.edit-page h2 {
+.editjob-page h2 {
 	margin-bottom: 20px;
 }
 
-.edit-page form div {
+.editjob-page form {
+	border: 1px solid #ddd;
+	padding: 30px;
+}
+
+.editjob-page form div {
+	display: flex;
+	flex-direction: column;
 	margin-bottom: 15px;
 }
 
-.edit-page label {
-	display: block;
+.editjob-page label {
+	font-size: 14px;
 	margin-bottom: 5px;
-	font-weight: bold;
 }
 
-.edit-page input[type="text"],
-.edit-page input[type="date"],
-.edit-page textarea {
+.editjob-page input[type="text"],
+.editjob-page input[type="date"],
+.editjob-page textarea {
 	width: 100%;
 	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
+	border: 1px solid #ccc;
 	box-sizing: border-box;
 }
 
-.edit-page textarea {
+.editjob-page textarea {
 	height: 150px;
 	resize: none;
 }
 
-.edit-page button {
-	padding: 10px 15px;
-	border: none;
-	border-radius: 5px;
-	background-color: #4CAF50;
-	color: white;
+.editjob-page button {
+	padding: 10px;
+	border: 1px solid black;
+	background-color: white;
 	cursor: pointer;
+	margin-top: 10px;
 }
 
-.edit-page button:hover {
-	background-color: #45a049;
+.editjob-page button:hover {
+	background-color: #f5f5f5;
 }
 
-.edit-page a {
-	margin-left: 10px;
+.editjob-page a {
+	margin-top: 10px;
 	text-decoration: none;
 	color: #555;
 }
