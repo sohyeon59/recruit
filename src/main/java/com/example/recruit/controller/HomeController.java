@@ -95,7 +95,7 @@ public class HomeController {
             session.setAttribute("loginCompany", result);
             session.setAttribute("loginName", result.getCname());
             session.setAttribute("userType", "company");
-            return "redirect:/company/main";
+            return "redirect:/";
         } else {
             model.addAttribute("error", "아이디 또는 비밀번호가 틀렸습니다.");
             return "login";
