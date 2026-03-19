@@ -15,6 +15,7 @@ public class ResumeService {
 
 	@Autowired
 	IResumeDao resumeDao;
+
 	
 	// 공고 - 지원서 1:1 확인
 	public int checkJNO(String mid, int jno) {
@@ -33,6 +34,7 @@ public class ResumeService {
 	public int deleteResume(int rno) {
 		return resumeDao.deleteResume(rno);
 	}
+	
 	
 	
 	
