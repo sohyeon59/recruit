@@ -111,8 +111,4 @@ public class HomeController {
         }
     }
     
-    @GetMapping("/myPage")
-    public String gomyPage() {
-    	return "/resume/myPage";
-    }
 }

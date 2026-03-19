@@ -31,7 +31,7 @@
 		    </c:when>
 		    <c:when test="${isLogin}">
 		        <a href="/goResume?jno=${job.jno}" class="btn-apply">
-		            <button>이력서 등록하기</button>
+		            이력서 등록하기
 		        </a>
 		    </c:when>
 		    <c:otherwise>
