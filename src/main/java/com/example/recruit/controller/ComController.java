@@ -83,7 +83,7 @@ public class ComController {
 	// 공고 수정 화면(Form)
     @GetMapping("/company/editJobForm")
     public String editJobForm(@RequestParam("jno") int jno, Model model) {
-        JobDto job = companyService.getJobDetail(jno);
+        JobDto job = jobService.getJobDetail(jno);
         model.addAttribute("job", job);
         return "company/editJobForm";
     }

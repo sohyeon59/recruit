@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.company.ICompanyDao;
+import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.jdbc.resume.IResumeDao;
 import com.example.recruit.jdbc.resume.ResumeDto;
 
