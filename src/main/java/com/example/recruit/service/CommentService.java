@@ -1,9 +1,12 @@
 package com.example.recruit.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.recruit.jdbc.job.CommentDto;
+import com.example.recruit.jdbc.job.CommentList;
 import com.example.recruit.jdbc.job.ICommentDao;
 
 @Service
@@ -22,8 +25,12 @@ public class CommentService {
 		return comDao.updateComment(dto);
 	}
 	
-	public int deleteResume(int rno) {
-		return comDao.deleteComment(rno);
+	public int deleteResume(int comno) {
+		return comDao.deleteComment(comno);
 	}
-	
+
+	// 댓글 리스트 불러오기
+	public List<CommentList> getComList(int jno){
+		return comDao.getComList(jno);
+	}
 }

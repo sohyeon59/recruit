@@ -23,6 +23,25 @@
 	</table>
 
 	<hr>
+	
+	<div class="comment-section">
+		<form action="/insertComment" method="post">
+		<input type="hidden" name="mid" >
+		<textarea name="content" rows="4" placeholder="댓글을 입력하세요..." required></textarea>
+		<button type="submit">등록</button>
+	</form>
+	</div>
+	
+	<div class="comment-List">
+	 <c:forEach var="comment" items="${commentList}" varStatus="status">
+      <tr>
+        <td>${status.count}</td>
+        <td>${comment.mid}</td>
+        <td>${comment.content}</td>
+        <td>${comment.created_at}</td>
+      </tr>
+    </c:forEach>
+	</div>
 
 	<div class="action-box">
 		<c:choose>

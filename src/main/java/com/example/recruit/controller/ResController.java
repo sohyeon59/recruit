@@ -45,7 +45,6 @@ public class ResController {
 		}
 		model.addAttribute("jno", jno);
 		return "resume/resume";
-
 	}
 
 	// 지원서 등록
