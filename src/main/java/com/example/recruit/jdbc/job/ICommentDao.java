@@ -1,5 +1,7 @@
 package com.example.recruit.jdbc.job;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,5 +12,9 @@ public interface ICommentDao {
 	int insertComment(CommentDto commentDto);
 	int updateComment(CommentDto commentDto);
 	int deleteComment(@Param("cno") int cno);
-
+	
+	// 댓글 목록 불러오기
+	
+	List<CommentList> getComList(@Param("mid")String mid);
+	
 }

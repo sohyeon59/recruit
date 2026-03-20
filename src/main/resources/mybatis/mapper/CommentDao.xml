@@ -22,7 +22,16 @@
 	delete from comment1 where cno = #{cno}
 </delete>
 
-
-
+<!-- 댓글 리스트 불러오기 -->
+<select id="getComList" resultType="com.example.recruit.jdbc.job.ICommentDao">
+SELECT 
+    c.cno, 
+    c.content, 
+    c.mid,
+    c.created_at"
+FROM comment1 c
+JOIN member m ON c.mid = m.mid
+ORDER BY c.created_at DESC;
+</select>
 
 </mapper>
