@@ -32,25 +32,33 @@ public class HomeController {
     public String home(@RequestParam(name = "page", defaultValue = "1") int page,
                        @RequestParam(name = "cat", required = false) String cat,
                        @RequestParam(name = "searchText", required = false) String searchText,
+                       @RequestParam(name = "startDate", required = false) String startDate,
+                       @RequestParam(name = "endDate", required = false) String endDate,
                        Model model) {
 
         // 빈 문자열은 null로 처리
         if (searchText != null && searchText.trim().isEmpty()) searchText = null;
         if (cat != null && cat.trim().isEmpty()) cat = null;
+        if (startDate != null && startDate.trim().isEmpty()) startDate = null;
+        if (endDate != null && endDate.trim().isEmpty()) endDate = null;
 
         int pageSize = 10;
-        int totalCount = jobService.totalCount(cat, searchText);
+        int totalCount = jobService.totalCount(cat, searchText, startDate, endDate);
         PageHandler ph = new PageHandler(totalCount, page, pageSize);
 
         // 페이지네이션에 검색 파라미터 유지
         String searchParam = "";
         if (cat != null) searchParam += "&cat=" + cat;
         if (searchText != null) searchParam += "&searchText=" + searchText;
+        if (startDate != null) searchParam += "&startDate=" + startDate;
+        if (endDate != null) searchParam += "&endDate=" + endDate;
 
-        model.addAttribute("jobList", jobService.list(page, pageSize, cat, searchText));
+        model.addAttribute("jobList", jobService.list(page, pageSize, cat, searchText, startDate, endDate));
         model.addAttribute("ph", ph);
         model.addAttribute("cat", cat);
         model.addAttribute("searchText", searchText);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
         model.addAttribute("searchParam", searchParam);
 
         return "index";

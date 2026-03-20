@@ -10,10 +10,12 @@ public interface IJobDao {
 
 	// 전체 공고 목록 (페이징 + 검색)
 	List<JobDto> list(@Param("offset") int offset, @Param("pageSize") int pageSize,
-					  @Param("cat") String cat, @Param("searchText") String searchText);
+					  @Param("cat") String cat, @Param("searchText") String searchText,
+					  @Param("startDate") String startDate, @Param("endDate") String endDate);
 
 	// 전체 공고 수 (검색 포함)
-	int totalCount(@Param("cat") String cat, @Param("searchText") String searchText);
+	int totalCount(@Param("cat") String cat, @Param("searchText") String searchText,
+				   @Param("startDate") String startDate, @Param("endDate") String endDate);
 
 	// 기업별 공고 목록 (페이징)
 	List<JobDto> jobList(@Param("cid") String cid, @Param("offset") int offset, @Param("pageSize") int pageSize);

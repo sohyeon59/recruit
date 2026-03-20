@@ -20,8 +20,13 @@
 					<if test="cat == 'cname' and searchText != null and searchText != ''">
 						c.cname LIKE '%' || #{searchText} || '%'
 					</if>
-					<if test="cat == 'deadline' and searchText != null and searchText != ''">
-						TO_CHAR(j.deadline, 'YYYY-MM-DD') LIKE '%' || #{searchText} || '%'
+					<if test="cat == 'deadline'">
+						<if test="startDate != null and startDate != ''">
+							j.deadline &gt;= TO_DATE(#{startDate}, 'YYYY-MM-DD')
+						</if>
+						<if test="endDate != null and endDate != ''">
+							AND j.deadline &lt;= TO_DATE(#{endDate}, 'YYYY-MM-DD')
+						</if>
 					</if>
 				</where>
 				ORDER BY j.jno DESC
@@ -42,8 +47,13 @@
 			<if test="cat == 'cname' and searchText != null and searchText != ''">
 				c.cname LIKE '%' || #{searchText} || '%'
 			</if>
-			<if test="cat == 'deadline' and searchText != null and searchText != ''">
-				TO_CHAR(j.deadline, 'YYYY-MM-DD') LIKE '%' || #{searchText} || '%'
+			<if test="cat == 'deadline'">
+				<if test="startDate != null and startDate != ''">
+					j.deadline &gt;= TO_DATE(#{startDate}, 'YYYY-MM-DD')
+				</if>
+				<if test="endDate != null and endDate != ''">
+					AND j.deadline &lt;= TO_DATE(#{endDate}, 'YYYY-MM-DD')
+				</if>
 			</if>
 		</where>
 	</select>
