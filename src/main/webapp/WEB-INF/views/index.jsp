@@ -15,7 +15,7 @@
 		<h2>전체 공고</h2>
 
 		<!-- 검색 폼 -->
-		<form action="/" method="get">
+		<form action="/" method="get" id="search_form">
 		    <input type="hidden" name="sort" value="${currentSort}">
 		    <input type="hidden" name="order" value="${currentOrder}">
 		    
