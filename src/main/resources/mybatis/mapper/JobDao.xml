@@ -20,16 +20,22 @@
 					<if test="cat == 'cname' and searchText != null and searchText != ''">
 						c.cname LIKE '%' || #{searchText} || '%'
 					</if>
-					<if test="cat == 'deadline'">
-						<if test="startDate != null and startDate != ''">
-							j.deadline &gt;= TO_DATE(#{startDate}, 'YYYY-MM-DD')
-						</if>
-						<if test="endDate != null and endDate != ''">
-							AND j.deadline &lt;= TO_DATE(#{endDate}, 'YYYY-MM-DD')
-						</if>
+					<if test="cat == 'deadline' and searchText != null and searchText != ''">
+						TO_CHAR(j.deadline, 'YYYY-MM-DD') LIKE '%' || #{searchText} || '%'
 					</if>
 				</where>
-				ORDER BY j.jno DESC
+				
+				ORDER BY 
+				<choose>
+					<when test="sort == 'cname'">c.cname</when>
+					<when test="sort == 'title'">j.title</when>
+					<when test="sort == 'deadline'">j.deadline</when>
+					<otherwise>j.jno</otherwise> 
+				</choose>
+				<choose>
+					<when test="order == 'asc'">ASC</when>
+					<otherwise>DESC</otherwise> 
+				</choose>	
 			) sq
 		)
 		WHERE rn &gt; #{offset} AND rn &lt;= #{offset} + #{pageSize}
