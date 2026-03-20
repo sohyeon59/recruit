@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="../css/pagination.css">
 </head>
 <body>
-<section id="joblist_section">
 <%@ include file="../heafoo/header.jsp" %>
+
+<section id="joblist_section">
     <div class="container">
         <h2>내 구인공고 관리</h2>
 
@@ -28,7 +29,9 @@
                     <c:when test="${not empty jobList}">
                         <c:forEach var="job" items="${jobList}" varStatus="status">
                             <tr onclick="location.href='/company/detail?jno=${job.jno}'" style="cursor: pointer;">
+
                                 <td>${(ph.page - 1) * 10 + status.count}</td>
+
                                 <td>${companyName}</td>
                                 <td class="title-cell">${job.title}</td>
                                 <td>${job.deadline}</td>

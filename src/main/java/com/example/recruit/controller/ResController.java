@@ -45,11 +45,14 @@ public class ResController {
 		}
 		model.addAttribute("jno", jno);
 		return "resume/resume";
+
 	}
 
 	// 지원서 등록
 	@PostMapping("/regResume")
-	public String regResume(ResumeDto resume, HttpSession session, @RequestParam("jno") int jno) {
+
+	public String regResume(@RequestParam("jno") int jno, ResumeDto resume, HttpSession session) {
+
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		int check = service.checkJNO(mem.getMid(), jno);
 		if (check == 0) {
@@ -65,7 +68,9 @@ public class ResController {
 	@PostMapping("/updateResume")
 	public String updateResume(ResumeDto resume, HttpSession session) {
 		service.updateResume(resume);
-		session.setAttribute("alertMsg", "이력서가 수정 후 제출되었습니다. 마감기한까지 수정이 가능합니다.");
+
+		session.setAttribute("alertMsg", "이력서가 수정 후 제출되었습니다. 마감지한까지 수정이 가능합니다.");
+
 		return "redirect:/resume/myPage";
 	}
 

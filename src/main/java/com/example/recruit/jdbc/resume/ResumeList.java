@@ -8,5 +8,6 @@ import lombok.Data;
 public class ResumeList {
 	int rno;
 	String cname;
+	String title;
 	Date deadline;
 }

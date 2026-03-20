@@ -12,6 +12,8 @@
 	<%@ include file="heafoo/header.jsp" %>
 
 	<section id="main_menu">
+		<h2>전체 공고</h2>
+	
 		<table>
             <thead>
                 <tr>
