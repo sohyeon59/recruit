@@ -14,7 +14,7 @@
 
 <!-- 댓글 수정 -->
 <update id="updateComment">
-	update comment1 set content = #{content}
+	update comment1 set content = #{content} where cmono = #{cmono}
 </update>
 
 <!-- 댓글 삭제 -->
@@ -26,7 +26,7 @@
 <select id="getComList" resultType="com.example.recruit.jdbc.job.CommentList">
 SELECT comno, MID, CONTENT, CREATED_AT FROM COMMENT1 
 WHERE JNO = #{jno}
-ORDER BY created_at DESC
+ORDER BY created_at ASC
 </select>
 
 </mapper>
