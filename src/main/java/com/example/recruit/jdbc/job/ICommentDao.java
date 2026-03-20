@@ -10,7 +10,7 @@ public interface ICommentDao {
 	
 	// 댓글 등록, 수정, 삭제
 	int insertComment(CommentDto commentDto);
-	int updateComment(CommentDto commentDto);
+	int updateComment(@Param("content")String content, @Param("comno") int comno);
 	int deleteComment(@Param("comno") int comno);
 	
 	// 댓글 목록 불러오기	
