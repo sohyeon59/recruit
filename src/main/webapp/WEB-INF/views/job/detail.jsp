@@ -11,8 +11,8 @@
 </head>
 <body>
 
-	<%@ include file="../heafoo/header.jsp" %>
-	
+	<%@ include file="../heafoo/header.jsp"%>
+
 	<%-- today 변수 설정 --%>
 	<jsp:useBean id="todayDate" class="java.util.Date" />
 	<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" var="today" />
@@ -56,75 +56,95 @@
 							</p>
 						</c:when>
 						<c:otherwise>
-							
+
 						</c:otherwise>
 					</c:choose>
 				</c:otherwise>
 			</c:choose>
 		</div>
-		
+
 
 		<div class="comment-List">
-			<table border="1">			
+			<table border="1">
 				<c:forEach var="c" items="${commentList}" varStatus="status">
 					<tr>
 						<td>${status.count}</td>
 						<td id="content${c.comno}">${c.content}</td>
 						<td>${c.mid}</td>
-						<td>${c.created_at}</td>						
+						<td>${c.created_at}</td>
 						<td>
-						<button 
-						    onclick="modcom(this)" 
-						    data-content="${c.content}" 
-						    data-comno="${c.comno}" 
-						    data-jno="${job.jno}">
-						    수정
-						</button>
-						<button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
+							<button onclick="modcom(this)" data-content="${c.content}"
+								data-comno="${c.comno}" data-jno="${job.jno}">수정</button>
+							<button
+								onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
 						</td>
 					</tr>
-				</c:forEach>			
+				</c:forEach>
 			</table>
-			
+
 
 		</div>
 
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
-				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
-				<input type="hidden" name="jno" value="${job.jno}">
+				<input type="hidden" name="mid"
+					value="${sessionScope.loginMember.mid}"> <input
+					type="hidden" name="jno" value="${job.jno}">
 
 
-				<textarea name="content" rows="1" placeholder="댓글을 입력하세요..." required></textarea>
+				<textarea name="content" rows="1" placeholder="댓글을 입력하세요..."
+					required></textarea>
 				<button type="submit">등록</button>
 			</form>
 		</div>
-		
+
 	</div>
 
-<script>
-	
-	function modcom(btn){		
-		
-		const content = btn.dataset.content;
-	    const comno = btn.dataset.comno;
-	    const jno = btn.dataset.jno;
-	    
-		const contentCom = document.getElementById("content" + comno);		
-		contentCom.innerHTML = `<input type="text" id="edit${comno}" value="${content}">`;
-		
-		btn.outerHTML = `<button onclick="updateCom(${comno}, ${jno})">저장</button>`;
-	}
-		
-	function updateCom(comno, jno){		
-		const editCom = document.getElementById("edit" + comno).value;
-		
-		location.href= "/updateComment?content=" + editCom + "&comno=" + comno + "&jno=" + jno;
-	}
+	<script>
 	
 	
-	
+		function modcom(btn) {
+			
+			const content = btn.getAttribute("data-content");
+			const comno = btn.getAttribute("data-comno");
+			const jno = btn.getAttribute("data-jno");
 
-</script>
+			const contentTd = document.getElementById("content" + comno);
+
+			contentTd.innerHTML = "";
+
+			const input = document.createElement("input");
+			input.type = "text";
+			input.id = "edit" + comno;
+			input.value = content;
+			input.style.width = "100%";
+
+			contentTd.appendChild(input);
+
+			btn.innerText = "저장";
+			btn.onclick = function() {
+				updateCom(comno, jno);
+			};
+		}
+
+		function updateCom(comno, jno) {
+			const editInput = document.getElementById("edit" + comno);
+
+			if (!editInput) {
+				alert("수정창을 찾을 수 없습니다. ID: edit" + comno);
+				return;
+			}
+
+			const editValue = editInput.value;
+			if (!editValue.trim()) {
+				alert("내용을 입력해 주세요.");
+				return;
+			}
+
+			location.href = "/updateComment?content="
+					+ encodeURIComponent(editValue) + "&comno=" + comno
+					+ "&jno=" + jno;
+		}
+	</script>
 </body>
 </html>
