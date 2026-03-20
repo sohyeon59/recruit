@@ -4,18 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.recruit.jdbc.job.CommentDto;
-import com.example.recruit.jdbc.job.CommentList;
-import com.example.recruit.jdbc.job.JobDto;
+import com.example.recruit.jdbc.member.MemberDto;
 import com.example.recruit.service.CommentService;
-import com.example.recruit.service.JobService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +23,13 @@ public class CommentController {
 	//댓글 작성
 	@PostMapping("/insertComment")
 	public String insertComment(CommentDto dto,	HttpSession session) {
+		
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		if (mem == null) {
+			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
+			return "redirect:/loginForm";
+		}
+		
 		comService.insertComment(dto);
 		session.setAttribute("alertMsg", "댓글이 작성되었습니다");
 		return "redirect:/job/detail?jno=" + dto.getJno();
