@@ -65,15 +65,7 @@
 		
 		<div class="comment-list">
 		    <table class="comment-table">
-		        <thead>
-		            <tr>
-		                <th>번호</th>
-		                <th>내용</th>
-		                <th>작성자</th>
-		                <th>작성일</th>
-		                <th>관리</th>
-		            </tr>
-		        </thead>
+
 		        <tbody>
 		            <c:forEach var="comment" items="${commentList}" varStatus="status">
 		                <tr>
@@ -95,7 +87,7 @@
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
 				<input type="hidden" name="jno" value="${job.jno}">
-				<textarea name="content" rows="4" placeholder="댓글을 입력하세요..."
+				<textarea name="content" rows="1" placeholder="댓글을 입력하세요..."
 					required></textarea>
 				<button type="submit">등록</button>
 			</form>
