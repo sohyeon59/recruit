@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
@@ -9,40 +10,54 @@
 </head>
 <body>
 
-<%@ include file="../heafoo/header.jsp" %>
+	<%@ include file="../heafoo/header.jsp"%>
 
-<div class="jobdetail-page">
+	<div class="jobdetail-page">
 
-	<h2 class="page-title">공고 상세</h2>
-	<hr>
+		<h2 class="page-title">공고 상세</h2>
+		<hr>
 
-	<table class="job-table">
-	    <tr><th>제목</th><td>${job.title}</td></tr>
-	    <tr><th>마감일</th><td>${job.deadline}</td></tr>
-	    <tr><th>내용</th><td class="content-cell">${job.content}</td></tr>
-	</table>
+		<table class="job-table">
+			<tr>
+				<th>제목</th>
+				<td>${job.title}</td>
+			</tr>
+			<tr>
+				<th>마감일</th>
+				<td>${job.deadline}</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td class="content-cell">${job.content}</td>
+			</tr>
+		</table>
 
-	<hr>
+		<hr>
 
-	<div class="action-box">
-		<c:choose>
-		    <c:when test="${job.deadline lt today}">
-		        <p class="closed-msg">마감된 공고입니다.</p>
-		    </c:when>
-		    <c:when test="${isLogin}">
-		        <a href="/goResume?jno=${job.jno}" class="btn-apply">
-		            지원서 작성하기
-		        </a>
-		    </c:when>
-		    <c:otherwise>
-		        <p class="login-msg">
-		            이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
-		        </p>
-		    </c:otherwise>
-		</c:choose>
+		<div class="action-box">
+			<c:choose>
+				<c:when test="${job.deadline lt today}">
+					<p class="closed-msg">마감된 공고입니다.</p>
+				</c:when>
+				<c:when test="${isMember}">
+					<a href="/goResume?jno=${job.jno}" class="btn-apply"> 지원서 작성하기
+					</a>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${!isLogin}">
+						</c:when>
+						<c:otherwise>
+							<p class="login-msg">
+								이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
+							</p>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
+		</div>
+
 	</div>
-
-</div>
 
 </body>
 </html>

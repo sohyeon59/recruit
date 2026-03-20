@@ -16,17 +16,17 @@
     }
 
     // 로그인 상태 체크
-    Object loginMember  = session.getAttribute("loginMember");
-    Object loginCompany = session.getAttribute("loginCompany");
-    boolean isLogin     = loginMember != null || loginCompany != null;
-    boolean isCompany   = loginCompany != null;
-    
+    Object usertype = session.getAttribute("userType");
+    boolean isMember = false, isComany = false, isLogin = false;
     
     // 기업회원인지 개인회원인지 구별
-    Object usertype = session.getAttribute("userType");
-    if(usertype == null){
-    	usertype = "nologin";
-    }
+    
+    if(usertype != null){
+    	isLogin = true;
+    	isMember = usertype.equals("member");
+		isComany = usertype.equals("company"));
+    } 
+    	
 %>
 
 <header>
@@ -53,7 +53,7 @@
         <% } %>
 
 
-<%			if(usertype.equals("company")){%>
+<%			if(isComany){%>
         <ul id="headermenu">
             <li><a href="/"><b>전체 공고</b></a></li>
             <li>/</li>
@@ -62,14 +62,14 @@
             <li><a href="/company/write"><b>새 공고 등록</b></a></li>
         </ul>
 
-<% 			}else if(usertype.equals("member")){%>
+<% 			}else if(isMember){%>
         <ul id="headermenu">
             <li><a href="/"><b>전체 공고</b></a></li>
             <li>/</li>
             <li><a href="/resume/myPage"><b>마이페이지</b></a></li>
         </ul>
 
-<%			}else if(usertype.equals("nologin")){ %>
+<%			}else if(!isLogin){ %>
         <ul id="headermenu">
             <li><a href="/"><b>전체 공고</b></a></li>
         </ul>
