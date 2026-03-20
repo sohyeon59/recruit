@@ -63,30 +63,25 @@
 			</c:choose>
 		</div>
 		
+		
+		<div class="comment-list">
+		    <table class="comment-table">
 
-		<div class="comment-List">
-			<table border="1">			
-				<c:forEach var="c" items="${commentList}" varStatus="status">
-					<tr>
-						<td>${status.count}</td>
-						<td id="content${c.comno}">${c.content}</td>
-						<td>${c.mid}</td>
-						<td>${c.created_at}</td>						
-						<td>
-						<button 
-						    onclick="modcom(this)" 
-						    data-content="${c.content}" 
-						    data-comno="${c.comno}" 
-						    data-jno="${job.jno}">
-						    수정
-						</button>
-						<button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
-						</td>
-					</tr>
-				</c:forEach>			
-			</table>
-			
-
+		        <tbody>
+		            <c:forEach var="comment" items="${commentList}" varStatus="status">
+		                <tr>
+		                    <td>${status.count}</td>
+		                    <td>${comment.content}</td>
+		                    <td>${comment.mid}</td>
+		                    <td>${comment.created_at}</td>
+		                    <td>
+								<button type="button" onclick="location.href='/updateComment?content=${comment.content}&comno=${comment.comno}&jno=${job.jno}'">수정</button>
+								<button type="button" onclick="">삭제</button>
+		                    </td>
+		                </tr>
+		            </c:forEach>
+		        </tbody>
+		    </table>
 		</div>
 		
 <%		if(isLogin){	 %>
