@@ -40,7 +40,7 @@
 	SELECT * FROM (
 		SELECT ROWNUM AS rn, sq.*
 		FROM (
-			SELECT r.rno, c.cname, j.deadline
+			SELECT r.rno, c.cname,j.title, j.deadline
 			FROM job j
 			JOIN company c ON j.cid = c.cid
 			JOIN resume r ON j.jno = r.jno
