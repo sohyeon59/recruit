@@ -8,11 +8,10 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IJobDao {
 
-	// 전체 공고 목록 (페이징 + 검색 + 정렬)
+	// 전체 공고 목록 (페이징 + 검색)
 	List<JobDto> list(@Param("offset") int offset, @Param("pageSize") int pageSize,
 					  @Param("cat") String cat, @Param("searchText") String searchText,
-					  @Param("startDate") String startDate, @Param("endDate") String endDate,
-					  @Param("sort") String sort, @Param("order") String order);
+					  @Param("startDate") String startDate, @Param("endDate") String endDate);
 
 	// 전체 공고 수 (검색 포함)
 	int totalCount(@Param("cat") String cat, @Param("searchText") String searchText,
