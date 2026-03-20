@@ -34,6 +34,9 @@ public class HomeController {
                        @RequestParam(name = "searchText", required = false) String searchText,
                        @RequestParam(name = "startDate", required = false) String startDate,
                        @RequestParam(name = "endDate", required = false) String endDate,
+                       // ▼ 여기가 지워져 있었습니다! 다시 추가해 주세요 ▼
+                       @RequestParam(name = "sort", defaultValue = "jno") String sort,   
+                       @RequestParam(name = "order", defaultValue = "desc") String order,
                        Model model) {
 
         // 빈 문자열은 null로 처리
@@ -52,14 +55,21 @@ public class HomeController {
         if (searchText != null) searchParam += "&searchText=" + searchText;
         if (startDate != null) searchParam += "&startDate=" + startDate;
         if (endDate != null) searchParam += "&endDate=" + endDate;
+        
+        // ▼ 페이지를 넘겨도 정렬 상태가 안 풀리도록 꼬리표에 붙여줍니다 ▼
+        searchParam += "&sort=" + sort + "&order=" + order;
 
-        model.addAttribute("jobList", jobService.list(page, pageSize, cat, searchText, startDate, endDate));
+        model.addAttribute("jobList", jobService.list(page, pageSize, cat, searchText, startDate, endDate, sort, order));
         model.addAttribute("ph", ph);
         model.addAttribute("cat", cat);
         model.addAttribute("searchText", searchText);
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("searchParam", searchParam);
+        
+        // ▼ index.jsp에서 제목, 마감일 옆에 화살표(▲/▼)를 띄우기 위해 꼭 필요합니다 ▼
+        model.addAttribute("currentSort", sort);
+        model.addAttribute("currentOrder", order);
 
         return "index";
     }

@@ -16,41 +16,71 @@
 
 		<!-- 검색 폼 -->
 		<form action="/" method="get">
-			<select name="cat" id="catSelect">
-				<option value="title"    ${cat == 'title'    ? 'selected' : ''}>공고 제목</option>
-				<option value="cname"    ${cat == 'cname'    ? 'selected' : ''}>회사명</option>
-				<option value="deadline" ${cat == 'deadline' ? 'selected' : ''}>마감일</option>
-			</select>
-			<input type="text" name="searchText" value="${searchText}" placeholder="검색어를 입력하세요" id="searchInput" />
-			<input type="date" name="startDate"  value="${startDate}"  id="startDate" style="display:none" />
-			<span id="dateSep" style="display:none">~</span>
-			<input type="date" name="endDate"    value="${endDate}"    id="endDate"   style="display:none" />
-			<button type="submit">검색</button>
-			<c:if test="${not empty searchText or not empty startDate}">
-				<a href="/">초기화</a>
-			</c:if>
+		    <input type="hidden" name="sort" value="${currentSort}">
+		    <input type="hidden" name="order" value="${currentOrder}">
+		    
+		    <select name="cat" id="catSelect">
+		        <option value="title"    ${cat == 'title'    ? 'selected' : ''}>공고 제목</option>
+		        <option value="cname"    ${cat == 'cname'    ? 'selected' : ''}>회사명</option>
+		        <option value="deadline" ${cat == 'deadline' ? 'selected' : ''}>마감일</option>
+		    </select>
+		    <input type="text" name="searchText" value="${searchText}" placeholder="검색어를 입력하세요" id="searchInput" />
+		    <input type="date" name="startDate"  value="${startDate}"  id="startDate" style="display:none" />
+		    <span id="dateSep" style="display:none">~</span>
+		    <input type="date" name="endDate"    value="${endDate}"    id="endDate"   style="display:none" />
+		    <button type="submit">검색</button>
+		    <c:if test="${not empty searchText or not empty startDate}">
+		        <a href="/">초기화</a>
+		    </c:if>
 		</form>
 
 		<table>
             <thead>
-                <tr>
-                    <th style="width: 10%;">번호</th>
-                    <th style="width: 25%;">사명</th>
-                    <th style="width: 45%;">제목</th>
-                    <th style="width: 20%;">마감일</th>
-                </tr>
-            </thead>
+			    <tr>
+			        <th style="width: 10%;">
+			            <a href="/?page=${ph.page}&cat=${cat}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&sort=jno&order=${currentSort == 'jno' && currentOrder == 'asc' ? 'desc' : 'asc'}">
+			                번호 ${currentSort == 'jno' ? (currentOrder == 'asc' ? '▲' : '▼') : ''}
+			            </a>
+			        </th>
+			        <th style="width: 25%;">
+			            <a href="/?page=${ph.page}&cat=${cat}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&sort=cname&order=${currentSort == 'cname' && currentOrder == 'asc' ? 'desc' : 'asc'}">
+			                사명 ${currentSort == 'cname' ? (currentOrder == 'asc' ? '▲' : '▼') : ''}
+			            </a>
+			        </th>
+			        <th style="width: 45%;">
+			            <a href="/?page=${ph.page}&cat=${cat}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&sort=title&order=${currentSort == 'title' && currentOrder == 'asc' ? 'desc' : 'asc'}">
+			                제목 ${currentSort == 'title' ? (currentOrder == 'asc' ? '▲' : '▼') : ''}
+			            </a>
+			        </th>
+			        <th style="width: 20%;">
+			            <a href="/?page=${ph.page}&cat=${cat}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&sort=deadline&order=${currentSort == 'deadline' && currentOrder == 'asc' ? 'desc' : 'asc'}">
+			                마감일 ${currentSort == 'deadline' ? (currentOrder == 'asc' ? '▲' : '▼') : ''}
+			            </a>
+			        </th>
+			    </tr>
+			</thead>
             <tbody>
                 <c:choose>
                     <c:when test="${not empty jobList}">
                         <c:forEach var="job" items="${jobList}" varStatus="status">
-                            <tr onclick="location.href='/job/detail?jno=${job.jno}'" style="cursor: pointer;">
-                                <td>${(ph.page - 1) * 10 + status.count}</td>
-                                <td>${job.cname}</td>
-                                <td class="title-cell">${job.title}</td>
-                                <td>${job.deadline}</td>
-                            </tr>
-                        </c:forEach>
+						    <tr onclick="location.href='/job/detail?jno=${job.jno}'" style="cursor: pointer;">
+						        <td>
+						            <c:choose>
+						                <%-- 내림차순(desc)일 때: 전체 개수에서 차감 (60, 59, 58...) --%>
+						                <c:when test="${currentOrder == 'desc'}">
+						                    ${ph.totalCount - ((ph.page - 1) * 10) - status.index}
+						                </c:when>
+						                <%-- 오름차순(asc)일 때: 1부터 증가 (1, 2, 3...) --%>
+						                <c:otherwise>
+						                    ${((ph.page - 1) * 10) + status.count}
+						                </c:otherwise>
+						            </c:choose>
+						        </td>
+						        <td>${job.cname}</td>
+						        <td class="title-cell">${job.title}</td>
+						        <td>${job.deadline}</td>
+						    </tr>
+						</c:forEach>
                     </c:when>
                     <c:otherwise>
                         <tr>
