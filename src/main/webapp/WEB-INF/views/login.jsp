@@ -68,10 +68,13 @@
 
 
 	<script>
-		function switchTab(type) {
+		function switchTab(type, btn) {
 			document.getElementById('panel-member').style.display = 'none';
 			document.getElementById('panel-company').style.display = 'none';
 			document.getElementById('panel-' + type).style.display = 'block';
+
+			document.querySelectorAll('#comORmem button').forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
 		}
 	</script>
 
