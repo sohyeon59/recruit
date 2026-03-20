@@ -32,7 +32,7 @@ public class HomeController {
     JobService jobService;
 
     @GetMapping("/")
-    public String home(@RequestParam(defaultValue = "1") int page, Model model) {
+    public String home(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 10;
         int totalCount = jobService.totalCount();
         PageHandler ph = new PageHandler(totalCount, page, pageSize);

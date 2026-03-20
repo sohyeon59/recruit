@@ -84,7 +84,7 @@ public class ResController {
 
 	// 마이페이지 - 내 지원서 목록 (페이징)
 	@GetMapping("/resume/myPage")
-	public String myPage(@RequestParam(defaultValue = "1") int page,
+	public String myPage(@RequestParam(name = "page", defaultValue = "1") int page,
 						 Model model, HttpSession session) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
