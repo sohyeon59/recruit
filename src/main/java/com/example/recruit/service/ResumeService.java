@@ -43,7 +43,7 @@ public class ResumeService {
 	// 마이페이지 내 지원서 총 개수
 	public int getMyListCount(String mid) {
 		return resumeDao.getMyListCount(mid);
-
+	}
 	// 내 지원서 상세보기
 	public ResumeDetail getMyResume(int rno) {
 		return resumeDao.getMyResume(rno);
