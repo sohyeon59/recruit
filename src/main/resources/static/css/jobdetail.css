@@ -164,3 +164,18 @@
 	color: white;
 	background-color: black;	
 }
+.jobdetail-page .comment-section h6{
+	font-size: 14px;
+	color: grey;
+}
+.jobdetail-page .comment-section a{
+	font-size: 15px;
+	color:"inherit";
+	text-decoration: none;
+}
+.jobdetail-page .comment-section-mg{
+	max-width: 500px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 30px;
+}

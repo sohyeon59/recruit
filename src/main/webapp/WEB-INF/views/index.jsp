@@ -14,7 +14,7 @@
 	<section id="main_menu">
 		<h2>전체 공고</h2>
 
-		<%-- 검색 폼 --%>
+		<!-- 검색 폼 -->
 		<form action="/" method="get">
 		    <input type="hidden" name="sort" value="${currentSort}">
 		    <input type="hidden" name="order" value="${currentOrder}">
