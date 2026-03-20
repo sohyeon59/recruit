@@ -33,33 +33,31 @@ public class ResController {
 	public String goResume(Model model,
 						   @RequestParam("jno") int jno,
 						   HttpSession session) {
-		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-		if (mem == null) {
-			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
-			return "redirect:/loginForm";
-		}
+		
 		JobDto job = jobService.getJobDetail(jno);
 		if (job.getDeadline().before(new java.util.Date())) {
 			session.setAttribute("alertMsg", "마감된 공고입니다.");
 			return "redirect:/";
 		}
+		
+		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
+		int check = service.checkJNO(mem.getMid(), jno);
+		if (check > 0) {
+			session.setAttribute("alertMsg", "이미 지원한 공고입니다. 마이페이지로 이동합니다.");
+			return "redirect:/resume/myPage";
+		}
+		
 		model.addAttribute("jno", jno);
-		return "resume/resume";
+		return "resume/resume";		
 	}
 
 	// 지원서 등록
 	@PostMapping("/regResume")
 
 	public String regResume(@RequestParam("jno") int jno, ResumeDto resume, HttpSession session) {
-
-		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-		int check = service.checkJNO(mem.getMid(), jno);
-		if (check == 0) {
-			service.insertResume(resume);
-			session.setAttribute("alertMsg", "이력서가 등록되었습니다. 마감기한까지 수정이 가능합니다.");
-		} else {
-			session.setAttribute("alertMsg", "이미 지원한 공고입니다. 마이페이지로 이동합니다.");
-		}
+		service.insertResume(resume);
+		session.setAttribute("alertMsg", "이력서가 등록되었습니다. 마감기한까지 수정이 가능합니다.");
+		
 		return "redirect:/resume/myPage";
 	}
 
@@ -67,7 +65,6 @@ public class ResController {
 	@PostMapping("/updateResume")
 	public String updateResume(ResumeDto resume, HttpSession session) {
 		service.updateResume(resume);
-
 		session.setAttribute("alertMsg", "이력서가 수정 후 제출되었습니다. 마감지한까지 수정이 가능합니다.");
 
 		return "redirect:/resume/myPage";
