@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentDto {
 
-	private int cno;
+	private int comno;
 	private int jno;
 	private String mid;
 	private String content;

@@ -45,9 +45,9 @@ public class CommentController {
 	//댓글 리스트
 	
 	@GetMapping("/commentList")
-	public String commentList(@RequestParam("mid")String mid, Model model) {
+	public String commentList(@RequestParam("jno") int jno, Model model) {
 		
-		List<CommentList> cList = comService.getComList(mid);
+		List<CommentList> cList = comService.getComList(jno);
 		model.addAttribute("commentList", cList);
 		
 		return "/job/detail";

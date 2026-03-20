@@ -25,12 +25,12 @@ public class CommentService {
 		return comDao.updateComment(dto);
 	}
 	
-	public int deleteResume(int rno) {
-		return comDao.deleteComment(rno);
+	public int deleteResume(int comno) {
+		return comDao.deleteComment(comno);
 	}
 
 	// 댓글 리스트 불러오기
-	public List<CommentList> getComList(String mid){
-		return comDao.getComList(mid);
+	public List<CommentList> getComList(int jno){
+		return comDao.getComList(jno);
 	}
 }
