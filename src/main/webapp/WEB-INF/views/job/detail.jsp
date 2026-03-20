@@ -45,8 +45,12 @@
 					<p class="closed-msg">마감된 공고입니다.</p>
 				</c:when>
 				<c:when test="${isMember}">
-					<a href="/goResume?jno=${job.jno}" class="btn-apply"> 지원서 작성하기
-					</a>
+					<a href="/goResume?jno=${job.jno}" class="btn-apply">지원서 작성하기</a>
+				</c:when>
+				<c:when test="${!isLogin}">
+					<p class="login-msg">
+						이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
+					</p>
 				</c:when>
 				<c:otherwise>
 					<c:choose>
@@ -101,10 +105,8 @@
 	</div>
 
 	<script>
-	
-	
 		function modcom(btn) {
-			
+
 			const content = btn.getAttribute("data-content");
 			const comno = btn.getAttribute("data-comno");
 			const jno = btn.getAttribute("data-jno");
