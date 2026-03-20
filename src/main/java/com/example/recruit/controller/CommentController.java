@@ -41,8 +41,7 @@ public class CommentController {
 	                            @RequestParam("comno") int comno,
 	                            @RequestParam("jno") int jno,
 	                            HttpSession session) {
-	    
-	    // 이 부분은 그대로 두시면 됩니다.
+
 	    comService.updateComment(content, comno);
 	    session.setAttribute("alertMsg", "댓글이 수정되었습니다.");
 	    

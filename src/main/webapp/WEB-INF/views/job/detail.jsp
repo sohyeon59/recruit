@@ -67,11 +67,8 @@
 			</c:choose>
 		</div>
 
-		
-		
 		<div class="comment-list">
-		    <table class="comment-table">
-
+			<table class="comment-table">
 		        <tbody>
 		            <c:forEach var="c" items="${commentList}" varStatus="status">
 		                <tr>
@@ -98,8 +95,10 @@
 		    </table>
 
 		</div>
-		
-<%		if(isLogin){	 %>
+
+		<%
+		if (isLogin) {
+		%>
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid"
@@ -113,17 +112,24 @@
 			</form>
 		</div>
 
-<%		}else{	%>
+		<%
+		} else {
+		%>
 		<div class="comment-section comment-section-mg">
-			<h6>댓글을 입력하시려면 <a href="/loginForm"><b>로그인</b></a>을 해주세요!</h6>
+			<h6>
+				댓글을 입력하시려면 <a href="/loginForm"><b>로그인</b></a>을 해주세요!
+			</h6>
 		</div>
-<% 		}%>
+		<%
+		}
+		%>
 
 
 
 	</div>
 
 	<script>
+	
 		function modcom(btn) {
 
 			const content = btn.getAttribute("data-content");
