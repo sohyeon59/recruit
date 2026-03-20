@@ -63,26 +63,31 @@
 			</c:choose>
 		</div>
 		
-		<div class="comment-List">
-			<c:forEach var="c" items="${commentList}" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td>${c.content}</td>
-					<td>${c.mid}</td>
-					<td>${c.created_at}</td>
-					
-					
-					<button type="button" onclick="location.href='/updateComment?content=${c.content}&cmono=${c.cmono}&jno=${job.jno}'">수정</button>
-					<button type="button" onclick="">삭제</button>
-				</tr>
-			</c:forEach>
+		<div class="comment-list">
+		    <table class="comment-table">
+
+		        <tbody>
+		            <c:forEach var="comment" items="${commentList}" varStatus="status">
+		                <tr>
+		                    <td>${status.count}</td>
+		                    <td>${comment.content}</td>
+		                    <td>${comment.mid}</td>
+		                    <td>${comment.created_at}</td>
+		                    <td>
+								<button type="button" onclick="location.href='/updateComment?content=${comment.content}&comno=${comment.comno}&jno=${job.jno}'">수정</button>
+								<button type="button" onclick="">삭제</button>
+		                    </td>
+		                </tr>
+		            </c:forEach>
+		        </tbody>
+		    </table>
 		</div>
 
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
 				<input type="hidden" name="jno" value="${job.jno}">
-				<textarea name="content" rows="4" placeholder="댓글을 입력하세요..."
+				<textarea name="content" rows="1" placeholder="댓글을 입력하세요..."
 					required></textarea>
 				<button type="submit">등록</button>
 			</form>
