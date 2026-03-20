@@ -14,7 +14,6 @@
 </head>
 <body>
 <%@ include file="../heafoo/header.jsp" %>
-
 <div class="resume-detail-page">
 
     <h2>지원자 이력서 상세 정보</h2>
