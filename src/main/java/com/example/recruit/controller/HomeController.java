@@ -29,14 +29,30 @@ public class HomeController {
     JobService jobService;
 
     @GetMapping("/")
-    public String home(@RequestParam(name = "page", defaultValue = "1") int page, Model model) {
+    public String home(@RequestParam(name = "page", defaultValue = "1") int page,
+                       @RequestParam(name = "cat", required = false) String cat,
+                       @RequestParam(name = "searchText", required = false) String searchText,
+                       Model model) {
+
+        // 빈 문자열은 null로 처리
+        if (searchText != null && searchText.trim().isEmpty()) searchText = null;
+        if (cat != null && cat.trim().isEmpty()) cat = null;
+
         int pageSize = 10;
-        int totalCount = jobService.totalCount();
+        int totalCount = jobService.totalCount(cat, searchText);
         PageHandler ph = new PageHandler(totalCount, page, pageSize);
 
-        model.addAttribute("jobList", jobService.list(page, pageSize));
+        // 페이지네이션에 검색 파라미터 유지
+        String searchParam = "";
+        if (cat != null) searchParam += "&cat=" + cat;
+        if (searchText != null) searchParam += "&searchText=" + searchText;
+
+        model.addAttribute("jobList", jobService.list(page, pageSize, cat, searchText));
         model.addAttribute("ph", ph);
-        model.addAttribute("searchParam", ""); // pagination.jsp에서 사용
+        model.addAttribute("cat", cat);
+        model.addAttribute("searchText", searchText);
+        model.addAttribute("searchParam", searchParam);
+
         return "index";
     }
 
