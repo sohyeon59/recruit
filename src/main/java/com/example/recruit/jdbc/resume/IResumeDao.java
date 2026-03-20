@@ -16,8 +16,11 @@ public interface IResumeDao {
 	int updateResume(ResumeDto resumeDto);
 	int deleteResume(@Param("rno") int rno);
 	
-	// 지원서 전체 보기
-	List<ResumeList> getMyList(@Param("mid") String mid);
+	// 지원서 전체 보기 (페이징)
+	List<ResumeList> getMyList(@Param("mid") String mid, @Param("offset") int offset, @Param("pageSize") int pageSize);
+
+	// 지원서 총 개수
+	int getMyListCount(@Param("mid") String mid);
 	
 	// 상세보기
 	ResumeDetail getMyResume(@Param("rno") int rno);

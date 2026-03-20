@@ -5,38 +5,65 @@
 
 <mapper namespace="com.example.recruit.jdbc.job.IJobDao">
 
-	<select id="list"
-		resultType="com.example.recruit.jdbc.job.JobDto">
-		SELECT j.*, c.cname
-		FROM job j
-		JOIN company c ON j.cid =
-		c.cid
+	<!-- 메인용 전체 공고 목록 -->
+	<select id="list" resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT * FROM (
+			SELECT ROWNUM AS rn, sq.*
+			FROM (
+				SELECT j.jno, j.cid, j.title, j.content, j.deadline, c.cname
+				FROM job j
+				JOIN company c ON j.cid = c.cid
+				ORDER BY j.jno DESC
+			) sq
+		)
+		WHERE rn &gt; #{offset} AND rn &lt;= #{offset} + #{pageSize}
 	</select>
 
-	<select id="jobList"
-		resultType="com.example.recruit.jdbc.job.JobDto">
-		SELECT * FROM job WHERE cid = #{cid}
+	<!-- 메인용 전체 공고 수 -->
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM job
 	</select>
 
-	<select id="getJobDetail"
-		resultType="com.example.recruit.jdbc.job.JobDto">
+	<!-- 기업별 공고 목록 -->
+	<select id="jobList" resultType="com.example.recruit.jdbc.job.JobDto">
+		SELECT * FROM (
+			SELECT ROWNUM AS rn, sq.*
+			FROM (
+				SELECT jno, cid, title, content, deadline
+				FROM job
+				WHERE cid = #{cid}
+				ORDER BY jno DESC
+			) sq
+		)
+		WHERE rn &gt; #{offset} AND rn &lt;= #{offset} + #{pageSize}
+	</select>
+
+	<!-- 기업별 공고 수 -->
+	<select id="jobListCount" resultType="int">
+		SELECT COUNT(*) FROM job WHERE cid = #{cid}
+	</select>
+
+	<!-- 공고 상세 -->
+	<select id="getJobDetail" resultType="com.example.recruit.jdbc.job.JobDto">
 		SELECT j.*, c.cname
 		FROM job j
 		JOIN company c ON j.cid = c.cid
 		WHERE j.jno = #{jno}
 	</select>
 
+	<!-- 공고 등록 -->
 	<insert id="writeJob">
 		INSERT INTO job (jno, cid, title, content, deadline)
 		VALUES (seq_job.NEXTVAL, #{cid}, #{title}, #{content}, #{deadline})
 	</insert>
 
-	<update id="updateJob"
-		parameterType="com.example.recruit.jdbc.job.JobDto">
+	<!-- 공고 수정 -->
+	<update id="updateJob" parameterType="com.example.recruit.jdbc.job.JobDto">
 		UPDATE job
 		SET title = #{title},
 		content = #{content},
 		deadline = #{deadline}
 		WHERE jno = #{jno}
 	</update>
+
 </mapper>
