@@ -25,7 +25,7 @@ public class CommentService {
 		return comDao.updateComment(content, cmono);
 	}
 	
-	public int deleteResume(int comno) {
+	public int deleteComment(int comno) {
 		return comDao.deleteComment(comno);
 	}
 

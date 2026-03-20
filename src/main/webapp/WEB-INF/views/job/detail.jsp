@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<%@ include file="../heafoo/header.jsp"%>
+	<%@ include file="../heafoo/header.jsp" %>
 	
 	<%-- today 변수 설정 --%>
 	<jsp:useBean id="todayDate" class="java.util.Date" />
@@ -64,25 +64,37 @@
 		</div>
 		
 		<div class="comment-List">
-			<c:forEach var="c" items="${commentList}" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td>${c.content}</td>
-					<td>${c.mid}</td>
-					<td>${c.created_at}</td>
-					
-					
-					<button type="button" onclick="location.href='/updateComment?content=${c.content}&cmono=${c.cmono}&jno=${job.jno}'">수정</button>
-					<button type="button" onclick="">삭제</button>
-				</tr>
-			</c:forEach>
+			<table border="1">			
+				<c:forEach var="c" items="${commentList}" varStatus="status">
+					<tr>
+						<td>${status.count}</td>
+						<td id="content${c.comno}">${c.content}</td>
+						<td>${c.mid}</td>
+						<td>${c.created_at}</td>						
+						<td>
+						<button 
+						    onclick="modcom(this)" 
+						    data-content="${c.content}" 
+						    data-comno="${c.comno}" 
+						    data-jno="${job.jno}">
+						    수정
+						</button>
+						<button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
+						</td>
+						
+						
+						
+					</tr>
+				</c:forEach>			
+			</table>
+			
 		</div>
 
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
 				<input type="hidden" name="jno" value="${job.jno}">
-				<textarea name="content" rows="4" placeholder="댓글을 입력하세요..."
+				<textarea name="content" cols="10" rows="4" placeholder="댓글을 입력하세요..."
 					required></textarea>
 				<button type="submit">등록</button>
 			</form>
@@ -90,5 +102,30 @@
 		
 	</div>
 
+<script>
+	
+		
+	function modcom(btn){		
+		
+		const content = btn.dataset.content;
+	    const comno = btn.dataset.comno;
+	    const jno = btn.dataset.jno;
+	    
+		const contentCom = document.getElementById("content" + comno);		
+		contentCom.innerHTML = `<input type="text" id="edit${comno}" value="${content}">`;
+		
+		btn.outerHTML = `<button onclick="updateCom(${comno}, ${jno})">저장</button>`;
+	}
+		
+	function updateCom(comno, jno){		
+		const editCom = document.getElementById("edit" + comno).value;
+		
+		location.href= "/updateComment?content=" + editCom + "&comno=" + comno + "&jno=" + jno;
+	}
+	
+	
+	
+
+</script>
 </body>
 </html>
