@@ -14,10 +14,10 @@ public class JobService {
 	@Autowired
 	private IJobDao jobDao;
 
-	// 전체 공고 목록 (메인화면용 - 페이징 + 검색)
-	public List<JobDto> list(int page, int pageSize, String cat, String searchText, String startDate, String endDate) {
-		int offset = (page - 1) * pageSize;
-		return jobDao.list(offset, pageSize, cat, searchText, startDate, endDate);
+	// 전체 공고 목록 (메인화면용 - 페이징 + 검색 + 정렬 추가)
+	public List<JobDto> list(int page, int pageSize, String cat, String searchText, String startDate, String endDate, String sort, String order) {
+	    int offset = (page - 1) * pageSize;
+	    return jobDao.list(offset, pageSize, cat, searchText, startDate, endDate, sort, order);
 	}
 
 	// 전체 공고 수 (검색 포함)

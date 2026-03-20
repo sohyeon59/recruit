@@ -13,8 +13,7 @@ public interface ICommentDao {
 	int updateComment(@Param("content")String content, @Param("comno") int comno);
 	int deleteComment(@Param("comno") int comno);
 	
-	// 댓글 목록 불러오기
-	
+	// 댓글 목록 불러오기	
 	List<CommentList> getComList(@Param("jno") int jno);
 	
 }
