@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../css/Comdetail.css">
 </head>
 <body>
+	<%@ include file="../heafoo/header.jsp" %>
 	<div class="container detail-page">
 
 		<div class="job-header">
