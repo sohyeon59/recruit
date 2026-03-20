@@ -5,16 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.member.MemberDto;
 import com.example.recruit.service.CompanyService;
 import com.example.recruit.service.JobService;
 import com.example.recruit.service.MemberService;
+import com.example.recruit.util.PageHandler;
 
 import jakarta.servlet.http.HttpSession;
 
-// 공용 컨트롤러입니다.
 @Controller
 public class HomeController {
 
@@ -26,13 +27,19 @@ public class HomeController {
 
     @Autowired
     CompanyService companyService;
-    
+
     @Autowired
     JobService jobService;
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("jobList", jobService.list());
+    public String home(@RequestParam(defaultValue = "1") int page, Model model) {
+        int pageSize = 10;
+        int totalCount = jobService.totalCount();
+        PageHandler ph = new PageHandler(totalCount, page, pageSize);
+
+        model.addAttribute("jobList", jobService.list(page, pageSize));
+        model.addAttribute("ph", ph);
+        model.addAttribute("searchParam", ""); // pagination.jsp에서 사용
         return "index";
     }
 
@@ -74,11 +81,9 @@ public class HomeController {
     // 개인회원 가입
     @PostMapping("/register/member")
     public String registM(MemberDto dto, Model model) {
-        System.out.println("회원가입 서블릿");
         boolean result = memberService.regist(dto);
-        System.out.println(dto.toString());
         if (result) {
-        	session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
+            session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/loginForm";
         } else {
             model.addAttribute("error", "이미 사용중인 아이디입니다.");
@@ -107,12 +112,11 @@ public class HomeController {
     public String registC(CompanyDto dto, Model model) {
         boolean result = companyService.regist(dto);
         if (result) {
-        	session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
+            session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/loginForm";
         } else {
             model.addAttribute("error", "이미 사용중인 아이디입니다.");
             return "regist";
         }
     }
-    
 }

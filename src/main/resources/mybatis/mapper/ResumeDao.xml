@@ -36,12 +36,24 @@
 </update>
 
 <!-- 지원서 전체 -->
-<select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeList"> 
-	select r.rno, c.cname, j.title, j.deadline 
-	from job j
-	join company c on j.cid = c.cid
-	join resume r on j.jno = r.jno
-	where r.mid = #{mid}
+<select id="getMyList" resultType="com.example.recruit.jdbc.resume.ResumeList">
+	SELECT * FROM (
+		SELECT ROWNUM AS rn, sq.*
+		FROM (
+			SELECT r.rno, c.cname, j.deadline
+			FROM job j
+			JOIN company c ON j.cid = c.cid
+			JOIN resume r ON j.jno = r.jno
+			WHERE r.mid = #{mid}
+			ORDER BY r.rno DESC
+		) sq
+	)
+	WHERE rn &gt; #{offset} AND rn &lt;= #{offset} + #{pageSize}
+</select>
+
+<!-- 지원서 총 개수 -->
+<select id="getMyListCount" resultType="int">
+	SELECT COUNT(*) FROM resume WHERE mid = #{mid}
 </select>
 
 <!-- 지원서 상세보기 -->

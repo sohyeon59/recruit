@@ -11,6 +11,7 @@ import com.example.recruit.jdbc.company.CompanyDto;
 import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.service.JobService;
 import com.example.recruit.service.ResumeService;
+import com.example.recruit.util.PageHandler;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,14 +25,21 @@ public class ComController {
 
 	// 기업 메인 - 내 공고 목록
 	@GetMapping("/company/main")
-	public String printJobList(Model model, HttpSession session) {
+	public String printJobList(@RequestParam(defaultValue = "1") int page,
+							   Model model, HttpSession session) {
 		CompanyDto dto = (CompanyDto) session.getAttribute("loginCompany");
 		if (dto == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-		model.addAttribute("jobList", jobService.jobList(dto.getCid()));
+		int pageSize = 10;
+		int totalCount = jobService.jobListCount(dto.getCid());
+		PageHandler ph = new PageHandler(totalCount, page, pageSize);
+
+		model.addAttribute("jobList", jobService.jobList(dto.getCid(), page, pageSize));
 		model.addAttribute("companyName", dto.getCname());
+		model.addAttribute("ph", ph);
+		model.addAttribute("searchParam", "");
 		return "company/main";
 	}
 

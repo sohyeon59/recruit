@@ -16,6 +16,7 @@ import com.example.recruit.jdbc.resume.ResumeDto;
 import com.example.recruit.jdbc.resume.ResumeList;
 import com.example.recruit.service.JobService;
 import com.example.recruit.service.ResumeService;
+import com.example.recruit.util.PageHandler;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,18 +30,14 @@ public class ResController {
 
 	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
-	public String goResume(Model model, 
-						   @RequestParam("jno")int jno,
+	public String goResume(Model model,
+						   @RequestParam("jno") int jno,
 						   HttpSession session) {
-
-		// 로그인 체크
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
-		// 마감일 체크
 		JobDto job = jobService.getJobDetail(jno);
 		if (job.getDeadline().before(new java.util.Date())) {
 			session.setAttribute("alertMsg", "마감된 공고입니다.");
@@ -53,11 +50,10 @@ public class ResController {
 
 	// 지원서 등록
 	@PostMapping("/regResume")
+
 	public String regResume(@RequestParam("jno") int jno, ResumeDto resume, HttpSession session) {
 
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
-
-		// 중복 지원 체크
 		int check = service.checkJNO(mem.getMid(), jno);
 		if (check == 0) {
 			service.insertResume(resume);
@@ -65,46 +61,50 @@ public class ResController {
 		} else {
 			session.setAttribute("alertMsg", "이미 지원한 공고입니다. 마이페이지로 이동합니다.");
 		}
-
 		return "redirect:/resume/myPage";
 	}
 
 	// 지원서 수정
 	@PostMapping("/updateResume")
 	public String updateResume(ResumeDto resume, HttpSession session) {
-		
 		service.updateResume(resume);
+
 		session.setAttribute("alertMsg", "이력서가 수정 후 제출되었습니다. 마감지한까지 수정이 가능합니다.");
+
 		return "redirect:/resume/myPage";
 	}
 
 	// 지원서 삭제
 	@GetMapping("/deleteResume")
 	public String deleteResume(@RequestParam("rno") int rno, HttpSession session) {
-
 		service.deleteResume(rno);
 		session.setAttribute("alertMsg", "이력서가 삭제되었습니다.");
 		return "redirect:/resume/myPage";
 	}
 
-	// 마이페이지로 가기 - 내 지원서 목록
+	// 마이페이지 - 내 지원서 목록 (페이징)
 	@GetMapping("/resume/myPage")
-	public String myPage(Model model, HttpSession session) {
-
+	public String myPage(@RequestParam(defaultValue = "1") int page,
+						 Model model, HttpSession session) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-		List<ResumeList> rList = service.getMyList(mem.getMid());
+		int pageSize = 10;
+		int totalCount = service.getMyListCount(mem.getMid());
+		PageHandler ph = new PageHandler(totalCount, page, pageSize);
+
+		List<ResumeList> rList = service.getMyList(mem.getMid(), page, pageSize);
 		model.addAttribute("resumeList", rList);
+		model.addAttribute("ph", ph);
+		model.addAttribute("searchParam", "");
 		return "/resume/myPage";
 	}
 
 	// 내 지원서 상세보기
 	@GetMapping("/resumeDetail")
 	public String resumeDetail(@RequestParam("rno") int rno, Model model, HttpSession session) {
-
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
 		return "/resume/detail";
@@ -113,12 +113,10 @@ public class ResController {
 	// 지원서 상세보기 (기업용)
 	@GetMapping("/company/detailApplicant")
 	public String detailApplicant(@RequestParam("rno") int rno, Model model, HttpSession session) {
-
 		if (session.getAttribute("loginCompany") == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
 		}
-
 		ResumeDetail applicantDetail = service.getApplicantResume(rno);
 		model.addAttribute("detail", applicantDetail);
 		return "/company/detailApplicant";
