@@ -7,17 +7,4 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CommentController {
 
 	
-	//댓글 작성
-	@PostMapping("/insertComment")
-	public String insertComment() {
-		
-		
-		
-		
-		
-		return "";
-	}
-	
-	
-	
 }
