@@ -25,7 +25,7 @@ public class ComController {
 
 	// 기업 메인 - 내 공고 목록
 	@GetMapping("/company/main")
-	public String printJobList(@RequestParam(defaultValue = "1") int page,
+	public String printJobList(@RequestParam(name = "page", defaultValue = "1") int page,
 							   Model model, HttpSession session) {
 		CompanyDto dto = (CompanyDto) session.getAttribute("loginCompany");
 		if (dto == null) {
