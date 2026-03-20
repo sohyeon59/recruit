@@ -46,15 +46,15 @@
 			</div>
 			<div>
 				<label>생년월일</label>
-				<input type="date" name="mbirth">
+				<input type="date" name="mbirth" required>
 			</div>
 			<div>
 				<label>이메일</label>
-				<input type="email" name="memail">
+				<input type="email" name="memail" required>
 			</div>
 			<div>
 				<label>핸드폰</label>
-				<input type="tel" name="mphone">
+				<input type="tel" name="mphone" required>
 			</div>
 			<button type="submit">가입하기</button>
 		</form>
