@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../css/editJobForm.css">
 </head>
 <body>
+<%@ include file="../heafoo/header.jsp" %>
     <div class="editjob-page">
         <h2>구인공고 수정</h2>
         

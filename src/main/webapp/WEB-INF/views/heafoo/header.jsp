@@ -17,14 +17,14 @@
 
     // 로그인 상태 체크
     Object usertype = session.getAttribute("userType");
-    boolean isMember = false, isComany = false, isLogin = false;
+    boolean isMember = false, isCompany = false, isLogin = false;
     
     // 기업회원인지 개인회원인지 구별
     
     if(usertype != null){
     	isLogin = true;
     	isMember = usertype.equals("member");
-		isComany = usertype.equals("company"));
+		isCompany = usertype.equals("company");
     } 
     	
 %>
@@ -53,7 +53,7 @@
         <% } %>
 
 
-<%			if(isComany){%>
+<%			if(isCompany){%>
         <ul id="headermenu">
             <li><a href="/"><b>전체 공고</b></a></li>
             <li>/</li>
