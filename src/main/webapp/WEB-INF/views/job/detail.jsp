@@ -52,6 +52,18 @@
 						이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
 					</p>
 				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${!isLogin}">
+							<p class="login-msg">
+								이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
+							</p>
+						</c:when>
+						<c:otherwise>
+
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
 			</c:choose>
 		</div>
 
@@ -95,21 +107,45 @@
 	<script>
 		function modcom(btn) {
 
-			const content = btn.dataset.content;
-			const comno = btn.dataset.comno;
-			const jno = btn.dataset.jno;
+			const content = btn.getAttribute("data-content");
+			const comno = btn.getAttribute("data-comno");
+			const jno = btn.getAttribute("data-jno");
 
-			const contentCom = document.getElementById("content" + comno);
-			contentCom.innerHTML = `<input type="text" id="edit${comno}" value="${content}">`;
+			const contentTd = document.getElementById("content" + comno);
 
-			btn.outerHTML = `<button onclick="updateCom(${comno}, ${jno})">저장</button>`;
+			contentTd.innerHTML = "";
+
+			const input = document.createElement("input");
+			input.type = "text";
+			input.id = "edit" + comno;
+			input.value = content;
+			input.style.width = "100%";
+
+			contentTd.appendChild(input);
+
+			btn.innerText = "저장";
+			btn.onclick = function() {
+				updateCom(comno, jno);
+			};
 		}
 
 		function updateCom(comno, jno) {
-			const editCom = document.getElementById("edit" + comno).value;
+			const editInput = document.getElementById("edit" + comno);
 
-			location.href = "/updateComment?content=" + editCom + "&comno="
-					+ comno + "&jno=" + jno;
+			if (!editInput) {
+				alert("수정창을 찾을 수 없습니다. ID: edit" + comno);
+				return;
+			}
+
+			const editValue = editInput.value;
+			if (!editValue.trim()) {
+				alert("내용을 입력해 주세요.");
+				return;
+			}
+
+			location.href = "/updateComment?content="
+					+ encodeURIComponent(editValue) + "&comno=" + comno
+					+ "&jno=" + jno;
 		}
 	</script>
 </body>
