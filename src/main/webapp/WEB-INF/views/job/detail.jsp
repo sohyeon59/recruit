@@ -51,11 +51,12 @@
 				<c:otherwise>
 					<c:choose>
 						<c:when test="${!isLogin}">
-						</c:when>
-						<c:otherwise>
 							<p class="login-msg">
 								이력서를 등록하려면 <a href="/loginForm">로그인</a>이 필요합니다.
 							</p>
+						</c:when>
+						<c:otherwise>
+							
 						</c:otherwise>
 					</c:choose>
 				</c:otherwise>
