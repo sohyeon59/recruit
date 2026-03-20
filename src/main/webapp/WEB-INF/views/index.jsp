@@ -13,7 +13,24 @@
 
 	<section id="main_menu">
 		<h2>전체 공고</h2>
-	
+
+		<%-- 검색 폼 --%>
+		<form action="/" method="get">
+			<select name="cat" id="catSelect">
+				<option value="title"    ${cat == 'title'    ? 'selected' : ''}>공고 제목</option>
+				<option value="cname"    ${cat == 'cname'    ? 'selected' : ''}>회사명</option>
+				<option value="deadline" ${cat == 'deadline' ? 'selected' : ''}>마감일</option>
+			</select>
+			<input type="text" name="searchText" value="${searchText}" placeholder="검색어를 입력하세요" id="searchInput" />
+			<input type="date" name="startDate"  value="${startDate}"  id="startDate" style="display:none" />
+			<span id="dateSep" style="display:none">~</span>
+			<input type="date" name="endDate"    value="${endDate}"    id="endDate"   style="display:none" />
+			<button type="submit">검색</button>
+			<c:if test="${not empty searchText or not empty startDate}">
+				<a href="/">초기화</a>
+			</c:if>
+		</form>
+
 		<table>
             <thead>
                 <tr>
@@ -37,7 +54,7 @@
                     </c:when>
                     <c:otherwise>
                         <tr>
-                            <td colspan="4" class="empty-message">등록된 구인공고가 없습니다.</td>
+                            <td colspan="4" class="empty-message">검색 결과가 없습니다.</td>
                         </tr>
                     </c:otherwise>
                 </c:choose>
@@ -48,6 +65,40 @@
         <%@ include file="pagination.jsp" %>
 
 	</section>
+
+	<script>
+		const catSelect   = document.getElementById('catSelect');
+		const searchInput = document.getElementById('searchInput');
+		const startDate   = document.getElementById('startDate');
+		const dateSep     = document.getElementById('dateSep');
+		const endDate     = document.getElementById('endDate');
+
+		function updateInputType() {
+			const isDeadline = catSelect.value === 'deadline';
+			searchInput.style.display = isDeadline ? 'none' : '';
+			startDate.style.display   = isDeadline ? '' : 'none';
+			dateSep.style.display     = isDeadline ? '' : 'none';
+			endDate.style.display     = isDeadline ? '' : 'none';
+		}
+		catSelect.addEventListener('change', updateInputType);
+		updateInputType();
+
+		// 시작일 선택 시 종료일의 min을 시작일로 설정
+		startDate.addEventListener('change', function () {
+			endDate.min = this.value;
+			if (endDate.value && endDate.value < this.value) {
+				endDate.value = this.value;
+			}
+		});
+
+		// 종료일 선택 시 시작일의 max를 종료일로 설정
+		endDate.addEventListener('change', function () {
+			startDate.max = this.value;
+			if (startDate.value && startDate.value > this.value) {
+				startDate.value = this.value;
+			}
+		});
+	</script>
 
 </body>
 </html>

@@ -14,15 +14,15 @@ public class JobService {
 	@Autowired
 	private IJobDao jobDao;
 
-	// 전체 공고 목록 (메인화면용 - 페이징)
-	public List<JobDto> list(int page, int pageSize) {
+	// 전체 공고 목록 (메인화면용 - 페이징 + 검색)
+	public List<JobDto> list(int page, int pageSize, String cat, String searchText, String startDate, String endDate) {
 		int offset = (page - 1) * pageSize;
-		return jobDao.list(offset, pageSize);
+		return jobDao.list(offset, pageSize, cat, searchText, startDate, endDate);
 	}
 
-	// 전체 공고 수
-	public int totalCount() {
-		return jobDao.totalCount();
+	// 전체 공고 수 (검색 포함)
+	public int totalCount(String cat, String searchText, String startDate, String endDate) {
+		return jobDao.totalCount(cat, searchText, startDate, endDate);
 	}
 
 	// 기업별 공고 목록 (기업 메인용 - 페이징)

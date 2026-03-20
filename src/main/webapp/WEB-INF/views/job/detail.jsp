@@ -63,6 +63,7 @@
 			</c:choose>
 		</div>
 		
+
 		<div class="comment-List">
 			<table border="1">			
 				<c:forEach var="c" items="${commentList}" varStatus="status">
@@ -81,21 +82,20 @@
 						</button>
 						<button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
 						</td>
-						
-						
-						
 					</tr>
 				</c:forEach>			
 			</table>
 			
+
 		</div>
 
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
 				<input type="hidden" name="jno" value="${job.jno}">
-				<textarea name="content" cols="10" rows="4" placeholder="댓글을 입력하세요..."
-					required></textarea>
+
+
+				<textarea name="content" rows="1" placeholder="댓글을 입력하세요..." required></textarea>
 				<button type="submit">등록</button>
 			</form>
 		</div>
@@ -104,7 +104,6 @@
 
 <script>
 	
-		
 	function modcom(btn){		
 		
 		const content = btn.dataset.content;
