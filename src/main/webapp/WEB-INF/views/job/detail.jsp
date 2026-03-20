@@ -82,7 +82,8 @@
 		        </tbody>
 		    </table>
 		</div>
-
+		
+<%		if(isLogin){	 %>
 		<div class="comment-section">
 			<form action="/insertComment" method="post">
 				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
@@ -92,7 +93,14 @@
 				<button type="submit">등록</button>
 			</form>
 		</div>
-		
+<%		}else{	%>
+		<div class="comment-section comment-section-mg">
+			<h6>댓글을 입력하시려면 <a href="/loginForm"><b>로그인</b></a>을 해주세요!</h6>
+		</div>
+<% 		}%>
+
+
+
 	</div>
 
 </body>

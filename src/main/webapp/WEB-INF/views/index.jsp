@@ -14,7 +14,7 @@
 	<section id="main_menu">
 		<h2>전체 공고</h2>
 
-		<%-- 검색 폼 --%>
+		<!-- 검색 폼 -->
 		<form action="/" method="get">
 			<select name="cat" id="catSelect">
 				<option value="title"    ${cat == 'title'    ? 'selected' : ''}>공고 제목</option>
