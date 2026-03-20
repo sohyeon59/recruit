@@ -13,7 +13,21 @@
 
 	<section id="main_menu">
 		<h2>전체 공고</h2>
-	
+
+		<%-- 검색 폼 --%>
+		<form action="/" method="get" style="margin-bottom: 16px; display: flex; gap: 8px;">
+			<select name="cat">
+				<option value="title"  ${cat == 'title'   ? 'selected' : ''}>공고 제목</option>
+				<option value="cname"  ${cat == 'cname'   ? 'selected' : ''}>회사명</option>
+				<option value="deadline" ${cat == 'deadline' ? 'selected' : ''}>마감일</option>
+			</select>
+			<input type="text" name="searchText" value="${searchText}" placeholder="검색어를 입력하세요" />
+			<button type="submit">검색</button>
+			<c:if test="${not empty searchText}">
+				<a href="/">초기화</a>
+			</c:if>
+		</form>
+
 		<table>
             <thead>
                 <tr>
@@ -37,7 +51,7 @@
                     </c:when>
                     <c:otherwise>
                         <tr>
-                            <td colspan="4" class="empty-message">등록된 구인공고가 없습니다.</td>
+                            <td colspan="4" class="empty-message">검색 결과가 없습니다.</td>
                         </tr>
                     </c:otherwise>
                 </c:choose>
