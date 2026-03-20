@@ -14,6 +14,7 @@ public class CommentDto {
 	private int cno;
 	private int jno;
 	private String mid;
+	private String content;
 	private Date created_at;
 	
 	

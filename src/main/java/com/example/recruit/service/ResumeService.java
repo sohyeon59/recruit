@@ -44,6 +44,7 @@ public class ResumeService {
 	public int getMyListCount(String mid) {
 		return resumeDao.getMyListCount(mid);
 
+	}
 	// 내 지원서 상세보기
 	public ResumeDetail getMyResume(int rno) {
 		return resumeDao.getMyResume(rno);
