@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 public interface ICompanyDao {
     CompanyDto login(CompanyDto dto);
     int regist(CompanyDto dto);
-    int idCheck(@Param("cid")String cid);
+    int idCheck(String cid);
 }
