@@ -8,10 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.recruit.jdbc.job.CommentDto;
 import com.example.recruit.jdbc.job.CommentList;
+import com.example.recruit.jdbc.job.JobDto;
 import com.example.recruit.service.CommentService;
+import com.example.recruit.service.JobService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -23,34 +26,23 @@ public class CommentController {
 
 	//댓글 작성
 	@PostMapping("/insertComment")
-	public String insertComment(CommentDto dto,
-								HttpSession session) {
-		
-		String mid = (String) session.getAttribute("mid");
-		
-		dto.setMid(mid);
-		
+	public String insertComment(CommentDto dto,	HttpSession session) {
 		comService.insertComment(dto);
-	
-		return "redirect:/job/detail";
+		session.setAttribute("alertMsg", "댓글이 작성되었습니다");
+		return "redirect:/job/detail?jno=" + dto.getJno();
 	}
 	
 	//댓글 수정
+	@PostMapping("/updateComment")
+	public String updateComment() {
+		
+		return "";
+	}
+	
 	
 	
 	//댓글 삭제
 	
 	
-	//댓글 리스트
-	
-	@GetMapping("/commentList")
-	public String commentList(@RequestParam("jno") int jno, Model model) {
-		
-		List<CommentList> cList = comService.getComList(jno);
-		model.addAttribute("commentList", cList);
-		
-		return "/job/detail";
-	}
-	
-	
+
 }
