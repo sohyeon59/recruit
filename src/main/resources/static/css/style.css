@@ -1,58 +1,101 @@
 @charset "UTF-8";
 
-/* 전체 섹션 */
+/* INDEX
+-----------------------------------------------------*/
 #main_menu {
 	width: 1000px;
 	margin: 0 auto;
 }
-
-/* 테이블 */
 #main_menu table {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
 }
-
-/* 헤더 / 셀 공통 */
 #main_menu th,
 #main_menu td {
 	border: 1px solid #ddd;
 	padding: 10px;
 	text-align: center;
 }
-
-/* 헤더 스타일 */
 #main_menu th {
 	background-color: #f5f5f5;
 	font-weight: bold;
 }
-
-/* 행 hover 효과 */
 #main_menu tbody tr:hover {
 	background-color: #f9f9f9;
 	cursor: pointer;
 }
-
-/* 제목 컬럼 (왼쪽 정렬 + 강조) */
 #main_menu .title-cell {
 	text-align: left;
 	padding-left: 15px;
 	font-weight: 500;
 }
-
-/* 데이터 없을 때 메시지 */
 #main_menu .empty-message {
 	padding: 20px;
 	color: #888;
 	text-align: center;
 }
-
-/* 번호 컬럼 */
 #main_menu td:first-child {
 	font-weight: bold;
 }
-
-/* 마감일 컬럼 */
 #main_menu td:last-child {
 	color: #555;
+}
+
+
+/* 검색 기능 관련
+------------------------------------------------------- */
+#search_form{
+	display: flex;
+	justify-content: space-between;
+}
+#main_menu form {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 20px 0;
+}
+#main_menu form select {
+	padding: 6px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 14px;
+}
+#main_menu form input[type="text"] {
+	padding: 6px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	width: 200px;
+}
+#main_menu form input[type="date"] {
+	padding: 6px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+#dateSep {
+	color: #666;
+}
+
+#search_form #searchInput{
+	width: 80%;
+	height: 21px;
+	border: 1px solid black;
+}
+#main_menu form button {
+	padding: 6px 12px;
+	border: 1px solid black;
+	background-color: white;
+	cursor: pointer;
+}
+#main_menu form button:hover {
+	background-color: #f5f5f5;
+}
+#main_menu form a {
+	margin-left: 5px;
+	font-size: 13px;
+	color: #777;
+	text-decoration: none;
+}
+#main_menu form a:hover {
+	text-decoration: underline;
 }
