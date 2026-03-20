@@ -38,9 +38,15 @@ public class CommentController {
 	
 	//댓글 수정
 	@PostMapping("/updateComment")
-	public String updateComment() {
+	public String updateComment(@RequestParam("content") String content,
+								@RequestParam("cmono") int cmono,
+								@RequestParam("jno") int jno,
+								HttpSession session) {
 		
-		return "";
+		comService.updateComment(content, cmono);
+		session.setAttribute("alertMsg", "댓글이 수정되었습니다.");
+		
+		return "redirect:/job/detail?jno=" + jno;
 	}
 	
 	

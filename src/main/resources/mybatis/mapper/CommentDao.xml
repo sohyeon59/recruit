@@ -14,7 +14,7 @@
 
 <!-- 댓글 수정 -->
 <update id="updateComment">
-	update comment1 set content = #{content}
+	update comment1 set content = #{content} where cmono = #{cmono}
 </update>
 
 <!-- 댓글 삭제 -->

@@ -21,8 +21,8 @@ public class CommentService {
 		return comDao.insertComment(dto);
 	}
 	
-	public int updateComment(CommentDto dto) {
-		return comDao.updateComment(dto);
+	public int updateComment(String content, int cmono) {
+		return comDao.updateComment(content, cmono);
 	}
 	
 	public int deleteResume(int comno) {
