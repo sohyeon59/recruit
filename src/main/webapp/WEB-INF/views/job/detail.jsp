@@ -61,7 +61,30 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+		
+		<div class="comment-List">
+			<c:forEach var="comment" items="${commentList}" varStatus="status">
+				<tr>
+					<td>${status.count}</td>
+					<td>${comment.content}</td>
+					<td>${comment.mid}</td>
+					<td>${comment.created_at}</td>
+					<button type="button" onclick="">수정</button>
+					<button type="button" onclick="">삭제</button>
+				</tr>
+			</c:forEach>
+		</div>
 
+		<div class="comment-section">
+			<form action="/insertComment" method="post">
+				<input type="hidden" name="mid" value="${sessionScope.loginMember.mid}">
+				<input type="hidden" name="jno" value="${job.jno}">
+				<textarea name="content" rows="4" placeholder="댓글을 입력하세요..."
+					required></textarea>
+				<button type="submit">등록</button>
+			</form>
+		</div>
+		
 	</div>
 
 </body>
