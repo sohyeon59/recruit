@@ -20,9 +20,6 @@ import jakarta.servlet.http.HttpSession;
 public class HomeController {
 
     @Autowired
-    HttpSession session;
-
-    @Autowired
     MemberService memberService;
 
     @Autowired
@@ -45,7 +42,7 @@ public class HomeController {
 
     // 로그아웃
     @GetMapping("/logout")
-    public String logout() {
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
@@ -58,7 +55,7 @@ public class HomeController {
 
     // 개인회원 로그인
     @PostMapping("/login/member")
-    public String loginM(MemberDto dto, Model model) {
+    public String loginM(MemberDto dto, Model model, HttpSession session) {
         MemberDto result = memberService.login(dto);
         if (result != null) {
             session.setAttribute("loginMember", result);
@@ -80,7 +77,7 @@ public class HomeController {
 
     // 개인회원 가입
     @PostMapping("/register/member")
-    public String registM(MemberDto dto, Model model) {
+    public String registM(MemberDto dto, Model model, HttpSession session) {
         boolean result = memberService.regist(dto);
         if (result) {
             session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
@@ -93,7 +90,7 @@ public class HomeController {
 
     // 기업회원 로그인
     @PostMapping("/login/company")
-    public String loginC(CompanyDto dto, Model model) {
+    public String loginC(CompanyDto dto, Model model, HttpSession session) {
         CompanyDto result = companyService.login(dto);
         if (result != null) {
             session.setAttribute("loginCompany", result);
@@ -109,7 +106,7 @@ public class HomeController {
 
     // 기업회원 가입
     @PostMapping("/register/company")
-    public String registC(CompanyDto dto, Model model) {
+    public String registC(CompanyDto dto, Model model, HttpSession session) {
         boolean result = companyService.regist(dto);
         if (result) {
             session.setAttribute("alertMsg", "회원가입 되었습니다. 로그인 페이지로 이동합니다.");
