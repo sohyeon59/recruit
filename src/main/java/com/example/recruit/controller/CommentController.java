@@ -49,8 +49,7 @@ public class CommentController {
 		return "redirect:/job/detail?jno=" + jno;
 	}
 	
-	
-	
+
 	//댓글 삭제
 	
 	
