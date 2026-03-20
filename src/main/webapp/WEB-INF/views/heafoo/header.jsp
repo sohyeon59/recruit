@@ -26,7 +26,9 @@
     	isMember = usertype.equals("member");
 		isCompany = usertype.equals("company");
     } 
-    	
+    request.setAttribute("isMember", isMember);
+    request.setAttribute("isCompany", isCompany);
+    request.setAttribute("isLogin", isLogin);	
 %>
 
 <header>
