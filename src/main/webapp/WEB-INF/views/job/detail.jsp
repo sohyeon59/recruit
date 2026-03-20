@@ -67,29 +67,32 @@
 			</c:choose>
 		</div>
 
-
-
 		<div class="comment-list">
 			<table class="comment-table">
-
-				<tbody>
-					<c:forEach var="c" items="${commentList}" varStatus="status">
-						<tr>
-							<td>${status.count}</td>
-							<td id="content${c.comno}">${c.content}</td>
-							<td>${c.mid}</td>
-							<td>${c.created_at}</td>
-							<td>
-								<button onclick="modcom(this)" 
-								data-content="${c.content}"
-								data-comno="${c.comno}" 
-								data-jno="${job.jno}">수정</button>
-								<button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">삭제</button>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+		        <tbody>
+		            <c:forEach var="c" items="${commentList}" varStatus="status">
+		                <tr>
+		                    <td>${status.count}</td>
+		                    <td id="content${c.comno }">${c.content}</td>
+		                    <td>${c.mid}</td>
+		                    <td>${c.created_at}</td>
+		                    <td>
+			                <c:if test="${c.mid eq loginMember.mid}">
+			                    <button onclick="modcom(this)" 
+			                        data-content="${c.content}"
+			                        data-comno="${c.comno}" 
+			                        data-jno="${job.jno}">
+			                        수정
+			                    </button>			
+			                    <button onclick="location.href='/deleteComment?comno=${c.comno}&jno=${job.jno}'">
+			                        삭제
+			                    </button>
+			                </c:if>
+		                    </td>
+		                </tr>
+		            </c:forEach>
+		        </tbody>
+		    </table>
 
 		</div>
 
