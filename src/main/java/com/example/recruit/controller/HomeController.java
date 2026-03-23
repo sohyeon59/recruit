@@ -29,11 +29,11 @@ public class HomeController {
     JobService jobService;
 
     @GetMapping("/")
-    public String home(@RequestParam(name = "page", defaultValue = "1") int page,
-                       @RequestParam(name = "cat", required = false) String cat,
-                       @RequestParam(name = "searchText", required = false) String searchText,
-                       @RequestParam(name = "startDate", required = false) String startDate,
-                       @RequestParam(name = "endDate", required = false) String endDate,
+    public String home(@RequestParam(defaultValue = "1") int page,
+                       @RequestParam(required = false) String cat,
+                       @RequestParam(required = false) String searchText,
+                       @RequestParam(required = false) String startDate,
+                       @RequestParam(required = false) String endDate,
                        Model model) {
 
         // 빈 문자열은 null로 처리

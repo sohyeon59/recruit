@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.job.CommentList;
 import com.example.recruit.jdbc.job.JobDto;
@@ -26,7 +25,7 @@ public class JobController {
 
 	// 공고 상세
 	@GetMapping("/job/detail")
-	public String detail(@RequestParam("jno")int jno, HttpSession session, Model model) {
+	public String detail(int jno, HttpSession session, Model model) {
 
 		// 공고 정보
 		JobDto job = jobService.getJobDetail(jno);

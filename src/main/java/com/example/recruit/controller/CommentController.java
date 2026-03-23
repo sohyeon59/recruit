@@ -3,8 +3,6 @@ package com.example.recruit.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.recruit.jdbc.job.CommentDto;
 import com.example.recruit.jdbc.member.MemberDto;
@@ -34,10 +32,10 @@ public class CommentController {
 	}
 	
 	//댓글 수정
-	@RequestMapping("/updateComment") 
-	public String updateComment(@RequestParam("content") String content,
-	                            @RequestParam("comno") int comno,
-	                            @RequestParam("jno") int jno,
+	@PostMapping("/updateComment") 
+	public String updateComment(String content,
+	                            int comno,
+	                            int jno,
 	                            HttpSession session) {
 
 	    comService.updateComment(content, comno);
@@ -48,9 +46,9 @@ public class CommentController {
 	
 
 	//댓글 삭제
-	@RequestMapping("/deleteComment")
-	public String deleteComment(@RequestParam("comno") int comno,
-								@RequestParam("jno") int jno,
+	@PostMapping("/deleteComment")
+	public String deleteComment(int comno,
+								int jno,
 								HttpSession session) {
 		
 		comService.deleteComment(comno);
