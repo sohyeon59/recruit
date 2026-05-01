@@ -31,7 +31,7 @@ public class ResController {
 	// 지원서 작성 페이지 이동
 	@GetMapping("/goResume")
 	public String goResume(Model model,
-						   @RequestParam("jno") int jno,
+						   int jno,
 						   HttpSession session) {
 		
 		JobDto job = jobService.getJobDetail(jno);
@@ -54,7 +54,7 @@ public class ResController {
 	// 지원서 등록
 	@PostMapping("/regResume")
 
-	public String regResume(@RequestParam("jno") int jno, ResumeDto resume, HttpSession session) {
+	public String regResume(int jno, ResumeDto resume, HttpSession session) {
 		service.insertResume(resume);
 		session.setAttribute("alertMsg", "이력서가 등록되었습니다. 마감기한까지 수정이 가능합니다.");
 		
@@ -72,7 +72,7 @@ public class ResController {
 
 	// 지원서 삭제
 	@GetMapping("/deleteResume")
-	public String deleteResume(@RequestParam("rno") int rno, HttpSession session) {
+	public String deleteResume(int rno, HttpSession session) {
 		service.deleteResume(rno);
 		session.setAttribute("alertMsg", "이력서가 삭제되었습니다.");
 		return "redirect:/resume/myPage";
@@ -80,7 +80,7 @@ public class ResController {
 
 	// 마이페이지 - 내 지원서 목록 (페이징)
 	@GetMapping("/resume/myPage")
-	public String myPage(@RequestParam(name = "page", defaultValue = "1") int page,
+	public String myPage(@RequestParam(defaultValue = "1") int page,
 						 Model model, HttpSession session) {
 		MemberDto mem = (MemberDto) session.getAttribute("loginMember");
 		if (mem == null) {
@@ -100,7 +100,7 @@ public class ResController {
 
 	// 내 지원서 상세보기
 	@GetMapping("/resumeDetail")
-	public String resumeDetail(@RequestParam("rno") int rno, Model model, HttpSession session) {
+	public String resumeDetail(int rno, Model model, HttpSession session) {
 		ResumeDetail detail = service.getMyResume(rno);
 		model.addAttribute("detail", detail);
 		return "/resume/detail";
@@ -108,7 +108,7 @@ public class ResController {
 
 	// 지원서 상세보기 (기업용)
 	@GetMapping("/company/detailApplicant")
-	public String detailApplicant(@RequestParam("rno") int rno, Model model, HttpSession session) {
+	public String detailApplicant(int rno, Model model, HttpSession session) {
 		if (session.getAttribute("loginCompany") == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";

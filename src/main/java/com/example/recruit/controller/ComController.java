@@ -25,7 +25,7 @@ public class ComController {
 
 	// 기업 메인 - 내 공고 목록
 	@GetMapping("/company/main")
-	public String printJobList(@RequestParam(name = "page", defaultValue = "1") int page,
+	public String printJobList(@RequestParam( defaultValue = "1") int page,
 							   Model model, HttpSession session) {
 		CompanyDto dto = (CompanyDto) session.getAttribute("loginCompany");
 		if (dto == null) {
@@ -45,7 +45,7 @@ public class ComController {
 
 	// 공고 상세 - 지원자 목록
 	@GetMapping("/company/detail")
-	public String showdetails(Model model, @RequestParam("jno") int jno, HttpSession session) {
+	public String showdetails(Model model, int jno, HttpSession session) {
 		if (session.getAttribute("loginCompany") == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
@@ -81,7 +81,7 @@ public class ComController {
 
 	// 공고 수정 폼
 	@GetMapping("/company/editJobForm")
-	public String editJobForm(@RequestParam("jno") int jno, Model model, HttpSession session) {
+	public String editJobForm(int jno, Model model, HttpSession session) {
 		if (session.getAttribute("loginCompany") == null) {
 			session.setAttribute("alertMsg", "로그인이 필요한 서비스입니다.");
 			return "redirect:/loginForm";
